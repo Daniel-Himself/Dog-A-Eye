@@ -13,4 +13,3 @@ RUN composer install \
 FROM php:8.1-apache
 COPY . /var/www/html/
 WORKDIR /usr/src/final-project
-EXPOSE 8080
