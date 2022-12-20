@@ -1,9 +1,9 @@
 services:
   web:
-    image: composer:2.3.10
     build:
       context: ./
       dockerfile: Dockerfile
+    image: mexigo/webapp
     ports:
       - "8080:80"
     volumes:
