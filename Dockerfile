@@ -12,6 +12,13 @@ RUN composer install \
 
 FROM php:8.1-apache
 
+# Install mysqli addon
+RUN apt -y update \
+    && apt -y install libicu-dev \
+    && docker-php-ext-configure intl \
+    && docker-php-ext-install intl
+RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+
 # replaced by volume mount in docker-compose.yml
 #COPY . /var/www/html/
 
