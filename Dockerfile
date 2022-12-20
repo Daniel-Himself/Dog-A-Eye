@@ -11,5 +11,8 @@ RUN composer install \
     --prefer-dist
 
 FROM php:8.1-apache
-COPY . /var/www/html/
+
+# replaced by volume mount in docker-compose.yml
+#COPY . /var/www/html/
+
 WORKDIR /usr/src/final-project
