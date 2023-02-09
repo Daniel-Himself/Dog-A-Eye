@@ -1,0 +1,19 @@
+# --- General ---
+pathlib
+
+# --- app development ---
+kivy
+
+# --- computer vision ---
+ultralytics
+opencv-python
+
+# --- data science ---
+pandas
+polars # may be used later on for faster data processing
+numpy
+
+# --- notebooks ---
+tqdm
+jupyterlab
+ipywidgets == 7.7.1

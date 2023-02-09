@@ -1,6 +1,0 @@
-{
-  "require": {
-    "": "<default>",
-    "ext-mysqli": "*"
-  }
-}
