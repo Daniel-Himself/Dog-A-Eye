@@ -10,7 +10,7 @@ We recommend using a virtual environment (venv) for this project.
 This way, the packages that are being installed for this project - are installed correctly.
 
 ### Interacting with python virtual environments
-To start python virtual environment run the following:
+To create python virtual environment run the following:
 ```
 python -m venv .venv
 ```
