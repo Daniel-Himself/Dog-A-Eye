@@ -1,5 +1,6 @@
 # --- General ---
 pathlib
+natsort
 
 # --- app development ---
 kivy
@@ -11,9 +12,10 @@ opencv-python
 # --- data science ---
 pandas
 polars # may be used later on for faster data processing
+pyarrow
 numpy
 
 # --- notebooks ---
 tqdm
 jupyterlab
-ipywidgets == 7.7.1
+ipywidgets==7.7.1
