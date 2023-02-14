@@ -6,7 +6,7 @@ natsort
 kivy
 
 # --- computer vision ---
-ultralytics
+# ultralytics
 opencv-python
 
 # --- data science ---

@@ -1,4 +1,24 @@
-# Final Project
+# Dog Eye - Bsc Diploma Project
+Authors: 
+Eddie Kanevsky, 
+Dror Mor,
+Ali Shaer,
+Daniel Sharon
+
+## Table Of contents:
+---
+- [Dog Eye - Bsc Diploma Project](#dog-eye---bsc-diploma-project)
+  - [Table Of contents:](#table-of-contents)
+  - [Abstract](#abstract)
+  - [The Problem](#the-problem)
+    - [Pet Owners Perspective](#pet-owners-perspective)
+    - [Veterinars Perspective](#veterinars-perspective)
+    - [Researchers Perspective](#researchers-perspective)
+  - [Proposed Solution](#proposed-solution)
+  - [Technologies](#technologies)
+  - [Setup](#setup)
+    - [Environment setup](#environment-setup)
+---
 
 ## Abstract
 
@@ -6,34 +26,32 @@ The purpose of this project is to implement a simple application for dog owners 
 
 ## The Problem
 
+### Pet Owners Perspective
 
+### Veterinars Perspective
 
-## Getting Started
+### Researchers Perspective
 
-We recommend using a virtual environment (venv) for this project.  
-This way, the packages that are being installed for this project - are installed correctly.
+## Proposed Solution
 
-### Interacting with python virtual environments
-To create python virtual environment run the following:
+## Technologies
+
+- Anaconda (Python version 3.10)
+  - [Download Anaconda](https://www.anaconda.com/products/distribution)
+  - [Download Miniconda](https://docs.conda.io/en/latest/minicoda.html)
+
+## Setup
+
+### Environment setup
+
+To create conda environment, with all the dependencies included, run the following:
 ```
-python -m venv .venv
+conda env create -f environment.yaml
 ```
+Give it a couple of minutes to initialize, as the required cummulative 
+packages size is approximatly 2GB.
 
-On Debian-based Operating Systems, you may want to install `python3-venv` module, by running:
-```
-sudo apt install python3-venv
-```
-To enable virtual env, run one of the following commands in your terminal:
-- On Windows: `.venv/Scripts/activate`
-- On MacOS/Linux: `source .venv/bin/activate`
+Ensure that the initialization succeeded run: `conda env list | grep DogVision`
 
-To disable virtual env, run `disable` in the terminal.
-
-### Installing the necessary packages
-
-To get all the necessary modules for the project, with your venv enabled, run: 
-```
-pip install -r requirements.txt
-```
-
-Note: the approximated size of the downloaded packages is around 1.8 GB. **You may need to check for the required space beforehand.**
+- To enable the newly created environment, run: `conda activate DogVision`
+- To disable (current) conda environment, run: `conda deactivate`
