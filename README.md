@@ -38,7 +38,8 @@ The purpose of this project is to implement a simple application for dog owners 
 
 - Anaconda (Python version 3.10)
   - [Download Anaconda](https://www.anaconda.com/products/distribution)
-  - [Download Miniconda](https://docs.conda.io/en/latest/minicoda.html)
+  - [Download Miniconda](https://docs.conda.io/en/latest/miniconda.html)
+  - 
 
 ## Setup
 
