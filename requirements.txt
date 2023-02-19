@@ -8,6 +8,7 @@ kivy
 # --- computer vision ---
 # ultralytics
 opencv-python
+ffmpeg-python
 
 # --- data science ---
 pandas

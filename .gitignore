@@ -44,3 +44,6 @@
 testing/build/**
 testing/dist/**
 testing/testing.spec
+resources/cats_and_dogs/DogFaceNet_Dataset_224_1/**
+resources/cats_and_dogs/video/**
+*_.py
