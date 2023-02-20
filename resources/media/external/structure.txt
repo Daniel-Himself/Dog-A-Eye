@@ -1,0 +1,5 @@
+The general structure of this folder (As should be constructed)
+root (external)
+|-- Am Oved : Labrador breed study
+|-- DogFaceNet_Dataset_224_1 : Dog Face Dataset
+\__ Tim : different dogs facing a treat
