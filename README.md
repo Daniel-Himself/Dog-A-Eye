@@ -17,7 +17,6 @@ Daniel Sharon
   - [Proposed Solution](#proposed-solution)
   - [Technologies](#technologies)
   - [Setup](#setup)
-    - [Environment setup](#environment-setup)
 ---
 
 ## Abstract
@@ -43,16 +42,5 @@ The purpose of this project is to implement a simple application for dog owners 
 
 ## Setup
 
-### Environment setup
-
-To create conda environment, with all the dependencies included, run the following:
-```
-conda env create -f environment.yaml
-```
-Give it a couple of minutes to initialize, as the required cummulative 
-packages size is approximatly 2GB.
-
-Ensure that the initialization succeeded run: `conda env list | grep DogVision`
-
-- To enable the newly created environment, run: `conda activate DogVision`
-- To disable (current) conda environment, run: `conda deactivate`
+Run `make` in order to create the conda environment and install all the dependancies
+Afterwards, run `conda activate DogVision`

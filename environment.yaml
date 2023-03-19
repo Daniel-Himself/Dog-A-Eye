@@ -1,7 +1,9 @@
 name: DogVision
+channels:
+  - conda-forge
 dependencies:
-  - python==3.10
-  - anaconda
+  - python=3.10.*
   - pip
+  - conda-forge::libstdcxx-ng
   - pip:
     - -r requirements.txt
