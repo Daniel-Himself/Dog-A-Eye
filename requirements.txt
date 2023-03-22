@@ -4,6 +4,9 @@ natsort
 
 # --- app development ---
 kivy
+buildozer
+cython==0.28.6
+
 
 # --- computer vision ---
 # ultralytics
@@ -12,9 +15,9 @@ ffmpeg-python
 
 # --- data science ---
 pandas
-polars # may be used later on for faster data processing
-pyarrow
-numpy
+# polars # may be used later on for faster data processing
+# pyarrow
+# numpy
 
 # --- notebooks ---
 tqdm

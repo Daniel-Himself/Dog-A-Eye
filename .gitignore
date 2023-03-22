@@ -50,3 +50,5 @@ resources/cats_and_dogs/external/**
 resources/media/external/**
 !resources/media/external/structure.txt
 *_.py
+**/.**/
+**bin/
