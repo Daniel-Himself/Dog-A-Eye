@@ -1,0 +1,25 @@
+#!/bin/bash
+# pyinstaller --onefile -w --name=testing app.py
+cd kivy
+title="Dog Vision"
+package="dog_vision"
+version=$1
+# icon=$2
+# splash=$3
+
+buildozer init
+
+# sed -i \
+# -e "/\(icon.filename\).*/s/^#//g" \
+# -e "/\(presplash.filename\).*/s/^#//g" \
+# buildozer.spec
+
+sed -i \
+-e "s/\(title = \).*/\1$title/" \
+-e "s/\(package.name = \).*/\1$package/" \
+-e "s/\(version = \).*/\1$version/" \
+# -e "s/\(icon.filename = \).*/\1$icon/" \
+# -e "s/\(presplash.filename = \).*/\1$splash/" \
+buildozer.spec
+
+buildozer -v android debug
