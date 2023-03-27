@@ -18,8 +18,8 @@ sed -i \
 -e "s/\(title = \).*/\1$title/" \
 -e "s/\(package.name = \).*/\1$package/" \
 -e "s/\(version = \).*/\1$version/" \
+buildozer.spec
 # -e "s/\(icon.filename = \).*/\1$icon/" \
 # -e "s/\(presplash.filename = \).*/\1$splash/" \
-buildozer.spec
 
-buildozer -v android debug
+buildozer -v android debug deploy
