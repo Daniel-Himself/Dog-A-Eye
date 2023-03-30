@@ -3,5 +3,5 @@ Dockerfile
 .gitignore
 *.yaml
 *.md
-*.ipynb
+*_.py
 *.bat
