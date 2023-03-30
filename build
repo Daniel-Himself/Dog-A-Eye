@@ -1,6 +1,6 @@
 #!/bin/bash
 # pyinstaller --onefile -w --name=testing app.py
-cd kivy
+cd app
 title="Dog Vision"
 package="dog_vision"
 version=$1

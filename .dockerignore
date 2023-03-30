@@ -1,2 +1,7 @@
+resources/**
+Dockerfile
+.gitignore
+*.yaml
+*.md
 *.ipynb
 *.bat
