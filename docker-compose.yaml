@@ -1,7 +1,18 @@
 services:
-  website:
-    build: .
-    volumes:
-      - .:/home/docker/build
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: dogvision/webapp
     ports:
-      - 5000:8000
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html
+    container_name: dogvision-webapp
+  
+  # db:
+  #   image: mysql:latest
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: mexigo!root!pw
+  #   container_name: megico-db
