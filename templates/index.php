@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Upload Image</h1>
      <input type="file" accept="image/*" capture="camera">
      <input type="file" name="image 1" accept="image/*" capture="environment">
      <input type="file" name="image 2" accept="image/*" capture="user">
