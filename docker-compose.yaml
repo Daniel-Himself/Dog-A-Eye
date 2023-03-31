@@ -1,9 +1,7 @@
 services:
-  builder:
-    build: docker/linux/.
+  website:
+    build: .
     volumes:
-      - ./.:/home/docker/build
-    entrypoint:
-      - /bin/bash
-    # stdin_open: true
-    tty: true
+      - .:/home/docker/build
+    ports:
+      - 5000:8000
