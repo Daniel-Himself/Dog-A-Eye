@@ -1,5 +1,9 @@
 services:
   builder:
-    build: .
-    volumes: 
-      - ./kivy:/home/root/testing/kivy
+    build: docker/linux/.
+    volumes:
+      - ./.:/home/docker/build
+    entrypoint:
+      - /bin/bash
+    # stdin_open: true
+    tty: true

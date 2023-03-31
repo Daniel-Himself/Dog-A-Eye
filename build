@@ -7,7 +7,7 @@ version=$1
 # icon=$2
 # splash=$3
 
-buildozer init
+buildozer init --y
 
 # sed -i \
 # -e "/\(icon.filename\).*/s/^#//g" \
@@ -22,4 +22,4 @@ buildozer.spec
 # -e "s/\(icon.filename = \).*/\1$icon/" \
 # -e "s/\(presplash.filename = \).*/\1$splash/" \
 
-buildozer -v android debug deploy
+buildozer -v android debug deploy --y

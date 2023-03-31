@@ -1,7 +1,0 @@
-resources/**
-Dockerfile
-.gitignore
-*.yaml
-*.md
-*_.py
-*.bat
