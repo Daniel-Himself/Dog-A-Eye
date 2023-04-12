@@ -1,55 +1,17 @@
-# File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,linux
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
 
-### Linux ###
-*~
+# macOS
+.DS_Store
 
-# temporary files which can be created if a process still has a handle open of a deleted file
-.fuse_hidden*
-
-# KDE directory preferences
-.directory
-
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
-
-# .nfs files are created when an open file is removed but is still being accessed
-.nfs*
-
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
-
-# Local History for Visual Studio Code
-.history/
-
-# Built Visual Studio Code Extensions
-*.vsix
-
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
-.venv/
-
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,linux
-
-# Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
-
-testing/build/**
-testing/dist/**
-testing/testing.spec
-resources/cats_and_dogs/DogFaceNet_Dataset_224_1/**
-resources/cats_and_dogs/Am-Oved/**
-resources/cats_and_dogs/external/**
-resources/media/external/**
-!resources/media/external/structure.txt
-*.ipynb
-*_.py
-**/.**/
-**bin/
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
