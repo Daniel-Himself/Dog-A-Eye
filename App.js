@@ -8,20 +8,14 @@ import ActionProvider from './bot/ActionProvider'
 
 export default function App() {
 
-  const MyComponent = () => {
-    return (
-      <div>
+  return (
+    <div className='App'>
         <Chatbot
           config={config}
           messageParser={MessageParser}
           actionProvider={ActionProvider}
         />
-      </div>
-    );
-  };
-
-  return (
-    MyComponent()
+    </div>
   );
 }
 
