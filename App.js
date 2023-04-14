@@ -6,17 +6,21 @@ import config from './bot/config'
 import MessageParser from './bot/MessageParser'
 import ActionProvider from './bot/ActionProvider'
 import ShareCamera from './components/ShareCamera/ShareCamera.jsx'
+// import CameraCapture from './components/ShareCamera/Camera';
 export default function App() {
 
   return (
-    // <div className='App'>
-    //   <Chatbot
+    <View style={styles.container}>
+
+      <ShareCamera />
+    </View>
+    // <View className='App'>
+    /* {   <Chatbot
     //     config={config}
     //     messageParser={MessageParser}
     //     actionProvider={ActionProvider}
-    //   />
-    // </div>
-      <ShareCamera />
+    //   />} */
+    /* </View> */
   );
 }
 

@@ -7,21 +7,6 @@ import * as MediaLibrary from 'expo-media-library';
 
 const ShareCamera = () => {
   let cameraRef = useRef();
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    buttonContainer: {
-      backgroundColor: '#fff',
-      alignSelf: 'flex-end'
-    },
-    preview: {
-      alignSelf: 'stretch',
-      flex: 1
-    }
-  });
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [photo, setPhoto] = useState();
@@ -84,5 +69,22 @@ const ShareCamera = () => {
     </Camera>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: "75%"
+  },
+  buttonContainer: {
+    backgroundColor: '#fff',
+    alignSelf: 'flex-end'
+  },
+  preview: {
+    alignSelf: 'stretch',
+    flex: 1
+  }
+});
 
 export default ShareCamera;  
