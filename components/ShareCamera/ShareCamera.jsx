@@ -66,26 +66,22 @@ const ShareCamera = () => {
     };
 
     return (
-      <div>
-        <SafeAreaView style={styles.container}>
-          <Image style={styles.preview} source={{ uri: "data:image/jpg;base64," + photo.base64 }} />
-          <Button title="Share" onPress={sharePic} />
-          {hasMediaLibraryPermission ? <Button title="Save" onPress={savePhoto} /> : undefined}
-          <Button title="Discard" onPress={() => setPhoto(undefined)} />
-        </SafeAreaView>
-      </div>
+      <SafeAreaView style={styles.container}>
+        <Image style={styles.preview} source={{ uri: "data:image/jpg;base64," + photo.base64 }} />
+        <Button title="Share" onPress={sharePic} />
+        {hasMediaLibraryPermission ? <Button title="Save" onPress={savePhoto} /> : undefined}
+        <Button title="Discard" onPress={() => setPhoto(undefined)} />
+      </SafeAreaView>
     );
   }
 
   return (
-    <div>
-      <Camera style={styles.container} ref={cameraRef}>
-        <View style={styles.buttonContainer}>
-          <Button title="Take Pic" onPress={takePic} />
-        </View>
-        <StatusBar style="auto" />
-      </Camera>
-    </div>
+    <Camera style={styles.container} ref={cameraRef}>
+      <View style={styles.buttonContainer}>
+        <Button title="Take Pic" onPress={takePic} />
+      </View>
+      <StatusBar style="auto" />
+    </Camera>
   );
 }
 
