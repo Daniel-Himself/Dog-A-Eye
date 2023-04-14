@@ -1,5 +1,6 @@
 import { createChatBotMessage } from 'react-chatbot-kit';
 import DogPicture from '../components/DogPicture/DogPicture.jsx';
+import ShareCamera from '../components/ShareCamera/ShareCamera.jsx';
 
 
 const botName = 'The DogVision Assistant';
@@ -24,6 +25,10 @@ const config = {
             widgetName: 'dogPicture',
             widgetFunc: (props) => <DogPicture {...props} />,
         },
+        {
+            widgetName: 'shareCamera',
+            widgetFunc: (props) => <ShareCamera {...props} />,
+        }
     ],
 };
 

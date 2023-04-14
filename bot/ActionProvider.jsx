@@ -24,6 +24,21 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         }));
     };
 
+    // handleCamera
+    const handleCamera = () => {
+        const botMessage = createChatBotMessage(
+            "Please upload a clear picture of your dog's eye",
+            {
+                widget: 'shareCamera',
+            }
+        );
+
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
+
     // Put the handleHello function in the actions object to pass to the MessageParser
     return (
         <div>
