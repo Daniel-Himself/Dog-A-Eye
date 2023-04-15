@@ -5,11 +5,20 @@ const MessageParser = ({ children, actions }) => {
         if (message.includes('hello')) {
             actions.handleHello();
         }
-        if (message.includes('test dog picture')) {
+        else if (message.includes('test dog picture')) {
             actions.handleDog();
         }
-        if (message.includes('test camera')) {
+        else if (message.includes('test camera')) {
             actions.handleCamera();
+        }
+        // new RegExp().test(message)
+        else if ( message.match(/^(0\d{1,2})-?(\d{7})$/)){
+            actions.handlePhone(message);
+        }
+        else if (message.match(/^([a-zA-Z]{2,}\s*)+$/) && message.length < 20){
+            actions.handleName(message);
+        } else{
+            actions.handleUnknown();
         }
     };
 

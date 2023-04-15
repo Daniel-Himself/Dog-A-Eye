@@ -1,12 +1,11 @@
 import { createChatBotMessage } from 'react-chatbot-kit';
 import DogPicture from '../components/DogPicture/DogPicture.jsx';
-import ShareCamera from '../components/Camera/ShareCamera.jsx';
 
 
 const botName = 'The DogVision Assistant';
 
 const config = {
-    initialMessages: [createChatBotMessage(`Hi! I'm ${botName}`)],
+    initialMessages: [createChatBotMessage(`Hi! I'm ${botName}. Please enter your phone number to start`)],
     botName: botName,
     customStyles: {
         botMessageBox: {

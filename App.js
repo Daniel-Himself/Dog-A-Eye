@@ -1,12 +1,10 @@
 import { StatusBar, Dimensions } from 'react-native'
 import { StyleSheet, Text, View } from 'react-native'
 import Chatbot from 'react-chatbot-kit'
-// import 'react-chatbot-kit/build/main.css'
+import 'react-chatbot-kit/build/main.css'
 import config from './bot/config'
 import MessageParser from './bot/MessageParser'
 import ActionProvider from './bot/ActionProvider'
-import ShareCamera from './components/Camera/ShareCamera.jsx'
-// import CameraCapture from './components/ShareCamera/Camera';
 export default function App() {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
