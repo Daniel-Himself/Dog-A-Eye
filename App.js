@@ -1,5 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar, Dimensions } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import Chatbot from 'react-chatbot-kit'
 // import 'react-chatbot-kit/build/main.css'
 import config from './bot/config'
@@ -8,19 +8,17 @@ import ActionProvider from './bot/ActionProvider'
 import ShareCamera from './components/ShareCamera/ShareCamera.jsx'
 // import CameraCapture from './components/ShareCamera/Camera';
 export default function App() {
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
 
   return (
-    <View style={styles.container}>
-
-      <ShareCamera />
+    <View style={[styles.container, {width: windowWidth, height: windowHeight}]}>
+        <Chatbot
+          config={config}
+          messageParser={MessageParser}
+          actionProvider={ActionProvider}
+        />
     </View>
-    // <View className='App'>
-    /* {   <Chatbot
-    //     config={config}
-    //     messageParser={MessageParser}
-    //     actionProvider={ActionProvider}
-    //   />} */
-    /* </View> */
   );
 }
 
