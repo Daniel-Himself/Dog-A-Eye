@@ -5,7 +5,7 @@ import Chatbot from 'react-chatbot-kit'
 import config from './bot/config'
 import MessageParser from './bot/MessageParser'
 import ActionProvider from './bot/ActionProvider'
-import ShareCamera from './components/ShareCamera/ShareCamera.jsx'
+import ShareCamera from './components/Camera/ShareCamera.jsx'
 // import CameraCapture from './components/ShareCamera/Camera';
 export default function App() {
   const windowWidth = Dimensions.get('window').width;

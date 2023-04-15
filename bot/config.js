@@ -1,6 +1,6 @@
 import { createChatBotMessage } from 'react-chatbot-kit';
 import DogPicture from '../components/DogPicture/DogPicture.jsx';
-import ShareCamera from '../components/ShareCamera/ShareCamera.jsx';
+import ShareCamera from '../components/Camera/ShareCamera.jsx';
 
 
 const botName = 'The DogVision Assistant';
