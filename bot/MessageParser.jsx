@@ -8,14 +8,11 @@ const MessageParser = ({ children, actions }) => {
         else if (message.includes('test dog picture')) {
             actions.handleDog();
         }
-        else if (message.includes('test messages')) {
-            actions.handleTestMessages();
-        }
         else if ( message.match(/^(0\d{1,2})-?(\d{7})$/)){
             actions.handlePhone(message);
         }
         else if (message.match(/^([a-zA-Z]{2,}\s*)+$/) && message.length < 20){
-            actions.handleName(message);
+            actions.handleSymptomsOptions(message);
         } else{
             actions.handleUnknown();
         }

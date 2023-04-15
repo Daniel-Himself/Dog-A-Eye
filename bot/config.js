@@ -30,10 +30,10 @@ const config = {
             widgetName: 'symptomsOptions',
             widgetFunc: (props) => <SymptomsOptions {...props} />,
         },
-        {
-            widgetname: 'symptomsDurationList',
-            widgetFunc: (props) => <SymptomsDurationList {...props} />,
-        }
+        // {
+        //     widgetname: 'symptomsDurationList',
+        //     widgetFunc: (props) => <SymptomsDurationList {...props} />,
+        // }
     ],
 };
 
