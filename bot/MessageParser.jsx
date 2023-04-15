@@ -8,10 +8,6 @@ const MessageParser = ({ children, actions }) => {
         else if (message.includes('test dog picture')) {
             actions.handleDog();
         }
-        else if (message.includes('test camera')) {
-            actions.handleCamera();
-        }
-        // new RegExp().test(message)
         else if ( message.match(/^(0\d{1,2})-?(\d{7})$/)){
             actions.handlePhone(message);
         }

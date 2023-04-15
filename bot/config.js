@@ -23,10 +23,6 @@ const config = {
         {
             widgetName: 'dogPicture',
             widgetFunc: (props) => <DogPicture {...props} />,
-        },
-        {
-            widgetName: 'shareCamera',
-            widgetFunc: (props) => <ShareCamera {...props} />,
         }
     ],
 };
