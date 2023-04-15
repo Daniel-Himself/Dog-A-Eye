@@ -1,5 +1,6 @@
 import { createChatBotMessage } from 'react-chatbot-kit';
 import DogPicture from '../components/DogPicture/DogPicture.jsx';
+import SymptomsOptions from '../components/SymptomsOptions/SymptomsOptions.jsx';
 
 
 const botName = 'The DogVision Assistant';
@@ -23,6 +24,10 @@ const config = {
         {
             widgetName: 'dogPicture',
             widgetFunc: (props) => <DogPicture {...props} />,
+        },
+        {
+            widgetName: 'symptomsOptions',
+            widgetFunc: (props) => <SymptomsOptions {...props} />,
         },
     ],
 };

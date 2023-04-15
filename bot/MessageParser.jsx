@@ -8,6 +8,9 @@ const MessageParser = ({ children, actions }) => {
         if (message.includes('test dog picture')) {
             actions.handleDog();
         }
+        if (message.includes('test messages')) {
+            actions.handleTestMessages();
+        }
     };
 
     return (

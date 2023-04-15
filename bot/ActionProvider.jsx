@@ -24,6 +24,20 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         }));
     };
 
+    const handleTestMessages = () => {
+        const botMessage = createChatBotMessage(
+            "What symptoms is your dog experiencing?",
+            {
+                widget: 'symptomsOptions',
+            }
+        );
+        
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
+
     // Put the handleHello function in the actions object to pass to the MessageParser
     return (
         <div>
@@ -32,6 +46,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
                     actions: {
                         handleHello,
                         handleDog,
+                        handleTestMessages,
                     },
                 });
             })}
