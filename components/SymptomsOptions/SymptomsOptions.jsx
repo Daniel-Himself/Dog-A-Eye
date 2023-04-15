@@ -4,26 +4,10 @@ import "./SymptomsOptions.css";
 
 const SymptomsOptions = (props) => {
     const options = [
-        {
-            text: "Squinting",
-            handler: props.actionProvider.handleSquinting,
-            id: 1,
-        },
-        {
-            text: "Swelling",
-            handler: props.actionProvider.handleSwelling,
-            id: 2,
-        },
-        {
-            text: "Discharge",
-            handler: props.actionProvider.handleDischarge,
-            id: 3,
-        },
-        {
-            text: "Redness",
-            handler: props.actionProvider.handleSoreThroat,
-            id: 4,
-        },
+        { text: "Squinting", handler: props.actionProvider.handleDurationOptions, id: 1 },
+        { text: "Swelling", handler: props.actionProvider.handleDurationOptions, id: 2 },
+        { text: "Discharge", handler: props.actionProvider.handleDurationOptions, id: 3 },
+        { text: "Redness", handler: props.actionProvider.handleDurationOptions, id: 4 },
     ];
 
     const optionsMarkup = options.map((option) => (

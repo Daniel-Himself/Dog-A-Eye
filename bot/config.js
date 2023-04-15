@@ -1,6 +1,7 @@
 import { createChatBotMessage } from 'react-chatbot-kit';
 import DogPicture from '../components/DogPicture/DogPicture.jsx';
 import SymptomsOptions from '../components/SymptomsOptions/SymptomsOptions.jsx';
+import DurationOptions from '../components/DurationOptions/DurationOptions.jsx';
 
 const botName = 'The DogVision Assistant';
 
@@ -28,6 +29,31 @@ const config = {
             widgetName: 'symptomsOptions',
             widgetFunc: (props) => <SymptomsOptions {...props} />,
         },
+        {
+            widgetName: 'durationOptions',
+            widgetFunc: (props) => <DurationOptions {...props} />,
+            props: {
+                options: [
+                    {
+                        text: "Introduction to JS",
+                        url:
+                            "https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/basic-javascript/",
+                        id: 1,
+                    },
+                    {
+                        text: "Mozilla JS Guide",
+                        url:
+                            "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+                        id: 2,
+                    },
+                    {
+                        text: "Frontend Masters",
+                        url: "https://frontendmasters.com",
+                        id: 3,
+                    },
+                ],
+            },
+        }
     ],
 };
 

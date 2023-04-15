@@ -52,6 +52,19 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             ...prev,
             messages: [...prev.messages, botMessage],
         }));
+
+        const handleDurationOptions = () => {
+            const botMessage = createChatBotMessage(
+                "How long has your dog been experiencing these symptoms?",
+                {
+                    widget: 'durationOptions',
+                }
+            );
+            setState((prev) => ({
+                ...prev,
+                messages: [...prev.messages, botMessage],
+            }));
+        }
     };
 
 
