@@ -38,6 +38,23 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         }));
     };
 
+    const handleSymptomsDuaration = () => {
+        const message = createChatBotMessage(
+            "How long has your dog been experiencing these symptoms?",
+            {
+                widget: 'symptomsDurationList',
+            }
+        );
+        this.updateChatbotState(message);
+    };
+
+    updateChatbotState = (message) => {
+        this.setState((prevState) => ({
+            ...prevState,
+            messages: [...prevState.messages, message],
+        }));
+    };
+
     // Put the handleHello function in the actions object to pass to the MessageParser
     return (
         <div>
@@ -47,6 +64,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
                         handleHello,
                         handleDog,
                         handleTestMessages,
+                        handleSymptomsDuaration,
                     },
                 });
             })}

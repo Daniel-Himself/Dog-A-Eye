@@ -1,0 +1,16 @@
+.duaration-list-container {
+    padding: 0;
+}
+
+.duration-list-item {
+    text-align: left;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin: 6px;
+    display: block;
+    color: #1d1d1d;
+    background-color: #f1f1f1;
+    padding: 8px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 4px rgba(150, 149, 149, 0.4);
+}

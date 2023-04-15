@@ -1,6 +1,5 @@
 import React from "react"
 
-
 import "./SymptomsOptions.css";
 
 const SymptomsOptions = (props) => {
