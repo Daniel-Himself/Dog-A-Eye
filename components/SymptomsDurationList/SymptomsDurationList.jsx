@@ -33,3 +33,5 @@ const SymptomsDurationList = (props) => {
 
     return <div className="duaration-list-container">{optionsMarkup}</div>;
 }
+
+export default SymptomsDurationList;
