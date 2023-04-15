@@ -23,7 +23,7 @@ export default function App() {
   const LandingPage = () => {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome to the Chatbot App</Text>
+        <Text style={styles.title}>Welcome to the DogVision Assistant App</Text>
         <Button
           style={styles.buttonContainer}
           title="Start Chatbot"
