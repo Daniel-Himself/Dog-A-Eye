@@ -1,9 +1,33 @@
 import React from 'react';
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
-    const handleHello = () => {
-        const botMessage = createChatBotMessage('Hello. Nice to meet you.');
+    
+    const handlePhone = () => {
+        const botMessage = createChatBotMessage("Thank you. Please enter your full name");
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
+    const handleName = () => {
+        const botMessage = createChatBotMessage("Part 1 Complete!");
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    };
 
+    const handleUnknown = () => {
+        const botMessage = createChatBotMessage("Sorry, I don't understand. Please try again");
+        setState((prev) => ({
+            ...prev,
+            messages: [...prev.messages, botMessage],
+        }));
+    }
+
+    const handleHello = () => {
+        const botMessage = createChatBotMessage('Hello. Nice to meet you');
+        
         setState((prev) => ({
             ...prev,
             messages: [...prev.messages, botMessage],
@@ -65,6 +89,9 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
                         handleDog,
                         handleTestMessages,
                         handleSymptomsDuaration,
+                        handlePhone,
+                        handleName,
+                        handleUnknown,
                     },
                 });
             })}

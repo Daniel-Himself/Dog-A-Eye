@@ -7,7 +7,7 @@ import SymptomsDurationList from '../components/SymptomsDurationList/SymptomsDur
 const botName = 'The DogVision Assistant';
 
 const config = {
-    initialMessages: [createChatBotMessage(`Hi! I'm ${botName}`)],
+    initialMessages: [createChatBotMessage(`Hi! I'm ${botName}. Please enter your phone number to start`)],
     botName: botName,
     customStyles: {
         botMessageBox: {
