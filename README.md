@@ -36,12 +36,7 @@ The purpose of this project is to implement a simple application for dog owners 
 
 ## Proposed Solution
 
-## Technologies
-
-- Anaconda (Python version 3.10)
-  - [Download Anaconda](https://www.anaconda.com/products/distribution)
-  - [Download Miniconda](https://docs.conda.io/en/latest/miniconda.html)
-  - Buildozer (Android packager)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1FOOfM8w0CS5xwPlwvV0bp-DhLa_DdDgg)
 
 ## Setup
 1. Install Node.js
