@@ -1,20 +1,12 @@
-node_modules/
-.expo/
-dist/
-npm-debug.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-web-build/
+# yarn files
+app/yarn.lock
+app/.pnp.*
+app/.yarn/*
+!app/.yarn/patches
+!app/.yarn/plugins
+!app/.yarn/releases
+!app/.yarn/sdks
+!app/.yarn/versions
 
 # macOS
 .DS_Store
-
-# Temporary files created by Metro to check the health of the file watcher
-.metro-health-check*
-
-node_modules
-package-lock.json
