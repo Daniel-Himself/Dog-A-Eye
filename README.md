@@ -41,4 +41,8 @@ The purpose of this project is to implement a simple application for dog owners 
 ## Setup
 1. Install Node.js
 2. run `npm install` to install all the dependencies
-3. run `npm start --web` or `npm run web` to start the development server
+3. run `npm install -g yarn; yarn set version berry; yarn set version latest` to install yarn 
+4. run `yarn install` to install all the dependencies
+5. run `yarn dev` to start the development server
+
+
