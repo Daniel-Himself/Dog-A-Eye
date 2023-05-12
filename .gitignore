@@ -1,12 +1,12 @@
 # yarn files
-app/yarn.lock
-app/.pnp.*
-app/.yarn/*
-!app/.yarn/patches
-!app/.yarn/plugins
-!app/.yarn/releases
-!app/.yarn/sdks
-!app/.yarn/versions
+frontend/yarn.lock
+frontend/.pnp.*
+frontend/.yarn/*
+!frontend/.yarn/patches
+!frontend/.yarn/plugins
+!frontend/.yarn/releases
+!frontend/.yarn/sdks
+!frontend/.yarn/versions
 
 # macOS
 .DS_Store
