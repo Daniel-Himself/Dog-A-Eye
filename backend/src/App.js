@@ -1,68 +1,128 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState, useRef } from "react";
+import cv from "@techstark/opencv-js";
+import { Tensor, InferenceSession } from "onnxruntime-web";
+import Loader from "./components/loader";
+import { detectImage } from "./utils/detect";
+import "./style/App.css";
 
 const App = () => {
-    const WIDTH = 1920
-    const HEIGHT = 1080
-    const videoRef = useRef(null)
-    const photoRef = useRef(null)
+  const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState("Loading OpenCV.js...");
+  const [image, setImage] = useState(null);
+  const inputImage = useRef(null);
+  const imageRef = useRef(null);
+  const canvasRef = useRef(null);
 
-    const [hasPhoto, setHasPhoto] = useState(false)
+  // Configs
+  const modelName = "yolov8n.onnx";
+  const modelInputShape = [1, 3, 640, 640];
+  const topk = 100;
+  const iouThreshold = 0.45;
+  const scoreThreshold = 0.2;
 
-    const getVideo = () => {
-        navigator.mediaDevices.getUserMedia({
-            video: { width: WIDTH, height: HEIGHT}
-        }).then( stream => {
-            let video = videoRef.current
-            video.srcObject = stream
-            video.play()
-        }).catch( err => {
-            console.error(err)
-        })
-    }
+  // wait until opencv.js initialized
+  cv["onRuntimeInitialized"] = async () => {
+    // create session
+    setLoading("Loading YOLOv8 model...");
+    const [yolov8, nms] = await Promise.all([
+      InferenceSession.create(`${process.env.PUBLIC_URL}/model/${modelName}`),
+      InferenceSession.create(`${process.env.PUBLIC_URL}/model/nms-yolov8.onnx`),
+    ]);
 
-    const takePhoto = () => {
-        const width = WIDTH 
-        const height = width / (16/9)
+    // warmup main model
+    setLoading("Warming up model...");
+    const tensor = new Tensor(
+      "float32",
+      new Float32Array(modelInputShape.reduce((a, b) => a * b)),
+      modelInputShape
+    );
+    await yolov8.run({ images: tensor });
 
-        let video = videoRef.current
-        let photo = photoRef.current
+    setSession({ net: yolov8, nms: nms });
+    setLoading(null);
+  };
 
-        photo.width = width
-        photo.height = height
+  return (
+    <div className="App">
+      {loading && <Loader>{loading}</Loader>}
+      <div className="header">
+        <h1>YOLOv8 Object Detection App</h1>
+        <p>
+          YOLOv8 object detection application live on browser powered by{" "}
+          <code>onnxruntime-web</code>
+        </p>
+        <p>
+          Serving : <code className="code">{modelName}</code>
+        </p>
+      </div>
 
-        let ctx = photo.getContext('2d')
-        ctx.drawImage(video, 0, 0, width, height)
-        setHasPhoto(true)
-    }
+      <div className="content">
+        <img
+          ref={imageRef}
+          src="#"
+          alt=""
+          style={{ display: image ? "block" : "none" }}
+          onLoad={() => {
+            detectImage(
+              imageRef.current,
+              canvasRef.current,
+              session,
+              topk,
+              iouThreshold,
+              scoreThreshold,
+              modelInputShape
+            );
+          }}
+        />
+        <canvas
+          id="canvas"
+          width={modelInputShape[2]}
+          height={modelInputShape[3]}
+          ref={canvasRef}
+        />
+      </div>
 
+      <input
+        type="file"
+        ref={inputImage}
+        accept="image/*"
+        style={{ display: "none" }}
+        onChange={(e) => {
+          // handle next image to detect
+          if (image) {
+            URL.revokeObjectURL(image);
+            setImage(null);
+          }
 
-    const closePhoto = () => {
-        let photo = photoRef.current
-        let ctx = photo.getContext('2d')
+          const url = URL.createObjectURL(e.target.files[0]); // create image url
+          imageRef.current.src = url; // set image source
+          setImage(url);
+        }}
+      />
+      <div className="btn-container">
+        <button
+          onClick={() => {
+            inputImage.current.click();
+          }}
+        >
+          Open local image
+        </button>
+        {image && (
+          /* show close btn when there is image */
+          <button
+            onClick={() => {
+              inputImage.current.value = "";
+              imageRef.current.src = "#";
+              URL.revokeObjectURL(image);
+              setImage(null);
+            }}
+          >
+            Close image
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
 
-        ctx.clearRect(0, 0, photo.width, photo.height)
-
-        setHasPhoto(false)
-    }
-
-    useEffect(() => {
-            getVideo()
-    }, [videoRef])
-    
-    return (
-        <div className='App'>
-        
-            <div className='camera'>
-                <video ref={videoRef}></video>
-                <button onClick={takePhoto}>SNAP!</button>
-            </div>
-            <div className={'result' + (hasPhoto ? 
-                ' hasPhoto' : '')}>
-                <canvas ref={photoRef}></canvas>
-                <button onClick={closePhoto}>CLOSE!</button>
-            </div>
-        </div>
-    )
-}
-
-export default App
+export default App;
