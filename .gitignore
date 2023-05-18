@@ -8,14 +8,14 @@ frontend/.yarn/*
 !frontend/.yarn/sdks
 !frontend/.yarn/versions
 
-backend/yarn.lock
-backend/.pnp.*
-backend/.yarn/*
-!backend/.yarn/patches
-!backend/.yarn/plugins
-!backend/.yarn/releases
-!backend/.yarn/sdks
-!backend/.yarn/versions
+app/yarn.lock
+app/.pnp.*
+app/.yarn/*
+!app/.yarn/patches
+!app/.yarn/plugins
+!app/.yarn/releases
+!app/.yarn/sdks
+!app/.yarn/versions
 
 # macOS
 .DS_Store
