@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
 import cv from "@techstark/opencv-js";
 import { Tensor, InferenceSession } from "onnxruntime-web";
-import Loader from "./components/loader";
-import { detectImage } from "./utils/detect";
+import Loader from "./loader";
+import { detectImage } from "../utils/detect";
 import "./style/App.css";
 
 const Model = () => {
