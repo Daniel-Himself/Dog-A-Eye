@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 // import '../styles/App.css'
+import Model from "./model";
 
 const Camera = () => {
   const videoRef = useRef(null);
@@ -55,6 +56,7 @@ const Camera = () => {
         <button onClick={takePhoto} >SNAP!</button>
       </div>
       <div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
+        <Model/>
         <canvas ref={photoRef}></canvas>
         <button onClick={closePhoto} >CLOSE!</button>
       </div>

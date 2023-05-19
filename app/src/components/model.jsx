@@ -99,8 +99,8 @@ const Model = () => {
           setImage(url);
         }}
       />
-      <div className="btn-container">
-        <button
+      {/*<div className="btn-container">
+      <button
           onClick={() => {
             inputImage.current.click();
           }}
@@ -108,7 +108,7 @@ const Model = () => {
           Open local image
         </button>
         {image && (
-          /* show close btn when there is image */
+          /* show close btn when there is image 
           <button
             onClick={() => {
               inputImage.current.value = "";
@@ -120,7 +120,7 @@ const Model = () => {
             Close image
           </button>
         )}
-      </div>
+      </div>*/}
     </div>
   );
 };
