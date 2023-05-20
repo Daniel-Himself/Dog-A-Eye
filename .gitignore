@@ -17,5 +17,13 @@ app/.yarn/*
 !app/.yarn/sdks
 !app/.yarn/versions
 
+presentation/yarn.lock
+presentation/.pnp.*
+presentation/.yarn/*
+!presentation/.yarn/patches
+!presentation/.yarn/plugins
+!presentation/.yarn/releases
+!presentation/.yarn/sdks
+!presentation/.yarn/versions
 # macOS
 .DS_Store
