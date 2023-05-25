@@ -1,67 +1,37 @@
-import React, { useState, useRef, useEffect } from 'react'
-// import '../styles/App.css'
-import Model from "./model";
+import React, { useState, useRef } from "react";
 
 const Camera = () => {
-  const videoRef = useRef(null);
-  const photoRef = useRef(null);
+  const [imageObject, setImageObject] = useState(null);
 
-  const [hasPhoto, setHasPhoto] = useState(false);
+  const handleFileInput = useRef(null);
 
-  const getVideo = () => {
-    navigator.mediaDevices.getUserMedia({
-      video: { width: 1920, height: 1080 },
-      audio: false
-    })
-      .then(stream => {
-        let video = videoRef.current;
-        video.srcObject = stream;
-        video.play();
-      })
-      .catch(err => {
-        console.error(err);
-      })
-  }
+  const handleClick = () => {
+    handleFileInput.current.click();
+  };
 
-  const takePhoto = () => {
-    const width = 414;
-    const height = width / (16 / 9);
-
-    let video = videoRef.current;
-    let photo = photoRef.current;
-
-    photo.width = width;
-    photo.height = height;
-
-    let ctx = photo.getContext('2d');
-    ctx.drawImage(video, 0, 0, width, height);
-    setHasPhoto(true);
-  }
-
-  const closePhoto = () => {
-    let photo = photoRef.current;
-    let ctx = photo.getContext('2d');
-    ctx.clearRect(0, 0, photo.width, photo.height);
-    setHasPhoto(false);
-  }
-
-  useEffect(() => {
-    getVideo();
-  }, [videoRef]);
+  const handleImageChange = (event) => {
+    setImageObject({
+      imagePreview: URL.createObjectURL(event.target.files[0]),
+      imageFile: event.target.files[0],
+    });
+  };
 
   return (
-    <div className='CameraWrapper'>
-      <div className='camera'>
-        <video ref={videoRef}></video>
-        <button onClick={takePhoto} >SNAP!</button>
-      </div>
-      <div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
-        <Model/>
-        <canvas ref={photoRef}></canvas>
-        <button onClick={closePhoto} >CLOSE!</button>
-      </div>
+    <div>
+      <button onClick={handleClick}>Upload Photo</button>
+      <label>
+        <input
+          style={{ display: "none" }}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          ref={handleFileInput}
+          onChange={handleImageChange}
+        />
+      </label>
+      {imageObject && <img src={imageObject.imagePreview} />}
     </div>
-  )
-}
+  );
+};
 
-export default Camera
+export default Camera;
