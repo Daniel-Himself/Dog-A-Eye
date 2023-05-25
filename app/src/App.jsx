@@ -1,5 +1,5 @@
 import React, { } from "react";
-import Camera from './components/camera'
+import Model from "./components/model";
 // import UploadImageComponent from "./components/UploadImage";
 import "./style/App.css";
 
@@ -7,7 +7,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Camera />
+      <Model />
     </div>
   );
 };
