@@ -46,10 +46,11 @@ const App = () => {
     <div className="App">
       {loading && <Loader>{loading}</Loader>}
       <div className="header">
-        <h1>YOLOv8 Object Detection App</h1>
+        <h1>
+          Dogo-A-Eye Assistant
+        </h1>
         <p>
-          YOLOv8 object detection application live on browser powered by{" "}
-          <code>onnxruntime-web</code>
+          Please upload an image of your dog's eye
         </p>
         <p>
           Serving : <code className="code">{modelName}</code>
