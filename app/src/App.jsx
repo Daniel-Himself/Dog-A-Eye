@@ -18,12 +18,12 @@ const App = () => {
   const modelInputShape = [1, 3, 640, 640];
   const topk = 100;
   const iouThreshold = 0.45;
-  const scoreThreshold = 0.5;
+  const scoreThreshold = 0.7;
 
   // wait until opencv.js initialized
   cv["onRuntimeInitialized"] = async () => {
     // create session
-    setLoading("Loading YOLOv8 model...");
+    setLoading("We will see you soon 👁️...");
     const [yolov8, nms] = await Promise.all([
       InferenceSession.create(`${process.env.PUBLIC_URL}/model/${modelName}`),
       InferenceSession.create(`${process.env.PUBLIC_URL}/model/nms-yolov8.onnx`),
