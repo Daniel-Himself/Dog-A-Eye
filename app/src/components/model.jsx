@@ -5,9 +5,20 @@ import Loader from "./loader";
 import { detectImage } from "../utils/detect";
 import Instructions from "./instructions";
 import "../style/model.css";
+import useLocalStorage from 'use-local-storage'
+
 
 
 const Model = () => {
+
+  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+
+  const switchTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+  };
+
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState("Loading OpenCV.js...");
   const [image, setImage] = useState(null);
@@ -15,7 +26,7 @@ const Model = () => {
   const imageRef = useRef(null);
   const canvasRef = useRef(null);
   const [maxScore, setMaxScore] = useState(0);
-  
+
 
   // Configs
   const modelName = "dogEye.onnx";
@@ -62,7 +73,7 @@ const Model = () => {
       return <div id="retake_pic">
         <h3> The Image is Not Clear Enough! </h3>
         <p>Please try again. make sure the eye is well lit and cerntered in the frame</p>
-        <Instructions/>
+        <Instructions />
         <button
           onClick={() => {
             inputImage.current.click();
@@ -75,11 +86,14 @@ const Model = () => {
   };
 
   return (
-    <div className="App">
+    <div className="Model" data-theme={theme}>
+      <button onClick={switchTheme}>
+        Switch to {theme === 'light' ? 'dark' : 'light'} theme
+      </button>
       {loading && <Loader>{loading}</Loader>}
       <div className="header">
         <h1>Dogo-A-Eye Assistant</h1>
-        {!image ? <Instructions/> : ""}
+        {!image ? <Instructions /> : ""}
         <p>Please upload an image of your dog's eye</p>
       </div>
 
