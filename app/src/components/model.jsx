@@ -87,9 +87,11 @@ const Model = () => {
 
   return (
     <div className="Model" data-theme={theme}>
-      <button onClick={switchTheme}>
-        Switch to {theme === 'light' ? 'dark' : 'light'} theme
-      </button>
+      <div class="theme-button">
+        <button onClick={switchTheme}>
+          Switch to {theme === 'light' ? 'dark' : 'light'} theme
+        </button>
+      </div>
       {loading && <Loader>{loading}</Loader>}
       <div className="header">
         <h1>Dogo-A-Eye Assistant</h1>

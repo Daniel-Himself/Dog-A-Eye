@@ -62,11 +62,16 @@ button {
   transition: all .5s;
 }
 
-/* button:hover {
+.theme-button {
+  align-items: right;
+  width: 100%;  
+}
+
+button:hover {
   color: black;
   background-color: white;
   border: 2px solid black;
-} */
+}
 
 /* Popover Styling */
 .popover {
@@ -93,7 +98,7 @@ button {
 }
 
 [data-theme='dark'] {
-  --background: black;
+  --background: #17263f;
   --text-primary: white;
   --text-secondary: grey;
   --accent: darkred;
