@@ -5,8 +5,19 @@ import Loader from "./loader";
 import { detectImage } from "../utils/detect";
 import Instructions from "./instructions";
 import "../style/model.css";
+import useLocalStorage from 'use-local-storage'
+
 
 const Model = () => {
+
+  const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+
+  const switchTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+  };
+
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState("Loading OpenCV.js...");
   const [image, setImage] = useState(null);
@@ -81,12 +92,17 @@ const Model = () => {
   };
 
   return (
-    <div className="App">
+    <div className="Model" data-theme={theme}>
+      <div class="theme-button">
+        <button onClick={switchTheme}>
+          Switch to {theme === 'light' ? 'dark' : 'light'} theme
+        </button>
+      </div>
       {loading && <Loader>{loading}</Loader>}
       <div className="header">
       <img src={img} alt="Logo" className="logo" />
         <h1>Dogo-A-Eye Assistant</h1>
-        {!image && <Instructions />}
+        {!image ? <Instructions /> : ""}
         <p>Please upload an image of your dog's eye</p>
       </div>
 

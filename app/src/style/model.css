@@ -1,13 +1,17 @@
-.App {
+.Model {
   height: 100vh;
   padding: 0 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  color: var(--text-primary);
+  background-color: var(--background);
+  transition: all .5s;
 }
 
-.App > * {
+.Model>* {
   margin: 3px 0;
 }
 
@@ -26,7 +30,7 @@
   border-radius: 5px;
 }
 
-.content > img {
+.content>img {
   width: 100%;
   max-width: 720px;
   max-height: 500px;
@@ -37,7 +41,7 @@
   position: relative;
 }
 
-.content > canvas {
+.content>canvas {
   position: absolute;
   top: 0;
   left: 0;
@@ -47,13 +51,20 @@
 
 button {
   text-decoration: none;
-  color: white;
-  background-color: black;
-  border: 2px solid black;
+  color: var(--text-primary);
+  background-color: var(--background);
+  border: 2px var(--text-primary) solid;
   margin: 0 5px;
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
+  float: right;
+  transition: all .5s;
+}
+
+.theme-button {
+  align-items: right;
+  width: 100%;  
 }
 
 .retake-button {
@@ -94,4 +105,17 @@ button:hover {
   transform: translateX(-50%);
   width: 200px; /* Adjust the width as per your logo size */
   padding: 10px; /* Add padding as per your preference */
+}
+:root {
+  --background: white;
+  --text-primary: black;
+  --text-secondary: royalblue;
+  --accent: purple;
+}
+
+[data-theme='dark'] {
+  --background: #17263f;
+  --text-primary: white;
+  --text-secondary: grey;
+  --accent: darkred;
 }
