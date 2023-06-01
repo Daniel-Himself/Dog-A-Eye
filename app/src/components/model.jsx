@@ -6,6 +6,7 @@ import { detectImage } from "../utils/detect";
 import Instructions from "./instructions";
 import "../style/model.css";
 
+
 const Model = () => {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState("Loading OpenCV.js...");
@@ -14,6 +15,7 @@ const Model = () => {
   const imageRef = useRef(null);
   const canvasRef = useRef(null);
   const [maxScore, setMaxScore] = useState(0);
+  
 
   // Configs
   const modelName = "dogEye.onnx";
@@ -60,7 +62,14 @@ const Model = () => {
       return <div id="retake_pic">
         <h3> The Image is Not Clear Enough! </h3>
         <p>Please try again. make sure the eye is well lit and cerntered in the frame</p>
-        <button> Upload New Photo </button>
+        <Instructions/>
+        <button
+          onClick={() => {
+            inputImage.current.click();
+          }}
+        >
+          Retake an Image
+        </button>
       </div>;
     }
   };

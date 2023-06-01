@@ -1,6 +1,9 @@
 import React from "react";
 
 const Loader = (props) => {
+  const pub = process.env.PUBLIC_URL;
+  const img = pub + "/logo.png";
+
   const loaderStyles = {
     wrapper: {
       display: "flex",
@@ -24,6 +27,9 @@ const Loader = (props) => {
 
   return (
     <div style={loaderStyles.wrapper} {...props}>
+            <div className="spinner">
+              <img src={img} alt="Spinner" />
+            </div>
       <div style={loaderStyles.spinner}></div>
       <p style={loaderStyles.text}>{props.children}</p>
     </div>
@@ -31,3 +37,5 @@ const Loader = (props) => {
 };
 
 export default Loader;
+
+
