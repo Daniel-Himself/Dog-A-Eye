@@ -64,8 +64,9 @@ export const detectImage = async (
     }); // update boxes to draw later
   }
 
-  renderBoxes(canvas, boxes); // Draw boxes
+  let scores = renderBoxes(canvas, boxes); // Draw boxes
   input.delete(); // delete unused Mat
+  return scores.length == 1 ? scores[0] : 0;
 };
 
 /**

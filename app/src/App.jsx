@@ -5,6 +5,10 @@ import Loader from "./components/loader";
 import { detectImage } from "./utils/detect";
 import "./style/App.css";
 
+// Import popover component library (e.g., React Bootstrap)
+// import Popover from "react-bootstrap/Popover";
+// import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+
 const App = () => {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState("Loading OpenCV.js...");
@@ -12,13 +16,14 @@ const App = () => {
   const inputImage = useRef(null);
   const imageRef = useRef(null);
   const canvasRef = useRef(null);
+  const [maxScore, setMaxScore] = useState(0);
 
   // Configs
   const modelName = "dogEye.onnx";
   const modelInputShape = [1, 3, 640, 640];
   const topk = 100;
   const iouThreshold = 0.45;
-  const scoreThreshold = 0.7;
+  const scoreThreshold = 0.75;
 
   // wait until opencv.js initialized
   cv["onRuntimeInitialized"] = async () => {
@@ -42,16 +47,33 @@ const App = () => {
     setLoading(null);
   };
 
+  // Function to render the content of the popover
+  const renderPopoverContent = (score, threshold) => {
+    // Conditionally render different components or messages based on the detection score
+    // For example, you can return different components based on the score threshold
+      console.log(score, threshold*100) ;
+      if (score >= threshold * 100) {
+        return <div id="share_pic">
+                <h3> The Image is Good!</h3>
+                <p>click the button below top share it with the clinic</p>
+                <button> Share </button>
+
+              </div>
+      } else {
+        return <div id="retake_pic">
+              <h3> The Image is Not Clear Enough! </h3>
+              <p>Please try again. make sure the eye is well lit and cerntered in the frame</p>
+              <button> Upload New Photo </button>
+              </div>;
+      }
+  };
+
   return (
     <div className="App">
       {loading && <Loader>{loading}</Loader>}
       <div className="header">
-        <h1>
-          Dogo-A-Eye Assistant
-        </h1>
-        <p>
-          Please upload an image of your dog's eye
-        </p>
+        <h1>Dogo-A-Eye Assistant</h1>
+        <p>Please upload an image of your dog's eye</p>
         <p>
           Serving : <code className="code">{modelName}</code>
         </p>
@@ -63,8 +85,8 @@ const App = () => {
           src="#"
           alt=""
           style={{ display: image ? "block" : "none" }}
-          onLoad={() => {
-            detectImage(
+          onLoad={ async () => {
+            let score = await detectImage(
               imageRef.current,
               canvasRef.current,
               session,
@@ -73,6 +95,7 @@ const App = () => {
               scoreThreshold,
               modelInputShape
             );
+            setMaxScore(score)
           }}
         />
         <canvas
@@ -101,15 +124,15 @@ const App = () => {
         }}
       />
       <div className="btn-container">
-        <button
+        {image || <button
           onClick={() => {
             inputImage.current.click();
           }}
         >
           Open local image
-        </button>
-        {image && (
-          /* show close btn when there is image */
+        </button>}
+        {/* {image && (
+          // show close btn when there is image
           <button
             onClick={() => {
               inputImage.current.value = "";
@@ -120,7 +143,8 @@ const App = () => {
           >
             Close image
           </button>
-        )}
+        )} */}
+        {image && renderPopoverContent(maxScore, scoreThreshold)}
       </div>
     </div>
   );

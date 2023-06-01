@@ -61,3 +61,20 @@ button:hover {
   background-color: white;
   border: 2px solid black;
 }
+
+/* Popover Styling */
+.popover {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.popover-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.popover-content {
+  margin-top: 5px;
+}

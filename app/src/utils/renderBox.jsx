@@ -19,11 +19,13 @@ export const renderBoxes = (canvas, boxes) => {
   ctx.font = font;
   ctx.textBaseline = "top";
 
+  let scores = [];
   boxes.forEach((box) => {
     const klass = labels[box.label];
     const color = colors.get(box.label);
     const score = (box.probability * 100).toFixed(1);
     const [x1, y1, width, height] = box.bounding;
+    scores.push(score)
 
     // draw box.
     ctx.fillStyle = Colors.hexToRgba(color, 0.2);
@@ -48,7 +50,8 @@ export const renderBoxes = (canvas, boxes) => {
     // Draw labels
     ctx.fillStyle = "#ffffff";
     ctx.fillText(klass + " - " + score + "%", x1 - 1, yText < 0 ? 1 : yText + 1);
-  });
+  }); 
+  return scores;
 };
 
 class Colors {
