@@ -1,18 +1,22 @@
-import React, { useState, useRef } from "react";
-import Model from "./components/model";
-import "./style/App.css";
-import Instructions from "./components/instructions";
+import React, { useState } from 'react';
+import Loader from './components/loader';
+import Model from './components/model';
+import './style/App.css';
+import Instructions from './components/instructions';
 
 const App = () => {
-  const [read, setRead] = useState(false)
+  const [read, setRead] = useState(true);
 
-  if(read === true)
+  const handleButtonPress = (isRead) => {
+    setRead(isRead);
+  };
+
+  if (read) {
     return (
       <Model/>
     );
-  return (
-    <Instructions/>
-  );
+  }
+
 };
 
 export default App;

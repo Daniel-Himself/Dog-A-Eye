@@ -3,6 +3,7 @@ import cv from "@techstark/opencv-js";
 import { Tensor, InferenceSession } from "onnxruntime-web";
 import Loader from "./loader";
 import { detectImage } from "../utils/detect";
+import Instructions from "./instructions";
 import "../style/model.css";
 
 const Model = () => {
@@ -69,10 +70,8 @@ const Model = () => {
       {loading && <Loader>{loading}</Loader>}
       <div className="header">
         <h1>Dogo-A-Eye Assistant</h1>
+        <Instructions/>
         <p>Please upload an image of your dog's eye</p>
-        <p>
-          Serving : <code className="code">{modelName}</code>
-        </p>
       </div>
 
       <div className="content">
@@ -125,7 +124,7 @@ const Model = () => {
             inputImage.current.click();
           }}
         >
-          Open local image
+          Upload an Image
         </button>}
         {image && renderPopoverContent(maxScore, scoreThreshold)}
       </div>
