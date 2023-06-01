@@ -66,7 +66,7 @@ export const detectImage = async (
 
   let scores = renderBoxes(canvas, boxes); // Draw boxes
   input.delete(); // delete unused Mat
-  return scores.length == 1 ? scores[0] : 0;
+  return scores.length === 1 ? scores[0] : 0;
 };
 
 /**
