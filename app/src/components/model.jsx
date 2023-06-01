@@ -70,7 +70,7 @@ const Model = () => {
       {loading && <Loader>{loading}</Loader>}
       <div className="header">
         <h1>Dogo-A-Eye Assistant</h1>
-        <Instructions/>
+        {!image ? <Instructions/> : ""}
         <p>Please upload an image of your dog's eye</p>
       </div>
 
@@ -119,14 +119,14 @@ const Model = () => {
         }}
       />
       <div className="btn-container">
-        {image || <button
+        {!image ? <button
           onClick={() => {
             inputImage.current.click();
           }}
         >
           Upload an Image
-        </button>}
-        {image && renderPopoverContent(maxScore, scoreThreshold)}
+        </button> : ""}
+        {image ? renderPopoverContent(maxScore, scoreThreshold) : ""}
       </div>
     </div>
   );
