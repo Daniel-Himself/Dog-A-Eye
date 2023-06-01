@@ -6,7 +6,6 @@ import { detectImage } from "../utils/detect";
 import Instructions from "./instructions";
 import "../style/model.css";
 
-
 const Model = () => {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState("Loading OpenCV.js...");
@@ -15,14 +14,15 @@ const Model = () => {
   const imageRef = useRef(null);
   const canvasRef = useRef(null);
   const [maxScore, setMaxScore] = useState(0);
-  
+  const pub = process.env.PUBLIC_URL;
+  const img = pub + "/logo.png";
 
   // Configs
   const modelName = "dogEye.onnx";
   const modelInputShape = [1, 3, 640, 640];
   const topk = 100;
   const iouThreshold = 0.45;
-  const scoreThreshold = 0.75;
+  const scoreThreshold = 0.70;
 
   // wait until opencv.js initialized
   cv["onRuntimeInitialized"] = async () => {
@@ -52,25 +52,31 @@ const Model = () => {
     // For example, you can return different components based on the score threshold
     console.log(score, threshold * 100);
     if (score >= threshold * 100) {
-      return <div id="share_pic">
-        <h3> The Image is Good!</h3>
-        <p>click the button below top share it with the clinic</p>
-        <button> Share </button>
-
-      </div>
+      return (
+        <div id="share_pic">
+          <h3> The Image is Good!</h3>
+          <p>Click the button below to share it with the clinic</p>
+          <button className="share-button">
+            <i className="fas fa-envelope" /> Share
+          </button>
+        </div>
+      );
     } else {
-      return <div id="retake_pic">
-        <h3> The Image is Not Clear Enough! </h3>
-        <p>Please try again. make sure the eye is well lit and cerntered in the frame</p>
-        <Instructions/>
-        <button
-          onClick={() => {
-            inputImage.current.click();
-          }}
-        >
-          Retake an Image
-        </button>
-      </div>;
+      return (
+        <div id="retake_pic">
+          <h3> The Image is Not Clear Enough! </h3>
+          <p>Please try again. Make sure the eye is well lit and centered in the frame</p>
+          <Instructions />
+          <button
+            className="retake-button"
+            onClick={() => {
+              inputImage.current.click();
+            }}
+          >
+            Retake an Image
+          </button>
+        </div>
+      );
     }
   };
 
@@ -78,8 +84,9 @@ const Model = () => {
     <div className="App">
       {loading && <Loader>{loading}</Loader>}
       <div className="header">
+      <img src={img} alt="Logo" className="logo" />
         <h1>Dogo-A-Eye Assistant</h1>
-        {!image ? <Instructions/> : ""}
+        {!image && <Instructions />}
         <p>Please upload an image of your dog's eye</p>
       </div>
 
@@ -99,7 +106,7 @@ const Model = () => {
               scoreThreshold,
               modelInputShape
             );
-            setMaxScore(score)
+            setMaxScore(score);
           }}
         />
         <canvas
@@ -128,14 +135,17 @@ const Model = () => {
         }}
       />
       <div className="btn-container">
-        {!image ? <button
-          onClick={() => {
-            inputImage.current.click();
-          }}
-        >
-          Upload an Image
-        </button> : ""}
-        {image ? renderPopoverContent(maxScore, scoreThreshold) : ""}
+        {!image && (
+          <button
+            className="upload-button"
+            onClick={() => {
+              inputImage.current.click();
+            }}
+          >
+            Upload an Image
+          </button>
+        )}
+        {image && renderPopoverContent(maxScore, scoreThreshold)}
       </div>
     </div>
   );
