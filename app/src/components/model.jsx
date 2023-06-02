@@ -95,7 +95,7 @@ const Model = () => {
     <div className="Model" data-theme={theme}>
       <div class="theme-button">
         <button onClick={switchTheme}>
-          Switch to {theme === 'light' ? 'dark' : 'light'} theme
+          {theme !== 'light' ? '🌙' : '☀️'}
         </button>
       </div>
       {loading && <Loader>{loading}</Loader>}
