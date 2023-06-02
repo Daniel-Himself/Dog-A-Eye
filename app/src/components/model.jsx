@@ -92,8 +92,8 @@ const Model = () => {
         <div id="share_pic">
           <h3> The Image is Good!</h3>
           <p>Click the button below to share it with the clinic</p>
-          <button className="share-button">
-            <i className="fas fa-envelope" /> Share
+          <button className="share-button" onClick={handleShare} type="button">
+            Share
           </button>
         </div>
       );
