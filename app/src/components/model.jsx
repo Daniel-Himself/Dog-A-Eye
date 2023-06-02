@@ -103,7 +103,12 @@ const Model = () => {
           <h3> The Image is Not Clear Enough! </h3>
           <p>Please try again. Make sure the eye is well lit and centered in the frame</p>
           <Instructions />
-          <button className="retake-button" onClick={handleShare} type="button">
+          <button
+            className="retake-button"
+            onClick={() => {
+              inputImage.current.click();
+            }}
+          >
             Retake an Image
           </button>
         </div>
