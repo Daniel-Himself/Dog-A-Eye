@@ -106,14 +106,14 @@ const Model = () => {
         </button>
       </div>
       {loading && <Loader>{loading}</Loader>}
-      <div className="header">
+      {!loading ? <div className="header">
         <img src={img} alt="Logo" className="logo" />
         <h1>Dogo-A-Eye Assistant</h1>
         {!image ? <Instructions /> : ""}
         <p>Please upload an image of your dog's eye</p>
-      </div>
-
-      <div className="content">
+      </div> : ""}
+      
+      {!loading ? <div className="content">
         <img
           ref={imageRef}
           src="#"
@@ -139,9 +139,9 @@ const Model = () => {
           height={modelInputShape[3]}
           ref={canvasRef}
         />
-      </div>
+      </div> : ""}
 
-      <input
+      {!loading ? <input
         type="file"
         ref={inputImage}
         accept="image/*"
@@ -157,8 +157,8 @@ const Model = () => {
           imageRef.current.src = url; // set image source
           setImage(url);
         }}
-      />
-      <div className="btn-container">
+      /> : ""}
+      {!loading ? <div className="btn-container">
         {!image && (
           <button
             className="upload-button"
@@ -170,7 +170,7 @@ const Model = () => {
           </button>
         )}
         {image && renderPopoverContent(maxScore, scoreThreshold)}
-      </div>
+      </div> : ""}
 
     </div>
   );
