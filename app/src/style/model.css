@@ -33,9 +33,9 @@
 }
 
 .content>img {
-  width: 100%;
-  max-width: 720px;
-  max-height: 500px;
+  width: 25%;
+  /* max-width: 720px;
+  max-height: 500px; */
   border-radius: 10px;
 }
 
@@ -69,6 +69,10 @@ button {
   margin-right: 40%;
   width: 100%;
   margin-top: 5%;  
+}
+
+.logo {
+  max-width: 25%;
 }
 
 .retake-button {
@@ -105,9 +109,7 @@ button:hover {
   margin-top: 5px;
 }
 
-/* .logo {
-  margin-top: 20px;
-} */
+
 :root {
   /* --background: white; */
   --text-primary: black;
@@ -168,6 +170,7 @@ button {
   text-decoration: 'none';
 }
 
+
 /* <<<<<<<<<<<<<<<<<<< FROM LOADER >>>>>>>>>>>>>>>>>> */
 textLoader {
   margin-top: "10px";
@@ -190,12 +193,12 @@ wrapper {
 /* ================================================================ */
 /* ================================================================ */
 .image-instructions{
-  height: 100px;
+  height: 50px;
 }
 .instructions-container{
-  align-items: center;
+  align-items: right;
   display: flex;
-  justify-content: center;
+  justify-content: right;
 }
 
 
