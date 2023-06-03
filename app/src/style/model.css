@@ -12,11 +12,13 @@
 }
 
 .Model>* {
-  margin: 3px 0;
+  margin: 5px 0;
 }
 
 .header {
+  margin-top: 30px;
   text-align: center;
+  align-items: center;
 }
 
 .header p {
@@ -64,7 +66,9 @@ button {
 
 .theme-button {
   align-items: right;
-  width: 100%;  
+  margin-right: 40%;
+  width: 100%;
+  margin-top: 5%;  
 }
 
 .retake-button {
@@ -73,6 +77,9 @@ button {
 
 .share-button {
   background-color: green;
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
 }
 
 button:hover {
@@ -98,16 +105,11 @@ button:hover {
   margin-top: 5px;
 }
 
-.logo {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  padding: 10px;
-}
+/* .logo {
+  margin-top: 20px;
+} */
 :root {
-  --background: white;
+  /* --background: white; */
   --text-primary: black;
   --text-secondary: royalblue;
   --accent: purple;
@@ -119,3 +121,100 @@ button:hover {
   --text-secondary: grey;
   --accent: darkred;
 }
+
+/* <<<<<<<<<<<<<<<<<<< from instruction page >>>>>>>>>>>>>>>>>> */
+
+container {
+  text-align: 'center';
+  margin: '50px auto';
+  padding: '20px';
+  max-width: '600px';
+  border: '1px solid #ccc';
+  border-radius: '5px';
+  box-shadow: '0 2px 4px rgba(0, 0, 0, 0.1)';
+}
+title {
+  font-size: '24px';
+  font-weight: 'bold';
+  margin-bottom: '20px';
+}
+text {
+  font-size: '18px';
+  margin-bottom: '20px';
+}
+
+.list {
+  text-align: 'left';
+  margin-left: '30px';
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.list-item {
+  margin-bottom: '10px';
+  text-align: left;
+  font-size: large;
+}
+button {
+  display: 'inline-block';
+  padding: '10px 20px';
+  font-size: '16px';
+  font-weight: 'bold';
+  color: '#fff';
+  background-color: '#007bff';
+  border: 'none';
+  border-radius: '5px';
+  cursor: 'pointer';
+  text-decoration: 'none';
+}
+
+/* <<<<<<<<<<<<<<<<<<< FROM LOADER >>>>>>>>>>>>>>>>>> */
+textLoader {
+  margin-top: "10px";
+}
+spinner {
+  width: "50px";
+  height: "50px";
+  border: "5px solid #f3f3f3";
+  border-top: "5px solid #3498db";
+  border-radius: "50%";
+  animation: "spin 1s linear infinite";
+}
+wrapper {
+  display: "flex";
+  flex-direction: "column";
+  align-items: "center";
+  justify-content: "center";
+  height: "100vh";
+}
+/* ================================================================ */
+/* ================================================================ */
+.image-instructions{
+  height: 100px;
+}
+.instructions-container{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* ================================================================ */
+/* ================================================================ */
+.share_pic{
+  align-items: center;  
+}
+
+.btn-container {
+  align-items: center;
+
+}
+.bottom-button-con{
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+/* ================================================================ */
