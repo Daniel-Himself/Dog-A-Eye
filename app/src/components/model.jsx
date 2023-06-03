@@ -29,7 +29,8 @@ const Model = () => {
   const canvasRef = useRef(null); // Reference to the canvas element
   const [maxScore, setMaxScore] = useState(0); // Maximum score from detection
   const pub = process.env.PUBLIC_URL; // Public URL from environment variables
-  const img = pub + "/logo.png"; // Logo image URL
+  const img = theme === 'light' ? pub + "/logo.png" : pub + "/LogoDarkMode.png";// Logo image URL
+
 
   // Configurations for the model and detection
   const modelName = "dogEye.onnx"; // Model file name
