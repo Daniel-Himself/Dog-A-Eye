@@ -5,7 +5,8 @@ import Loader from "./loader";
 import { detectImage } from "../utils/detect";
 import Instructions from "./instructions";
 import "../style/model.css";
-import useLocalStorage from 'use-local-storage'
+import useLocalStorage from 'use-local-storage';
+import { toBlob } from "html-to-image";
 
 
 const Model = () => {
@@ -34,6 +35,30 @@ const Model = () => {
   const topk = 100;
   const iouThreshold = 0.45;
   const scoreThreshold = 0.70;
+
+  // Share button function
+  const handleShare = async () => {
+    const newFile = await toBlob(imageRef.current);
+    const data = {
+      files: [
+        new File([newFile], "dogEye.jpg", {
+          type: newFile.type,
+        })
+      ],
+      title: "Dog Eye Image",
+      text: "Dog Eye Image",
+    };
+
+    try {
+      if (!navigator.canShare(data)) {
+        console.log("Can't share!");
+      }
+      await navigator.share(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // End of share button function
 
   // wait until opencv.js initialized
   cv["onRuntimeInitialized"] = async () => {
@@ -67,8 +92,8 @@ const Model = () => {
         <div id="share_pic">
           <h3> The Image is Good!</h3>
           <p>Click the button below to share it with the clinic</p>
-          <button className="share-button">
-            <i className="fas fa-envelope" /> Share
+          <button className="share-button" onClick={handleShare} type="button">
+            Share
           </button>
         </div>
       );
@@ -100,7 +125,7 @@ const Model = () => {
       </div>
       {loading && <Loader>{loading}</Loader>}
       <div className="header">
-      <img src={img} alt="Logo" className="logo" />
+        <img src={img} alt="Logo" className="logo" />
         <h1>Dogo-A-Eye Assistant</h1>
         {!image ? <Instructions /> : ""}
         <p>Please upload an image of your dog's eye</p>
