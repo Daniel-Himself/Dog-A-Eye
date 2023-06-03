@@ -162,7 +162,7 @@ const Model = () => {
       {!loading ? <div className="btn-container">
         {!image && (
           <button
-            className="upload-button"
+            // className="upload-button primary-button"
             onClick={() => {
               inputImage.current.click();
             }}
