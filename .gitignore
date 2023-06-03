@@ -1,13 +1,4 @@
 # yarn files
-frontend/yarn.lock
-frontend/.pnp.*
-frontend/.yarn/*
-!frontend/.yarn/patches
-!frontend/.yarn/plugins
-!frontend/.yarn/releases
-!frontend/.yarn/sdks
-!frontend/.yarn/versions
-
 app/yarn.lock
 app/.pnp.*
 app/.yarn/*
@@ -17,13 +8,7 @@ app/.yarn/*
 !app/.yarn/sdks
 !app/.yarn/versions
 
-presentation/yarn.lock
-presentation/.pnp.*
-presentation/.yarn/*
-!presentation/.yarn/patches
-!presentation/.yarn/plugins
-!presentation/.yarn/releases
-!presentation/.yarn/sdks
-!presentation/.yarn/versions
+lowlight_presentation/__pycache__/
+
 # macOS
 .DS_Store
