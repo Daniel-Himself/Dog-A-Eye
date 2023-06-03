@@ -20,7 +20,6 @@ const Loader = (props) => {
       </div>
     </div>
     <div className="spoke"></div>
-    <div>{props.children}</div>
   </div>
     );
   };
