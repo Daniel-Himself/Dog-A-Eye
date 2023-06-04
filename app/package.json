@@ -1,10 +1,11 @@
 {
-  "name": "yolov8-onnxruntime-web",
-  "homepage": "https://hyuto.github.io/yolov8-onnxruntime-web/",
-  "version": "0.1.0",
+  "name": "dog-a-eye",
+  "homepage": "final-project/",
+  "version": "1.0",
   "dependencies": {
     "@techstark/opencv-js": "4.5.5-release.2",
     "bootstrap": "^5.3.0",
+    "html-to-image": "^1.11.11",
     "onnxruntime-web": "^1.15.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
@@ -36,17 +37,10 @@
     ]
   },
   "author": {
-    "name": "Wahyu Setianto",
-    "url": "https://github.com/Hyuto"
+    "name": "Ali Shaer, Daniel Sharon, Dror Mor, Eddie Kanevsky",
+    "url": "https://github.com/Daniel-Himself"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Hyuto/yolov8-onnxruntime-web.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Hyuto/yolov8-onnxruntime-web/issues"
-  },
   "devDependencies": {
     "@craco/craco": "^7.0.0",
     "copy-webpack-plugin": "^11.0.0",

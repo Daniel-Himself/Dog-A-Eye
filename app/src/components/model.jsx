@@ -6,7 +6,8 @@ import Loader from "./loader"; // Loader component for loading state
 import { detectImage } from "../utils/detect"; // Utility function for image detection
 import Instructions from "./instructions"; // Instructions component
 import "../style/model.css"; // Importing CSS
-import useLocalStorage from 'use-local-storage' // Custom hook for using local storage
+import useLocalStorage from 'use-local-storage'; // Custom hook for using local storage
+import { toBlob } from "html-to-image"; 
 
 const Model = () => {
   // Checking if the user's preferred color scheme is dark
@@ -39,7 +40,55 @@ const Model = () => {
   const iouThreshold = 0.45; // Intersection over Union threshold for detection
   const scoreThreshold = 0.70; // Score threshold for detection
 
-  // Waiting until OpenCV.js is initialized
+  // Share button function
+  const handleShare = async () => {
+    const newFile = await toBlob(imageRef.current);
+    const data = {
+      files: [
+        new File([newFile], "dogEye.jpg", {
+          type: newFile.type,
+        })
+      ],
+      title: "Dog Eye Image",
+      text: "Dog Eye Image",
+    };
+
+    try {
+      if (!navigator.canShare(data)) {
+        console.log("Can't share!");
+      }
+      await navigator.share(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // End of share button function
+
+  // Share button function
+  const handleShare = async () => {
+    const newFile = await toBlob(imageRef.current);
+    const data = {
+      files: [
+        new File([newFile], "dogEye.jpg", {
+          type: newFile.type,
+        })
+      ],
+      title: "Dog Eye Image",
+      text: "Dog Eye Image",
+    };
+
+    try {
+      if (!navigator.canShare(data)) {
+        console.log("Can't share!");
+      }
+      await navigator.share(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  // End of share button function
+
+  // wait until opencv.js initialized
   cv["onRuntimeInitialized"] = async () => {
     // Creating session for ONNX Runtime
     setLoading("We will see you soon 👁️...");
@@ -72,7 +121,7 @@ const Model = () => {
           <h3> The Image is Good!</h3>
           <p>Click the button below to share it with the clinic</p>
           <div className="bottom-button-con">
-            <button className="share-button">
+            <button className="share-button" onClick={handleShare} type="button">
               <i className="fas fa-envelope" /> Share
             </button>
           </div>
@@ -113,7 +162,7 @@ const Model = () => {
         {!image ? <Instructions /> : ""}
         <p>Please upload an image of your dog's eye</p>
       </div> : ""}
-      
+
       {!loading ? <div className="content">
         <img
           ref={imageRef}
