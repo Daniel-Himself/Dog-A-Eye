@@ -64,30 +64,6 @@ const Model = () => {
   };
   // End of share button function
 
-  // Share button function
-  const handleShare = async () => {
-    const newFile = await toBlob(imageRef.current);
-    const data = {
-      files: [
-        new File([newFile], "dogEye.jpg", {
-          type: newFile.type,
-        })
-      ],
-      title: "Dog Eye Image",
-      text: "Dog Eye Image",
-    };
-
-    try {
-      if (!navigator.canShare(data)) {
-        console.log("Can't share!");
-      }
-      await navigator.share(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  // End of share button function
-
   // wait until opencv.js initialized
   cv["onRuntimeInitialized"] = async () => {
     // Creating session for ONNX Runtime
