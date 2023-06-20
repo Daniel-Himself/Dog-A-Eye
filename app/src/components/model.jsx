@@ -7,7 +7,8 @@ import { detectImage } from "../utils/detect"; // Utility function for image det
 import Instructions from "./instructions"; // Instructions component
 import "../style/model.css"; // Importing CSS
 import useLocalStorage from 'use-local-storage'; // Custom hook for using local storage
-import { toBlob } from "html-to-image"; 
+import { toBlob } from "html-to-image";
+import { WhatsappShareButton, WhatsappIcon } from "react-share";
 
 const Model = () => {
   // Checking if the user's preferred color scheme is dark
@@ -40,29 +41,11 @@ const Model = () => {
   const iouThreshold = 0.45; // Intersection over Union threshold for detection
   const scoreThreshold = 0.70; // Score threshold for detection
 
-  // Share button function
-  const handleShare = async () => {
-    const newFile = await toBlob(imageRef.current);
-    const data = {
-      files: [
-        new File([newFile], "dogEye.jpg", {
-          type: newFile.type,
-        })
-      ],
-      title: "Dog Eye Image",
-      text: "Dog Eye Image",
-    };
-
-    try {
-      if (!navigator.canShare(data)) {
-        console.log("Can't share!");
-      }
-      await navigator.share(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  // End of share button function
+  const blobToFile = (theBlob, fileName) => {
+    theBlob.lastModifiedDate = new Date();
+    theBlob.name = fileName;
+    return theBlob;
+  }
 
   // wait until opencv.js initialized
   cv["onRuntimeInitialized"] = async () => {
@@ -92,14 +75,20 @@ const Model = () => {
     console.log(score, threshold * 100);
     // If the score is above the threshold, render a message indicating a good image
     if (score >= threshold * 100) {
+      const blob = toBlob(imageRef.current);
+      const img = new File([blob], 'untitled', { type: blob.type })
+      console.log(img);
       return (
         <div className="share_pic">
           <h3> The Image is Good!</h3>
           <p>Click the button below to share it with the clinic</p>
           <div className="bottom-button-con">
-            <button className="share-button" onClick={handleShare} type="button">
+            <WhatsappShareButton url={URL.createObjectURL(img)}>
+              <WhatsappIcon size={32} round={true} />
+            </WhatsappShareButton>
+            {/* <button className="share-button" onClick={handleShare} type="button">
               <i className="fas fa-envelope" /> Share
-            </button>
+            </button> */}
           </div>
         </div>
       );
