@@ -9,6 +9,7 @@ import "../style/model.css"; // Importing CSS
 import useLocalStorage from 'use-local-storage'; // Custom hook for using local storage
 import { toBlob } from "html-to-image";
 import { WhatsappShareButton, WhatsappIcon } from "react-share";
+import ReactWhatsapp from "react-whatsapp";
 
 const Model = () => {
   // Checking if the user's preferred color scheme is dark
@@ -76,19 +77,20 @@ const Model = () => {
     // If the score is above the threshold, render a message indicating a good image
     if (score >= threshold * 100) {
       const blob = toBlob(imageRef.current);
-      const img = new File([blob], 'untitled', { type: blob.type })
-      console.log(img);
+      const img = new File([blob], 'untitled', { type: blob.type });
       return (
         <div className="share_pic">
           <h3> The Image is Good!</h3>
           <p>Click the button below to share it with the clinic</p>
           <div className="bottom-button-con">
-            <WhatsappShareButton url={URL.createObjectURL(img)}>
+            <a href="whatsapp://send?text= assistant dogEye"
+              rel="nofollow noopener" 
+              target="_blank" 
+              className="share-icon">
               <WhatsappIcon size={32} round={true} />
-            </WhatsappShareButton>
-            {/* <button className="share-button" onClick={handleShare} type="button">
-              <i className="fas fa-envelope" /> Share
-            </button> */}
+            </a>
+            {/* <ReactWhatsapp number="" message="Hello" element={URL.createObjectURL(img)}>
+            </ReactWhatsapp> */}
           </div>
         </div>
       );
