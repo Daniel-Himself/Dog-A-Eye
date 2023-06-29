@@ -1,5 +1,5 @@
 // Importing necessary libraries and components
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import cv from "@techstark/opencv-js"; // OpenCV for JavaScript
 import { Tensor, InferenceSession } from "onnxruntime-web"; // ONNX Runtime for web
 import Loader from "./loader"; // Loader component for loading state
@@ -8,8 +8,8 @@ import Instructions from "./instructions"; // Instructions component
 import "../style/model.css"; // Importing CSS
 import useLocalStorage from 'use-local-storage'; // Custom hook for using local storage
 import { toBlob } from "html-to-image";
-import { WhatsappShareButton, WhatsappIcon } from "react-share";
-import ReactWhatsapp from "react-whatsapp";
+import { WhatsappIcon } from "react-share";
+// import ReactWhatsapp from "react-whatsapp";
 
 const Model = () => {
   // Checking if the user's preferred color scheme is dark
@@ -42,12 +42,6 @@ const Model = () => {
   const iouThreshold = 0.45; // Intersection over Union threshold for detection
   const scoreThreshold = 0.70; // Score threshold for detection
 
-  const blobToFile = (theBlob, fileName) => {
-    theBlob.lastModifiedDate = new Date();
-    theBlob.name = fileName;
-    return theBlob;
-  }
-
   // wait until opencv.js initialized
   cv["onRuntimeInitialized"] = async () => {
     // Creating session for ONNX Runtime
@@ -70,21 +64,29 @@ const Model = () => {
     setLoading(null);
   };
 
+  useEffect(()=> {
+    if (navigator.share === undefined) {
+      if (window.location.protocol === 'http:') {
+        window.location.replace(window.location.href.replace(/^http:/, 'https:'));
+      } 
+    }
+  }, []);
+
   // Function to render thepopover content based on the detection score
   const renderPopoverContent = (score, threshold) => {
     // Logging the score and threshold
     console.log(score, threshold * 100);
     // If the score is above the threshold, render a message indicating a good image
     if (score >= threshold * 100) {
-      const blob = toBlob(imageRef.current);
-      const img = new File([blob], 'untitled', { type: blob.type });
-      return (
+      const blob = toBlob(imageRef.current)
+      const whatsapp_href = "whatsapp://send?text=" + encodeURIComponent(imageRef.current)
+       return (
         <div className="share_pic">
-          <h3> The Image is Good!</h3>
+          <h3>The Image is Good!</h3>
           <p>Click the button below to share it with the clinic</p>
           <div className="bottom-button-con">
-            <a href="whatsapp://send?text= assistant dogEye"
-              rel="nofollow noopener" 
+            <a href={whatsapp_href}
+              rel="nofollow noopener noreferrer" 
               target="_blank" 
               className="share-icon">
               <WhatsappIcon size={32} round={true} />
