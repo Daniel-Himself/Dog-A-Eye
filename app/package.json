@@ -16,7 +16,7 @@
     "use-local-storage": "^3.0.0"
   },
   "scripts": {
-    "start": "HTTPS=true craco start",
+    "start": "craco start",
     "build": "craco build",
     "deploy": "gh-pages -d build"
   },
