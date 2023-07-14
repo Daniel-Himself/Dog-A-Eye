@@ -5,6 +5,7 @@ build:
   image: node:latest    # Run the job in a `node` docker image
   stage: build
   script:
+    - cd app
     - yarn install      # Run `yarn install` and `yarn build`
     - yarn build
   artifacts:
