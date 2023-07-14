@@ -24,4 +24,5 @@ pages:
   artifacts:
     paths:
       - app/public
-      - public/
+  publish:
+    dir: public/
