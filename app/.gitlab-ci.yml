@@ -1,0 +1,12 @@
+stages:
+  - build
+
+build:
+  image: node:latest    # Run the job in a `node` docker image
+  stage: build
+  script:
+    - yarn install      # Run `yarn install` and `yarn build`
+    - yarn build
+  artifacts:
+    paths:
+      - build/          # Save the build result as an artfact
