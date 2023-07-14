@@ -134,7 +134,7 @@ const Model = () => {
       {loading && <Loader>{loading}</Loader>}
       {!loading ? <div className="header">
         <img src={img} alt="Logo" className="logo" />
-        <h1>Dogo-A-Eye Assistant</h1>
+        <h1>Dog-A-Eye Assistant</h1>
         {!image ? <Instructions /> : ""}
         <p>Please upload an image of your dog's eye</p>
       </div> : ""}
