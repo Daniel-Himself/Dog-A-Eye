@@ -78,6 +78,7 @@ const Model = () => {
     console.log(score, threshold * 100);
     // If the score is above the threshold, render a message indicating a good image
     if (score >= threshold * 100) {
+      // eslint-disable-next-line
       const blob = toBlob(imageRef.current)
       const whatsapp_href = "whatsapp://send?text=" + encodeURIComponent(imageRef.current)
        return (
