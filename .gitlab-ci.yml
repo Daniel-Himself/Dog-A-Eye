@@ -11,7 +11,7 @@ build:
     - yarn build
   artifacts:
     paths:
-      - app/build/          # Save the build result as an artfact
+      - app/build/        # Save the build result as an artfact
 
 pages:
   image: alpine:latest
@@ -24,3 +24,4 @@ pages:
   artifacts:
     paths:
       - app/public
+      - public/
