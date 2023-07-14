@@ -11,7 +11,7 @@ build:
     - yarn build
   artifacts:
     paths:
-      - app/build/        # Save the build result as an artfact
+      - build/        # Save the build result as an artfact
 
 pages:
   image: alpine:latest
@@ -20,7 +20,7 @@ pages:
     GIT_STRATEGY: none        # Do not clone git repo
   script:
     # Rename the CRA `build` folder to `public`
-    - mv app/build app/public         
+    - mv build public         
   artifacts:
     paths:
-      - app/public
+      - public
