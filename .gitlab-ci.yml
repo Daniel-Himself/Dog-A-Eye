@@ -1,5 +1,6 @@
 stages:
   - build
+  - deploy
 
 build:
   image: node:latest    # Run the job in a `node` docker image
@@ -11,3 +12,15 @@ build:
   artifacts:
     paths:
       - app/build/          # Save the build result as an artfact
+
+pages:
+  image: alpine:latest
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none        # Do not clone git repo
+  script:
+    # Rename the CRA `build` folder to `public`
+    - mv app/build app/public         
+  artifacts:
+    paths:
+      - app/public
