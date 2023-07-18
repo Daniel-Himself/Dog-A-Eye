@@ -25,12 +25,4 @@ const Loader = (props) => {
   };
   
   export default Loader;
-  
-  // <div className='wrapper' {...props}>
-  //         <div className="spinner">
-  //         </div>
-  //   <div className='spinner'></div>
-  //   <p className='textLoader'>{props.children}</p>
-  // </div>
-
 

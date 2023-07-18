@@ -64,13 +64,13 @@ const Model = () => {
     setLoading(null);
   };
 
-  useEffect(()=> {
-    if (navigator.share === undefined) {
-      if (window.location.protocol === 'http:') {
-        window.location.replace(window.location.href.replace(/^http:/, 'https:'));
-      } 
-    }
-  }, []);
+  // useEffect(()=> {
+  //   if (navigator.share === undefined) {
+  //     // if (window.location.protocol === 'http:') {
+  //     //   window.location.replace(window.location.href.replace(/^http:/, 'https:'));
+  //     // } 
+  //   }
+  // }, []);
 
   // Function to render thepopover content based on the detection score
   const renderPopoverContent = (score, threshold) => {
@@ -79,8 +79,12 @@ const Model = () => {
     // If the score is above the threshold, render a message indicating a good image
     if (score >= threshold * 100) {
       // eslint-disable-next-line
-      const blob = toBlob(imageRef.current)
-      const whatsapp_href = "whatsapp://send?text=" + encodeURIComponent(imageRef.current)
+      const dataURL = canvas.toDataURL('image/jpeg')
+      const getBase64StringFromDataURL = (dataURL) =>
+    dataURL.replace('data:', '').replace(/^.+,/, '');
+      const base64 = getBase64StringFromDataURL(dataURL);
+      // const blob = toBlob(imageRef.current)
+      const whatsapp_href = "whatsapp://send?text=" + base64
        return (
         <div className="share_pic">
           <h3>The Image is Good!</h3>
@@ -92,8 +96,6 @@ const Model = () => {
               className="share-icon">
               <WhatsappIcon size={32} round={true} />
             </a>
-            {/* <ReactWhatsapp number="" message="Hello" element={URL.createObjectURL(img)}>
-            </ReactWhatsapp> */}
           </div>
         </div>
       );
