@@ -1,5 +1,5 @@
 // Importing necessary libraries and components
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import cv from "@techstark/opencv-js"; // OpenCV for JavaScript
 import { Tensor, InferenceSession } from "onnxruntime-web"; // ONNX Runtime for web
 import Loader from "./loader"; // Loader component for loading state
@@ -7,7 +7,7 @@ import { detectImage } from "../utils/detect"; // Utility function for image det
 import Instructions from "./instructions"; // Instructions component
 import "../style/model.css"; // Importing CSS
 import useLocalStorage from 'use-local-storage'; // Custom hook for using local storage
-import { toBlob } from "html-to-image";
+// import { toBlob } from "html-to-image";
 import { WhatsappIcon } from "react-share";
 // import ReactWhatsapp from "react-whatsapp";
 
