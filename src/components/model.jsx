@@ -7,7 +7,7 @@ import { detectImage } from "../utils/detect"; // Utility function for image det
 import Instructions from "./instructions"; // Instructions component
 import "../style/model.css"; // Importing CSS
 import useLocalStorage from 'use-local-storage'; // Custom hook for using local storage
-// import { toBlob } from "html-to-image";
+import { toBlob } from "html-to-image";
 import { WhatsappIcon } from "react-share";
 // import ReactWhatsapp from "react-whatsapp";
 
@@ -66,9 +66,9 @@ const Model = () => {
 
   // useEffect(()=> {
   //   if (navigator.share === undefined) {
-  //     // if (window.location.protocol === 'http:') {
-  //     //   window.location.replace(window.location.href.replace(/^http:/, 'https:'));
-  //     // } 
+  //     if (window.location.protocol === 'http:') {
+  //       window.location.replace(window.location.href.replace(/^http:/, 'https:'));
+  //     } 
   //   }
   // }, []);
 
@@ -78,24 +78,28 @@ const Model = () => {
     console.log(score, threshold * 100);
     // If the score is above the threshold, render a message indicating a good image
     if (score >= threshold * 100) {
-      // eslint-disable-next-line
-      const dataURL = canvas.toDataURL('image/jpeg')
-      const getBase64StringFromDataURL = (dataURL) =>
-    dataURL.replace('data:', '').replace(/^.+,/, '');
-      const base64 = getBase64StringFromDataURL(dataURL);
-      // const blob = toBlob(imageRef.current)
-      const whatsapp_href = "whatsapp://send?text=" + base64
-       return (
+      // Share the image using the Web Share API
+      const shareImage = async () => {
+        try {
+          const blob = await toBlob(imageRef.current);
+          const filesArray = [new File([blob], "dog-eye.jpg", { type: "image/jpeg" })];
+          const shareData = {
+            files: filesArray,
+          };
+          await navigator.share(shareData);
+        } catch (error) {
+          console.error("Error sharing image:", error);
+        }
+      };
+
+      return (
         <div className="share_pic">
           <h3>The Image is Good!</h3>
           <p>Click the button below to share it with the clinic</p>
           <div className="bottom-button-con">
-            <a href={whatsapp_href}
-              rel="nofollow noopener noreferrer" 
-              target="_blank" 
-              className="share-icon">
+            <button onClick={shareImage} className="share-icon">
               <WhatsappIcon size={32} round={true} />
-            </a>
+            </button>
           </div>
         </div>
       );
