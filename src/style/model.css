@@ -1,3 +1,18 @@
+:root {
+  --background: white;
+  --text-primary: black;
+  --text-secondary: royalblue;
+  --accent: purple;
+}
+[data-theme='dark'] {
+  --background: #17263f;
+  --text-primary: white;
+  --text-secondary: grey;
+  --accent: darkred;
+}
+
+
+
 .Model {
   height: 100vh;
   padding: 0 10px;
@@ -5,11 +20,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   color: var(--text-primary);
-  background-color: var(--background);
+  background-color: var(--background); 
   transition: all .5s;
 }
+
+html{
+  background-color: var(--background); 
+}
+
+
+body {
+  background-color: var(--background); 
+}
+
 
 .Model>* {
   margin: 5px 0;
@@ -110,19 +134,6 @@ button:hover {
 }
 
 
-:root {
-  /* --background: white; */
-  --text-primary: black;
-  --text-secondary: royalblue;
-  --accent: purple;
-}
-
-[data-theme='dark'] {
-  --background: #17263f;
-  --text-primary: white;
-  --text-secondary: grey;
-  --accent: darkred;
-}
 
 /* <<<<<<<<<<<<<<<<<<< from instruction page >>>>>>>>>>>>>>>>>> */
 
@@ -214,6 +225,7 @@ wrapper {
 
 .btn-container {
   align-items: center;
+  background-color: var(--background);
 
 }
 .bottom-button-con{

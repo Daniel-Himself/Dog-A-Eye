@@ -1,5 +1,5 @@
 // Importing necessary libraries and components
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import cv from "@techstark/opencv-js"; // OpenCV for JavaScript
 import { Tensor, InferenceSession } from "onnxruntime-web"; // ONNX Runtime for web
 import Loader from "./loader"; // Loader component for loading state
@@ -9,6 +9,7 @@ import "../style/model.css"; // Importing CSS
 import useLocalStorage from 'use-local-storage'; // Custom hook for using local storage
 import { toBlob } from "html-to-image";
 import { WhatsappIcon } from "react-share";
+
 // import ReactWhatsapp from "react-whatsapp";
 
 const Model = () => {
@@ -16,6 +17,16 @@ const Model = () => {
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   // Using local storage to save the user's preferred theme
   const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+
+  //-------------------------------------------------
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.style.setProperty('--background', '#17263f');
+    } else {
+      document.documentElement.style.setProperty('--background', 'white');
+    }
+  }, [theme]);
+  //-------------------------------------------------
 
   // Function to switch between light and dark themes
   const switchTheme = () => {
