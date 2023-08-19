@@ -1,5 +1,5 @@
 // Importing necessary libraries and components
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import cv from "@techstark/opencv-js"; // OpenCV for JavaScript
 import { Tensor, InferenceSession } from "onnxruntime-web"; // ONNX Runtime for web
 import Loader from "./loader"; // Loader component for loading state
@@ -132,18 +132,17 @@ const Model = () => {
     } else {
       // If the score is below the threshold, render a message indicating a bad image
       return (
-        <div id="retake_pic">
-          <h3> The Image is Not Clear Enough! </h3>
-          <p>Please try again. Make sure the eye is well lit and centered in the frame</p>
-          <Instructions />
-          <button
+        <div className="center">
+          <div id="retake_pic">
+            <h3> The Image is Not Clear Enough! </h3>
+            <p>Please try again. Make sure the eye is well lit and centered in the frame</p>
+            <button
             className="retake-button"
             onClick={() => {
               inputImage.current.click();
-            }}
-          >
-            Retake an Image
-          </button>
+            }}>Retake an Image</button>
+            <Instructions />
+          </div>
         </div>
       );
     }
@@ -151,19 +150,43 @@ const Model = () => {
 
   // Rendering the component
   return (
+    
     <div className="Model" data-theme={theme}>
+      
+
       <div className="theme-button">
         <button onClick={switchTheme}>
           {theme !== 'light' ? '☀️' : '🌙'}
         </button>
       </div>
+
+
       {loading && <Loader>{loading}</Loader>}
-      {!loading ? <div className="header">
+            {!loading ? 
+      <div className="header">
         <img src={img} alt="Logo" className="logo" />
         <h1>Dog-A-Eye Assistant</h1>
-        {!image ? <Instructions /> : ""}
-        <p>Please upload an image of your dog's eye</p>
       </div> : ""}
+
+      {!loading ? <div className="btn-container">
+      
+        <p>Please upload an image of your dog's eye</p>
+        {!image && (
+          <button
+            className="primary-button"
+            onClick={() => {
+              inputImage.current.click();
+            }}
+          >
+            Upload an Image
+          </button>
+        )}
+        {!image ? <Instructions /> : ""}
+        {image && renderPopoverContent(maxScore, scoreThreshold)}
+      </div> : ""}
+      
+
+
 
       {!loading ? <div className="content">
         <img
@@ -193,6 +216,8 @@ const Model = () => {
         />
       </div> : ""}
 
+
+
       {!loading ? <input
         type="file"
         ref={inputImage}
@@ -212,19 +237,7 @@ const Model = () => {
           setImage(url);
         }}
       /> : ""}
-      {!loading ? <div className="btn-container">
-        {!image && (
-          <button
-            // className="upload-button primary-button"
-            onClick={() => {
-              inputImage.current.click();
-            }}
-          >
-            Upload an Image
-          </button>
-        )}
-        {image && renderPopoverContent(maxScore, scoreThreshold)}
-      </div> : ""}
+
 
     </div>
   );
