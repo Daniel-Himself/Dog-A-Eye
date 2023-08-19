@@ -64,6 +64,7 @@ const Model = () => {
     setLoading(null);
   };
 
+  // eslint-disable-next-line
   const handleLowlight = (imageFile) => {
     const formData = new FormData();
     formData.append('image', imageFile);
