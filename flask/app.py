@@ -30,7 +30,10 @@ def lowlight(image):
     gamma = 1.2
     lookup_table = np.array([((i / 255.0) ** (1 / gamma)) * 255 for i in np.arange(0, 256)]).astype("uint8")
     enhanced_image = cv2.LUT(enhanced_image, lookup_table)
-
+    
+    # Return the enhanced image in PIL format
+    enhanced_image = Image.fromarray(enhanced_image)
+    
     return enhanced_image
 @app.route('/enhance-image', methods=['POST'])
 def enhance_image():
