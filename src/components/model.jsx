@@ -193,11 +193,11 @@ const Model = () => {
             setImage(null);
           }
 
-          // const url = URL.createObjectURL(e.target.files[0]); // create image url
-          const imageFile = e.target.files[0];
-          handleLowlight(imageFile);
-          // imageRef.current.src = url; // set image source
-          // setImage(url);
+          const url = URL.createObjectURL(e.target.files[0]); // create image url
+          // const imageFile = e.target.files[0];
+          // handleLowlight(imageFile);
+          imageRef.current.src = url; // set image source
+          setImage(url);
         }}
       /> : ""}
       {!loading ? <div className="btn-container">
