@@ -64,13 +64,27 @@ const Model = () => {
     setLoading(null);
   };
 
-  // useEffect(()=> {
-  //   if (navigator.share === undefined) {
-  //     if (window.location.protocol === 'http:') {
-  //       window.location.replace(window.location.href.replace(/^http:/, 'https:'));
-  //     } 
-  //   }
-  // }, []);
+  const handleLowlight = (imageFile) => {
+    const formData = new FormData();
+    formData.append('image', imageFile);
+
+    fetch('/enhance-image', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response) => response.blob())
+      .then((imageBlob) => {
+        // Convert the received image blob to a URL
+        const imageUrl = URL.createObjectURL(imageBlob);
+
+        // Update the state or DOM with the processed image
+        imageRef.current.src = imageUrl; // set image source
+        setImage(imageUrl);
+      })
+      .catch((error) => {
+        console.error('Error processing image:', error);
+      });
+  };
 
   // Function to render thepopover content based on the detection score
   const renderPopoverContent = (score, threshold) => {
@@ -179,9 +193,11 @@ const Model = () => {
             setImage(null);
           }
 
-          const url = URL.createObjectURL(e.target.files[0]); // create image url
-          imageRef.current.src = url; // set image source
-          setImage(url);
+          // const url = URL.createObjectURL(e.target.files[0]); // create image url
+          const imageFile = e.target.files[0];
+          handleLowlight(imageFile);
+          // imageRef.current.src = url; // set image source
+          // setImage(url);
         }}
       /> : ""}
       {!loading ? <div className="btn-container">

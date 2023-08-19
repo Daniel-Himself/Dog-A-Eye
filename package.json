@@ -2,6 +2,7 @@
   "name": "dog-a-eye",
   "homepage": "final-project",
   "version": "1.0",
+  "proxy" : "http://localhost:5000",
   "dependencies": {
     "@techstark/opencv-js": "4.5.5-release.2",
     "bootstrap": "^5.3.0",
@@ -16,7 +17,9 @@
     "use-local-storage": "^3.0.0"
   },
   "scripts": {
-    "start": "craco start",
+    "start-flask": "FLASK_APP=./flask/app.py flask run",
+    "start-react": "craco start",
+    "start": "concurrently --prefix \"log\" \"yarn start-flask\" \"yarn start-react\"",
     "build": "craco build",
     "deploy": "gh-pages -d build"
   },
@@ -45,6 +48,7 @@
   "license": "MIT",
   "devDependencies": {
     "@craco/craco": "^7.0.0",
+    "concurrently": "^8.2.0",
     "copy-webpack-plugin": "^11.0.0",
     "gh-pages": "^4.0.0"
   },
