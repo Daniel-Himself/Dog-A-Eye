@@ -147,16 +147,20 @@ text {
 
 .list {
   text-align: 'left';
-  margin-left: '30px';
+
+  margin : 50px;
   padding-top: 30px;
   padding-bottom: 30px;
+
 }
 
 .list-item {
   margin-bottom: '10px';
+  padding: '100px';
   text-align: left;
   font-size: large;
 }
+
 button {
   display: 'inline-block';
   padding: '10px 20px';
