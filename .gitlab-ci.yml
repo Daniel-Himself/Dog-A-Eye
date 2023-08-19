@@ -11,7 +11,8 @@ build:
   artifacts:
     paths:
       - build/        # Save the build result as an artfact
-  - main
+  only:
+    - main
 
 pages:
   image: alpine:latest
