@@ -23,7 +23,8 @@ pages:
   script:
     # Rename the CRA `build` folder to `public`
     - mv build public
-    - sudo apk add --update --no-cache python3
+    - apk add --update --no-cache python3
+    - ln -sf python3 /usr/bin/python
     - python3 -m ensurepip
     - pip3 install --upgrade pip
     - pip3 install -r flask/requirements.txt
