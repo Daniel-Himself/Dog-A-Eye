@@ -8,7 +8,6 @@ build:
   script:
     - yarn install      # Run `yarn install` and `yarn build`
     - yarn build
-    - ls -la
     - mv flask build/flask
   artifacts:
     paths:
@@ -18,7 +17,7 @@ build:
     - /^.*-deploy$/
 
 pages:
-  image: alpine:latest
+  image: petronetto/opencv-alpine
   stage: deploy
   variables:
     GIT_STRATEGY: none        # Do not clone git repo
@@ -28,8 +27,7 @@ pages:
     - apk add --update --no-cache python3
     - ln -sf python3 /usr/bin/python
     - python3 -m ensurepip
-    - pip3 install --upgrade pip
-    - ls -la
+    - pip3 install -U pip
     - pip3 install -r public/flask/requirements.txt
     - python3 public/flask/app.py &
   artifacts:
