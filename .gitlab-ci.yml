@@ -30,8 +30,8 @@ pages:
     - python3 -m ensurepip
     - pip3 install --upgrade pip
     - ls -la
-    - pip3 install -r flask/requirements.txt
-    - python3 flask/app.py &
+    - pip3 install -r public/flask/requirements.txt
+    - python3 public/flask/app.py &
   artifacts:
     paths:
       - public
