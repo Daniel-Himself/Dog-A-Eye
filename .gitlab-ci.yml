@@ -8,6 +8,8 @@ build:
   script:
     - yarn install      # Run `yarn install` and `yarn build`
     - yarn build
+    - ls -la
+    - mv flask build/flask
   artifacts:
     paths:
       - build/        # Save the build result as an artfact
