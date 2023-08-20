@@ -17,14 +17,14 @@ build:
     - /^.*-deploy$/
 
 pages:
-  image: petronetto/opencv-alpine
+  image: alpine:latest
   stage: deploy
   variables:
     GIT_STRATEGY: none        # Do not clone git repo
   script:
     # Rename the CRA `build` folder to `public`
     - mv build public
-    - apk add --update --no-cache python3
+    - apk add --update --no-cache python3 bash build-base ca-certificates clang-dev clang cmake coreutils curl freetype-dev ffmpeg-dev ffmpeg-libs gcc g++ git
     - ln -sf python3 /usr/bin/python
     - python3 -m ensurepip
     - pip3 install -U pip
