@@ -1,20 +1,12 @@
 from flask import Flask, request, send_file
 from flask_cors import CORS
 from PIL import Image
-# import torch
 import numpy as np
-import io
-# import model  # Assuming the model.py file is imported as a module
 import cv2
-import os
+import io
 
 app = Flask(__name__)
 CORS(app)
-
-# current_directory = os.path.dirname(os.path.abspath(__file__))
-# model_path = os.path.join(current_directory, 'snapshots', 'Epoch99.pth')
-# DCE_net = model.enhance_net_nopool().cuda()
-# DCE_net.load_state_dict(torch.load(model_path))
 
 def lowlight(image):
     # Convert the image to the YUV color space
@@ -43,7 +35,7 @@ def enhance_image():
     image_arr = np.array(image)
 
     # Process the image using the lowlight function
-    processed_image = lowlight(image_arr)
+    processed_image = lowlight(image_arr) if np.mean(image_arr) < 100 else image
 
     # Convert the processed image to bytes
     image_bytes_io = io.BytesIO()

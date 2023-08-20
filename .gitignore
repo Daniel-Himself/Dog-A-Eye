@@ -9,6 +9,7 @@ yarn.lock
 !.yarn/versions
 
 flask/__pycache__/
+*.back
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 

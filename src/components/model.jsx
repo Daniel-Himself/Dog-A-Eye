@@ -1,27 +1,25 @@
 // Importing necessary libraries and components
-import React, { useState, useRef } from "react";
 import cv from "@techstark/opencv-js"; // OpenCV for JavaScript
-import { Tensor, InferenceSession } from "onnxruntime-web"; // ONNX Runtime for web
-import Loader from "./loader"; // Loader component for loading state
-import { detectImage } from "../utils/detect"; // Utility function for image detection
-import Instructions from "./instructions"; // Instructions component
-import "../style/model.css"; // Importing CSS
-import useLocalStorage from 'use-local-storage'; // Custom hook for using local storage
 import { toBlob } from "html-to-image";
+import { InferenceSession, Tensor } from "onnxruntime-web"; // ONNX Runtime for web
+import React, { useRef, useState } from "react";
 import { WhatsappIcon } from "react-share";
-// import ReactWhatsapp from "react-whatsapp";
+import useLocalStorage from 'use-local-storage'; // Custom hook for using local storage
+import "../style/model.css"; // Importing CSS
+import { detectImage } from "../utils/detect"; // Utility function for image detection
+import ThemeSwitcher from "./themeSwitcher";
+import Instructions from "./instructions"; // Instructions component
+import ImageDetector from "./imageDetector";
+import Loader from "./loader"; // Loader component for loading state
+import Header from "./header";
+import ImageUpload from "./imageUpload";
 
 const Model = () => {
   // Checking if the user's preferred color scheme is dark
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   // Using local storage to save the user's preferred theme
-  const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+  const [theme, ] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
 
-  // Function to switch between light and dark themes
-  const switchTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-  };
 
   // Setting up state variables
   const [session, setSession] = useState(null); // Session for ONNX Runtime
@@ -91,6 +89,7 @@ const Model = () => {
   const renderPopoverContent = (score, threshold) => {
     // Logging the score and threshold
     console.log(score, threshold * 100);
+
     // If the score is above the threshold, render a message indicating a good image
     if (score >= threshold * 100) {
       // Share the image using the Web Share API
@@ -138,85 +137,49 @@ const Model = () => {
     }
   };
 
-  // Rendering the component
-  return (
-    <div className="Model" data-theme={theme}>
-      <div className="theme-button">
-        <button onClick={switchTheme}>
-          {theme !== 'light' ? '☀️' : '🌙'}
-        </button>
-      </div>
-      {loading && <Loader>{loading}</Loader>}
-      {!loading ? <div className="header">
-        <img src={img} alt="Logo" className="logo" />
-        <h1>Dog-A-Eye Assistant</h1>
-        {!image ? <Instructions /> : ""}
-        <p>Please upload an image of your dog's eye</p>
-      </div> : ""}
-
-      {!loading ? <div className="content">
-        <img
-          ref={imageRef}
-          src="#"
-          alt=""
-          style={{ display: image ? "block" : "none" }}
-          onLoad={async () => {
-            // When the image is loaded, run the detection
-            let score = await detectImage(
-              imageRef.current,
-              canvasRef.current,
-              session,
-              topk,
-              iouThreshold,
-              scoreThreshold,
-              modelInputShape
-            );
-            setMaxScore(score);
-          }}
-        />
-        <canvas
-          id="canvas"
-          width={modelInputShape[2]}
-          height={modelInputShape[3]}
-          ref={canvasRef}
-        />
-      </div> : ""}
-
-      {!loading ? <input
-        type="file"
-        ref={inputImage}
-        accept="image/*"
-        style={{ display: "none" }}
-        onChange={(e) => {
-          // When a new image is uploaded, revoke the old image URL and set the new image URL
-          if (image) {
-            URL.revokeObjectURL(image);
-            setImage(null);
-          }
-
-          // const url = URL.createObjectURL(e.target.files[0]); // create image url
-          // imageRef.current.src = url; // set image source
-          // setImage(url);
-          const imageFile = e.target.files[0];
-          handleLowlight(imageFile);
-        }}
-      /> : ""}
-      {!loading ? <div className="btn-container">
-        {!image && (
-          <button
-            // className="upload-button primary-button"
-            onClick={() => {
-              inputImage.current.click();
-            }}
-          >
-            Upload an Image
-          </button>
+  // const [showPopover, setShowPopover] = useState(false); // State for showing the popover
+    
+    // Rendering the component
+    return (
+      <div className="Model" data-theme={theme}>
+        <ThemeSwitcher />
+        {loading && <Loader>{loading}</Loader>}
+        {!loading && (
+          <>
+            <Header img={img} image={image}/>
+            <ImageDetector
+              imageRef={imageRef}
+              canvasRef={canvasRef} 
+              modelInputShape={modelInputShape}
+              image={image}
+              session={session}
+              topk={topk}
+              iouThreshold={iouThreshold}
+              scoreThreshold={scoreThreshold}
+              detectImage={detectImage}
+              setMaxScore={setMaxScore}
+            />
+            <div className="btn-container">
+              <ImageUpload
+                inputImage={inputImage}
+                imageRef={image}
+                setImage={setImage}
+                handleLowlight={handleLowlight}
+              />
+              {!image && (
+                <button
+                  onClick={() => {
+                    inputImage.current.click();
+                  }}
+                >
+                  Upload an Image
+                </button>
+              )}
+              {image && renderPopoverContent(maxScore, scoreThreshold)}
+            </div>
+          </>
         )}
-        {image && renderPopoverContent(maxScore, scoreThreshold)}
-      </div> : ""}
-
     </div>
   );
 };
-
 export default Model;
