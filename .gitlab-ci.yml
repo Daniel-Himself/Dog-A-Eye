@@ -24,10 +24,15 @@ pages:
   script:
     # Rename the CRA `build` folder to `public`
     - mv build public
-    - apk add --update --no-cache python3 bash build-base ca-certificates clang-dev clang cmake coreutils curl freetype-dev ffmpeg-dev ffmpeg-libs gcc g++ git
+    - apk add --update --no-cache python3 bash \
+      build-base ca-certificates clang-dev clang \
+      cmake coreutils curl freetype-dev \
+      ffmpeg-dev ffmpeg-libs \
+      gcc g++ git
     - ln -sf python3 /usr/bin/python
     - python3 -m ensurepip
     - pip3 install -U pip
+    - python3 --version
     - pip3 install -r public/flask/requirements.txt
     - python3 public/flask/app.py &
   artifacts:
