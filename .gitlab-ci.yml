@@ -24,6 +24,7 @@ pages:
   script:
     # Rename the CRA `build` folder to `public`
     - mv build public
+    - apt-get update -y
     - apt-get install build-essential
     - apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
     - pip3 install -U pip
