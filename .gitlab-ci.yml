@@ -24,8 +24,8 @@ pages:
   script:
     # Rename the CRA `build` folder to `public`
     - mv build public
-    - apk add --update --no-cache python3 bash 
-    - apk add --no-cache build-base ca-certificates 
+    - apk add --update --no-cache python3 bash opencv
+    - apk add --no-cache build-base ca-certificates
     - apk add --no-cache clang-dev clang cmake
     - apk add --no-cache coreutils curl freetype-dev ffmpeg-dev
     - apk add --no-cache ffmpeg-libs gcc g++ git
