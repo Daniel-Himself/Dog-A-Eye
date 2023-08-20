@@ -17,19 +17,15 @@ build:
     - /^.*-deploy$/
 
 pages:
-  image: python:alpine
+  image: python:slim
   stage: deploy
   variables:
     GIT_STRATEGY: none        # Do not clone git repo
   script:
     # Rename the CRA `build` folder to `public`
     - mv build public
-    - apk add --update --no-cache build-base ca-certificates
-    - apk add --no-cache clang-dev clang cmake
-    - apk add --no-cache coreutils curl freetype-dev ffmpeg-dev
-    - apk add --no-cache ffmpeg-libs gcc g++ git
-    - ln -sf python3 /usr/bin/python
-    - python3 -m ensurepip
+    - apt-get install build-essential
+    - apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
     - pip3 install -U pip
     - python3 --version
     - pip3 install -r public/flask/requirements.txt
