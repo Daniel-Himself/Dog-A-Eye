@@ -3,9 +3,13 @@ from flask_cors import CORS
 from PIL import Image
 import numpy as np
 import cv2
+import os
 import io
 
-app = Flask(__name__)
+if not os.path.abspath(__name__).__contains__('public'):
+    app = Flask(__name__) 
+else:
+    app = Flask(__name__, static_folder='../build', static_url_path='/enhance-image')
 CORS(app)
 
 def lowlight(image):
@@ -46,4 +50,6 @@ def enhance_image():
     return send_file(image_bytes_io, mimetype='image/png')
 
 if __name__ == '__main__':
+    os.environ['FLASK_ENV'] = 'release'
+    print(os.path.dirname(os.path.abspath(__file__)))
     app.run(debug=True)
