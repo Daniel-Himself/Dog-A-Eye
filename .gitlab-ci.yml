@@ -13,7 +13,6 @@ build:
       - build/        # Save the build result as an artfact
   only:
     - main
-    - /^.*-deploy$/
 
 pages:
   image: alpine:latest
@@ -28,4 +27,3 @@ pages:
       - public
   only:
     - main
-    - /^.*-deploy$/

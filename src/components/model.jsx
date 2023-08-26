@@ -1,5 +1,5 @@
 // Importing necessary libraries and components
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import cv from "@techstark/opencv-js"; // OpenCV for JavaScript
 import { Tensor, InferenceSession } from "onnxruntime-web"; // ONNX Runtime for web
 import Loader from "./loader"; // Loader component for loading state
@@ -27,7 +27,7 @@ const Model = () => {
   const [session, setSession] = useState(null); // Session for ONNX Runtime
   const [loading, setLoading] = useState("Loading OpenCV.js..."); // Loading state
   const [image, setImage] = useState(null); // base image
-  const [enhancedImage, setEnhancedImage] = useState(null); // enhanced image
+  const [, setEnhancedImage] = useState(null); // enhanced image
   const inputImage = useRef(null); // Reference to the input element for image upload
   const imageRef = useRef(null); // Reference to the image element
   const canvasRef = useRef(null); // Reference to the canvas element
