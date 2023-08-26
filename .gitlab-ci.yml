@@ -8,7 +8,6 @@ build:
   script:
     - yarn install      # Run `yarn install` and `yarn build`
     - yarn build
-    - mv flask build/flask
   artifacts:
     paths:
       - build/        # Save the build result as an artfact
@@ -17,20 +16,13 @@ build:
     - /^.*-deploy$/
 
 pages:
-  image: python:slim
+  image: alpine:latest
   stage: deploy
   variables:
     GIT_STRATEGY: none        # Do not clone git repo
   script:
     # Rename the CRA `build` folder to `public`
     - mv build public
-    - apt-get update -y
-    - apt-get install build-essential -y
-    - apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev -y
-    - pip3 install -U pip
-    - python3 --version
-    - pip3 install -r public/flask/requirements.txt
-    - python3 public/flask/app.py &
   artifacts:
     paths:
       - public
