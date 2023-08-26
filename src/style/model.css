@@ -92,8 +92,12 @@ button {
 }
 
 .theme-button {
-  align-items: right;
-  margin-right: 40%;
+  display: flex;
+  justify-content: space-around; 
+  flex-direction: row-reverse;
+  /* align-items: right; */
+  margin-right: auto;
+  margin-left:auto;
   width: 100%;
   margin-top: 20px;
 }
