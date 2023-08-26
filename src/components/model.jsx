@@ -1,5 +1,5 @@
 // Importing necessary libraries and components
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import cv from "@techstark/opencv-js"; // OpenCV for JavaScript
 import { Tensor, InferenceSession } from "onnxruntime-web"; // ONNX Runtime for web
 import Loader from "./loader"; // Loader component for loading state
@@ -9,6 +9,7 @@ import "../style/model.css"; // Importing CSS
 import useLocalStorage from 'use-local-storage'; // Custom hook for using local storage
 import { toBlob } from "html-to-image";
 import { WhatsappIcon } from "react-share";
+
 // import ReactWhatsapp from "react-whatsapp";
 
 const Model = () => {
@@ -16,6 +17,16 @@ const Model = () => {
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   // Using local storage to save the user's preferred theme
   const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+
+  //-------------------------------------------------
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.style.setProperty('--background', '#17263f');
+    } else {
+      document.documentElement.style.setProperty('--background', 'white');
+    }
+  }, [theme]);
+  //-------------------------------------------------
 
   // Function to switch between light and dark themes
   const switchTheme = () => {
@@ -121,18 +132,17 @@ const Model = () => {
     } else {
       // If the score is below the threshold, render a message indicating a bad image
       return (
-        <div id="retake_pic">
-          <h3> The Image is Not Clear Enough! </h3>
-          <p>Please try again. Make sure the eye is well lit and centered in the frame</p>
-          <Instructions />
-          <button
+        <div className="center">
+          <div id="retake_pic">
+            <h3> The Image is Not Clear Enough! </h3>
+            <p>Please try again. Make sure the eye is well lit and centered in the frame</p>
+            <button
             className="retake-button"
             onClick={() => {
               inputImage.current.click();
-            }}
-          >
-            Retake an Image
-          </button>
+            }}>Retake an Image</button>
+            <Instructions />
+          </div>
         </div>
       );
     }
@@ -140,19 +150,28 @@ const Model = () => {
 
   // Rendering the component
   return (
+    
     <div className="Model" data-theme={theme}>
+      
+
       <div className="theme-button">
         <button onClick={switchTheme}>
           {theme !== 'light' ? '☀️' : '🌙'}
         </button>
       </div>
+
+
       {loading && <Loader>{loading}</Loader>}
-      {!loading ? <div className="header">
+            {!loading ? 
+      <div className="header">
         <img src={img} alt="Logo" className="logo" />
         <h1>Dog-A-Eye Assistant</h1>
-        {!image ? <Instructions /> : ""}
-        <p>Please upload an image of your dog's eye</p>
       </div> : ""}
+
+
+      
+
+
 
       {!loading ? <div className="content">
         <img
@@ -174,12 +193,29 @@ const Model = () => {
             setMaxScore(score);
           }}
         />
-        <canvas
+        <canvas 
           id="canvas"
           width={modelInputShape[2]}
           height={modelInputShape[3]}
           ref={canvasRef}
         />
+      </div> : ""}
+
+      {!loading ? <div className="btn-container">
+      
+        <p className="please">Please upload an image of your dog's eye 👁️</p>
+        {!image && (
+          <button
+            className="primary-button"
+            onClick={() => {
+              inputImage.current.click();
+            }}
+          >
+            Upload an Image
+          </button>
+        )}
+        {!image ? <Instructions /> : ""}
+        {image && renderPopoverContent(maxScore, scoreThreshold)}
       </div> : ""}
 
       {!loading ? <input
@@ -201,19 +237,7 @@ const Model = () => {
           setImage(url);
         }}
       /> : ""}
-      {!loading ? <div className="btn-container">
-        {!image && (
-          <button
-            // className="upload-button primary-button"
-            onClick={() => {
-              inputImage.current.click();
-            }}
-          >
-            Upload an Image
-          </button>
-        )}
-        {image && renderPopoverContent(maxScore, scoreThreshold)}
-      </div> : ""}
+
 
     </div>
   );

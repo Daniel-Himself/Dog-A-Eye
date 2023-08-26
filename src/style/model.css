@@ -1,22 +1,49 @@
+:root {
+  --background: white;
+  --text-primary: black;
+  --text-secondary: royalblue;
+  --accent: purple;
+}
+[data-theme='dark'] {
+  --background: #17263f;
+  --text-primary: white;
+  --text-secondary: grey;
+  --accent: darkred;
+}
+
+
+
 .Model {
-  height: 100vh;
+  /* margin-top: 250px; */
+  /* height: 100vh; */
+  height: auto;
   padding: 0 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   color: var(--text-primary);
-  background-color: var(--background);
+  background-color: var(--background); 
   transition: all .5s;
 }
 
+html{
+  background-color: var(--background); 
+}
+
+
+body {
+  background-color: var(--background); 
+}
+
+
 .Model>* {
-  margin: 5px 0;
+  /* margin: 5px 0; */
+  padding: 5px 0;
 }
 
 .header {
-  margin-top: 30px;
+  /* margin-top: 50%; */
   text-align: center;
   align-items: center;
 }
@@ -68,7 +95,7 @@ button {
   align-items: right;
   margin-right: 40%;
   width: 100%;
-  margin-top: 5%;  
+  margin-top: 20px;
 }
 
 .logo {
@@ -77,6 +104,12 @@ button {
 
 .retake-button {
   background-color: red;
+  margin-left: 32.5%;
+  margin-right: 32.5%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 35%;
+  height: 40px;
 }
 
 .share-button {
@@ -110,23 +143,10 @@ button:hover {
 }
 
 
-:root {
-  /* --background: white; */
-  --text-primary: black;
-  --text-secondary: royalblue;
-  --accent: purple;
-}
-
-[data-theme='dark'] {
-  --background: #17263f;
-  --text-primary: white;
-  --text-secondary: grey;
-  --accent: darkred;
-}
 
 /* <<<<<<<<<<<<<<<<<<< from instruction page >>>>>>>>>>>>>>>>>> */
 
-container {
+.container {
   text-align: 'center';
   margin: '50px auto';
   padding: '20px';
@@ -140,23 +160,31 @@ title {
   font-weight: 'bold';
   margin-bottom: '20px';
 }
-text {
-  font-size: '18px';
+.text {
+  font-size: large;
+  margin-bottom: '20px';
+}
+p{
+  font-size: large;
   margin-bottom: '20px';
 }
 
 .list {
   text-align: 'left';
-  margin-left: '30px';
+  margin : 50px;
+  margin-top: 25px;
   padding-top: 30px;
   padding-bottom: 30px;
+
 }
 
 .list-item {
   margin-bottom: '10px';
+  padding: '100px';
   text-align: left;
   font-size: large;
 }
+
 button {
   display: 'inline-block';
   padding: '10px 20px';
@@ -208,8 +236,17 @@ wrapper {
   align-items: center;  
 }
 
-.btn-container {
+.center{
   align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-container {
+  display: flex;           /* This sets the container to be a flex container */
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--background);
 
 }
 .bottom-button-con{
@@ -228,6 +265,7 @@ wrapper {
   width: 12em;
   height: 12em;
   font-size: 14px;
+  margin-top: 30%;
 }
 
 .wheel,
@@ -499,9 +537,14 @@ wrapper {
 
 /* ============================== Retake Pic button  ======================================*/
 
+.primary-button{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .primary-button:hover {
-  border: 1px solid #FF4655;
-  color: white;
+  border: 1px solid #f4ff5d;
+  color: var(--background);
   background-position: 40%;
  }
  
@@ -517,17 +560,16 @@ wrapper {
  }
  
  .primary-button:hover:before {
-  background-color: white;
+  background-color: var(--background);
  }
  
- .primary-button:hover:after {
+ /* .primary-button:hover:after {
   background-color: white;
- }
+ } */
  
  .primary-button:after {
-  content: "";
   position: absolute;
-  background-color: #FF4655;
+  background-color: var(--background);
   width: 0.3rem;
   height: 0.3rem;
   bottom: -1px;
