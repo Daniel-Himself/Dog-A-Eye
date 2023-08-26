@@ -34,6 +34,11 @@ const Model = () => {
     setTheme(newTheme);
   };
 
+  // funcition to refresh the page
+  const refresh = () => {
+    window.location.reload();
+  };
+
   // Setting up state variables
   const [session, setSession] = useState(null); // Session for ONNX Runtime
   const [loading, setLoading] = useState("Loading OpenCV.js..."); // Loading state
@@ -157,6 +162,8 @@ const Model = () => {
       <div className="theme-button">
         <button onClick={switchTheme}>
           {theme !== 'light' ? '☀️' : '🌙'}
+        </button>
+        <button onClick={refresh}>🔄 Start Over
         </button>
       </div>
 
