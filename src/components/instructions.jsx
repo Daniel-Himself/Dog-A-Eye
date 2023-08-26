@@ -1,5 +1,8 @@
 import React from 'react';
 import "../style/model.css";
+// import Carousel from 'react-bootstrap/Carousel';
+// import { Carousel } from 'react-responsive-carousel';
+
 
 const Instructions = () => {
 

@@ -168,22 +168,7 @@ const Model = () => {
         <h1>Dog-A-Eye Assistant</h1>
       </div> : ""}
 
-      {!loading ? <div className="btn-container">
-      
-        <p>Please upload an image of your dog's eye</p>
-        {!image && (
-          <button
-            className="primary-button"
-            onClick={() => {
-              inputImage.current.click();
-            }}
-          >
-            Upload an Image
-          </button>
-        )}
-        {!image ? <Instructions /> : ""}
-        {image && renderPopoverContent(maxScore, scoreThreshold)}
-      </div> : ""}
+
       
 
 
@@ -208,7 +193,7 @@ const Model = () => {
             setMaxScore(score);
           }}
         />
-        <canvas
+        <canvas 
           id="canvas"
           width={modelInputShape[2]}
           height={modelInputShape[3]}
@@ -216,7 +201,22 @@ const Model = () => {
         />
       </div> : ""}
 
-
+      {!loading ? <div className="btn-container">
+      
+        <p className="please">Please upload an image of your dog's eye 👁️</p>
+        {!image && (
+          <button
+            className="primary-button"
+            onClick={() => {
+              inputImage.current.click();
+            }}
+          >
+            Upload an Image
+          </button>
+        )}
+        {!image ? <Instructions /> : ""}
+        {image && renderPopoverContent(maxScore, scoreThreshold)}
+      </div> : ""}
 
       {!loading ? <input
         type="file"
