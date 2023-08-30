@@ -81,27 +81,48 @@ const Model = () => {
   };
 
   // eslint-disable-next-line
-  const handleLowlight = (imageFile) => {
-    const formData = new FormData();
-    formData.append('image', imageFile);
+  const lowlight = (image) => {
+    // Convert the image to the YUV color space
+    let yuvImage = new cv.Mat();
+    cv.cvtColor(image, yuvImage, cv.COLOR_BGR2YUV);
 
-    fetch('/enhance-image', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((response) => response.blob())
-      .then((imageBlob) => {
-        // Convert the received image blob to a URL
-        const imageUrl = URL.createObjectURL(imageBlob);
+    // Split the Y, U, V channels
+    let channels = new cv.MatVector();
+    cv.split(yuvImage, channels);
 
-        // Update the state or DOM with the processed image
-        imageRef.current.src = imageUrl; // set image source
-        setImage(imageUrl);
-      })
-      .catch((error) => {
-        console.error('Error processing image:', error);
-      });
-  };
+    // Apply histogram equalization to the Y channel
+    cv.equalizeHist(channels.get(0), channels.get(0));
+
+    // Merge the channels back
+    cv.merge(channels, yuvImage);
+
+    // Convert the image back to the BGR color space
+    let enhancedImage = new cv.Mat();
+    cv.cvtColor(yuvImage, enhancedImage, cv.COLOR_YUV2BGR);
+
+    // Prepare gamma correction lookup table
+    const gamma = 1.2;
+    let lookUpTable = new Array(256);
+    for (let i = 0; i < 256; i++) {
+        lookUpTable[i] = Math.min(255, Math.pow(i / 255.0, 1.0 / gamma) * 255.0);
+    }
+
+    // Apply gamma correction using the lookup table
+    for (let y = 0; y < enhancedImage.rows; y++) {
+        for (let x = 0; x < enhancedImage.cols; x++) {
+            let pixel = enhancedImage.ptr(y, x);
+            pixel[0] = lookUpTable[pixel[0]];
+            pixel[1] = lookUpTable[pixel[1]];
+            pixel[2] = lookUpTable[pixel[2]];
+        }
+    }
+
+    // Clean up
+    yuvImage.delete();
+    channels.delete();
+
+    return enhancedImage;
+}
 
   // Function to render thepopover content based on the detection score
   const renderPopoverContent = (score, threshold) => {
@@ -142,10 +163,10 @@ const Model = () => {
             <h3> The Image is Not Clear Enough! </h3>
             <p>Please try again. Make sure the eye is well lit and centered in the frame</p>
             <button
-            className="retake-button"
-            onClick={() => {
-              inputImage.current.click();
-            }}>Retake an Image</button>
+              className="retake-button"
+              onClick={() => {
+                inputImage.current.click();
+              }}>Retake an Image</button>
             <Instructions />
           </div>
         </div>
@@ -155,9 +176,9 @@ const Model = () => {
 
   // Rendering the component
   return (
-    
+
     <div className="Model" data-theme={theme}>
-      
+
 
       <div className="theme-button">
         <button onClick={switchTheme}>
@@ -169,14 +190,14 @@ const Model = () => {
 
 
       {loading && <Loader>{loading}</Loader>}
-            {!loading ? 
-      <div className="header">
-        <img src={img} alt="Logo" className="logo" />
-        <h1>Dog-A-Eye Assistant</h1>
-      </div> : ""}
+      {!loading ?
+        <div className="header">
+          <img src={img} alt="Logo" className="logo" />
+          <h1>Dog-A-Eye Assistant</h1>
+        </div> : ""}
 
 
-      
+
 
 
 
@@ -200,7 +221,7 @@ const Model = () => {
             setMaxScore(score);
           }}
         />
-        <canvas 
+        <canvas
           id="canvas"
           width={modelInputShape[2]}
           height={modelInputShape[3]}
@@ -209,7 +230,7 @@ const Model = () => {
       </div> : ""}
 
       {!loading ? <div className="btn-container">
-      
+
         <p className="please">Please upload an image of your dog's eye 👁️</p>
         {!image && (
           <button
@@ -231,18 +252,40 @@ const Model = () => {
         accept="image/*"
         style={{ display: "none" }}
         onChange={(e) => {
-          // When a new image is uploaded, revoke the old image URL and set the new image URL
-          if (image) {
-            URL.revokeObjectURL(image);
-            setImage(null);
+          const file = e.target.files[0];
+          if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            
+            // Load the image using JavaScript's Image object
+            let tempImage = new Image();
+            tempImage.src = imageUrl;
+            tempImage.onload = () => {
+              // Create a temporary canvas to draw the uploaded image
+              let tempCanvas = document.createElement('canvas');
+              tempCanvas.width = tempImage.width;
+              tempCanvas.height = tempImage.height;
+              let ctx = tempCanvas.getContext('2d');
+              ctx.drawImage(tempImage, 0, 0, tempImage.width, tempImage.height);
+        
+              // Read the image into OpenCV
+              let image = cv.imread(tempCanvas);
+              
+              const enhancedImage = lowlight(image); // Enhancing image using the lowlight function
+        
+              // Convert the enhanced OpenCV image to a data URL
+              cv.imshow(tempCanvas, enhancedImage);
+              const enhancedImageUrl = tempCanvas.toDataURL('image/png');
+        
+              imageRef.current.src = enhancedImageUrl;
+              setImage(enhancedImageUrl);
+        
+              // Clean up
+              image.delete();
+              enhancedImage.delete();
+            };
           }
-
-          const url = URL.createObjectURL(e.target.files[0]); // create image url
-          // const imageFile = e.target.files[0];
-          // handleLowlight(imageFile);
-          imageRef.current.src = url; // set image source
-          setImage(url);
         }}
+        
       /> : ""}
 
 

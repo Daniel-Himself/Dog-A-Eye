@@ -17,9 +17,7 @@
     "use-local-storage": "^3.0.0"
   },
   "scripts": {
-    "start-flask": "FLASK_APP=./flask/app.py flask run",
-    "start-react": "craco start",
-    "start": "concurrently --prefix \"log\" \"yarn start-flask\" \"yarn start-react\"",
+    "start": "craco start",
     "build": "craco build",
     "deploy": "gh-pages -d build"
   },
