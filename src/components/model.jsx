@@ -80,49 +80,58 @@ const Model = () => {
     setLoading(null);
   };
 
-  // eslint-disable-next-line
   const lowlight = (image) => {
-    // Convert the image to the YUV color space
-    let yuvImage = new cv.Mat();
-    cv.cvtColor(image, yuvImage, cv.COLOR_BGR2YUV);
+    // Convert the image to the HSV color space to calculate mean saturation
+    let hsvImage = new cv.Mat();
+    cv.cvtColor(image, hsvImage, cv.COLOR_BGR2HSV);
 
-    // Split the Y, U, V channels
-    let channels = new cv.MatVector();
-    cv.split(yuvImage, channels);
+    // Split the H, S, V channels
+    let hsvChannels = new cv.MatVector();
+    cv.split(hsvImage, hsvChannels);
 
-    // Apply histogram equalization to the Y channel
-    cv.equalizeHist(channels.get(0), channels.get(0));
-
-    // Merge the channels back
-    cv.merge(channels, yuvImage);
-
-    // Convert the image back to the BGR color space
-    let enhancedImage = new cv.Mat();
-    cv.cvtColor(yuvImage, enhancedImage, cv.COLOR_YUV2BGR);
-
-    // Prepare gamma correction lookup table
-    const gamma = 1.2;
-    let lookUpTable = new Array(256);
-    for (let i = 0; i < 256; i++) {
-        lookUpTable[i] = Math.min(255, Math.pow(i / 255.0, 1.0 / gamma) * 255.0);
+    // Calculate mean saturation
+    let meanSaturation = cv.mean(hsvChannels.get(1))[0];
+    const saturationThreshold = 50; // adjust this value
+    try{
+      hsvImage.delete();
+      hsvChannels.delete();
+    } catch (error) {
+      console.log(error);
     }
 
-    // Apply gamma correction using the lookup table
-    for (let y = 0; y < enhancedImage.rows; y++) {
-        for (let x = 0; x < enhancedImage.cols; x++) {
-            let pixel = enhancedImage.ptr(y, x);
-            pixel[0] = lookUpTable[pixel[0]];
-            pixel[1] = lookUpTable[pixel[1]];
-            pixel[2] = lookUpTable[pixel[2]];
-        }
+    if (meanSaturation >= saturationThreshold) {
+      return image; // return the original image if mean saturation is above the threshold
     }
+    else {
+      // Convert the image to the LAB color space for enhancement
+      let labImage = new cv.Mat();
+      cv.cvtColor(image, labImage, cv.COLOR_BGR2Lab);
 
-    // Clean up
-    yuvImage.delete();
-    channels.delete();
+      // Split the L, a, b channels
+      let labChannels = new cv.MatVector();
+      cv.split(labImage, labChannels);
 
-    return enhancedImage;
-}
+      // Apply histogram equalization to the L channel
+      cv.equalizeHist(labChannels.get(0), labChannels.get(0));
+
+      // Merge the channels back
+      cv.merge(labChannels, labImage);
+
+      // Convert the image back to the BGR color space
+      let enhancedImage = new cv.Mat();
+      cv.cvtColor(labImage, enhancedImage, cv.COLOR_Lab2BGR);
+      try {
+        labImage.delete();
+        labChannels.delete();
+      } catch (error) {
+        console.log(error);
+      }
+
+      return enhancedImage;
+    }
+  }
+
+
 
   // Function to render thepopover content based on the detection score
   const renderPopoverContent = (score, threshold) => {
@@ -255,7 +264,7 @@ const Model = () => {
           const file = e.target.files[0];
           if (file) {
             const imageUrl = URL.createObjectURL(file);
-            
+
             // Load the image using JavaScript's Image object
             let tempImage = new Image();
             tempImage.src = imageUrl;
@@ -266,26 +275,30 @@ const Model = () => {
               tempCanvas.height = tempImage.height;
               let ctx = tempCanvas.getContext('2d');
               ctx.drawImage(tempImage, 0, 0, tempImage.width, tempImage.height);
-        
+
               // Read the image into OpenCV
               let image = cv.imread(tempCanvas);
-              
+
               const enhancedImage = lowlight(image); // Enhancing image using the lowlight function
-        
+
               // Convert the enhanced OpenCV image to a data URL
               cv.imshow(tempCanvas, enhancedImage);
               const enhancedImageUrl = tempCanvas.toDataURL('image/png');
-        
+
               imageRef.current.src = enhancedImageUrl;
               setImage(enhancedImageUrl);
-        
+
               // Clean up
-              image.delete();
-              enhancedImage.delete();
+              try {
+                image.delete();
+                enhancedImage.delete();
+              } catch (error) {
+                console.log(error);
+              }
             };
           }
         }}
-        
+
       /> : ""}
 
 
