@@ -81,7 +81,7 @@ const Model = () => {
   };
 
   const lowlight = (image, {
-    saturationThreshold = 50,       // Mean saturation level for enhancement decision
+    luminocityThreshold = 50,       // Mean saturation level for enhancement decision
     claheClipLimit = 40,            // Contrast for adaptive histogram equalization
     claheTileSize = 8,              // Size of the region for histogram equalization
     brightnessBoost = 0             // Adjust overall brightness
@@ -96,12 +96,12 @@ const Model = () => {
     cv.split(hsvImage, hsvChannels);
 
     // Calculate mean saturation
-    let meanSaturation = cv.mean(hsvChannels.get(1))[0];
+    let meanLuminocity = cv.mean(hsvChannels.get(2))[0];
 
     hsvImage.delete();
     hsvChannels.delete();
 
-    if (meanSaturation >= saturationThreshold) {
+    if (meanLuminocity >= luminocityThreshold) {
       return image; // return the original image if mean saturation is above the threshold
     }
 
