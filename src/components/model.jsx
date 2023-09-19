@@ -12,6 +12,27 @@ import { WhatsappIcon } from "react-share";
 
 // import ReactWhatsapp from "react-whatsapp";
 
+
+const sendImageToServer = async (imageBlob) => {
+    const formData = new FormData();
+    formData.append('image', imageBlob);
+
+    try {
+        const response = await fetch('YOUR_SERVER_ENDPOINT_URL', {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            console.log('Image successfully sent to the server');
+        } else {
+            console.error('Failed to send image', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error sending image:', error);
+    }
+};
+
 const Model = () => {
   // Checking if the user's preferred color scheme is dark
   const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
