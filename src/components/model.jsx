@@ -193,8 +193,6 @@ const Model = () => {
   return (
 
     <div className="Model" data-theme={theme}>
-
-
       <div className="theme-button">
         <button onClick={switchTheme}>
           {theme !== 'light' ? '☀️' : '🌙'}
@@ -233,6 +231,11 @@ const Model = () => {
               scoreThreshold,
               modelInputShape
             );
+            // if score is -1, then the detection failed 
+            // prompt the user to retake the image
+            if (score === -1) {
+              alert("plesae make sure there is only one eye in the shoot!");
+            }
             setMaxScore(score);
           }}
         />
