@@ -10,7 +10,24 @@
   --text-secondary: grey;
   --accent: darkred;
 }
+/* ===================================================================================== */
+.image-instructions {
+  min-height: 200px;
+  max-width: 200px;
+  margin: 0 auto;   /* Optional: centers the image in the carousel item */
+}
 
+.carousel-item-wrapper {
+  text-align: center;
+}
+
+.carusel_style{
+  width: 100%;
+  min-height: 400px;
+  object-fit: cover;
+  margin: 0 auto;
+}
+/* ===================================================================================== */
 
 
 .Model {
