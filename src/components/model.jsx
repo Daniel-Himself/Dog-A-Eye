@@ -58,7 +58,13 @@ const Model = () => {
   const modelInputShape = [1, 3, 640, 640]; // Input shape for the model
   const topk = 100; // Top K results to consider
   const iouThreshold = 0.45; // Intersection over Union threshold for detection
-  const scoreThreshold = 0.70; // Score threshold for detection
+  const detectionThreshold = 0.5; // Score threshold for detection
+  const scoreThreshold = 0.8; // `ideal` image threshold
+
+  const [highestScore, setHighestScore] = useState(maxScore)
+  const [bestImage, setBestImage] = useState(null)
+  const maxAttempts = 3
+  const [attempts, setAttempts] = useState(0)
 
   // wait until opencv.js initialized
   cv["onRuntimeInitialized"] = async () => {
@@ -143,51 +149,114 @@ const Model = () => {
 
   // Function to render thepopover content based on the detection score
   const renderPopoverContent = (score, threshold) => {
-    // Logging the score and threshold
-    console.log(score, threshold * 100);
-    // If the score is above the threshold, render a message indicating a good image
-    if (score >= threshold * 100) {
-      // Share the image using the Web Share API
-      const shareImage = async () => {
-        try {
-          const blob = await toBlob(imageRef.current);
-          const filesArray = [new File([blob], "dog-eye.jpg", { type: "image/jpeg" })];
-          const shareData = {
-            files: filesArray,
-          };
-          await navigator.share(shareData);
-        } catch (error) {
-          console.error("Error sharing image:", error);
-        }
-      };
+    const shareImage = async (image) => {
+      try {
+        const blob = await toBlob(image);
+        const filesArray = [new File([blob], "dog-eye.jpg", { type: "image/jpeg" })];
+        const shareData = {
+          files: filesArray,
+        };
+        await navigator.share(shareData);
+      } catch (error) {
+        console.error("Error sharing image:", error);
+      }
+    };
+    if (attempts < maxAttempts) {
+      // Logging the score and threshold
+      console.log(score, threshold * 100);
+      // If the score is above the threshold, render a message indicating a good image
 
-      return (
-        <div className="share_pic">
-          <h3>The Image is Good!</h3>
-          <p>Click the button below to share it with the clinic</p>
-          <div className="bottom-button-con">
-            <button onClick={shareImage} className="share-icon">
-              <WhatsappIcon size={32} round={true} />
-            </button>
+      if (score >= threshold * 100) {
+        // Share the image using the Web Share API
+        return (
+          <div className="share_pic">
+            <h3>
+              The Image is Good!
+            </h3>
+            <p>Click the button below to share it with the clinic</p>
+            <div className="bottom-button-con">
+              <button onClick={shareImage(imageRef.current)} className="share-icon">
+                <WhatsappIcon size={32} round={true} />
+              </button>
+            </div>
           </div>
-        </div>
-      );
-    } else {
-      // If the score is below the threshold, render a message indicating a bad image
-      return (
-        <div className="center">
-          <div id="retake_pic">
-            <h3> The Image is Not Clear Enough! </h3>
-            <p>Please try again. Make sure the eye is well lit and centered in the frame</p>
-            <button
-              className="retake-button"
-              onClick={() => {
-                inputImage.current.click();
-              }}>Retake an Image</button>
-            <Instructions />
+        );
+      } else if (score < threshold * 100 && score > 0){
+          if (score > highestScore){
+            setHighestScore(score);
+            setBestImage(imageRef.current)
+            setAttempts(attempts+1)
+          }
+          return (
+            <div className="center">
+              <div id="retake_pic">
+                <h3>
+                  ({attempts} out of {maxAttempts} attempts left)
+                  The image is good, but we can do better!
+                </h3>
+                <p>Try to get a more close up image of the desired eye</p>
+                <button
+                  className="retake-button"
+                  onClick={() => {
+                    inputImage.current.click();
+                  }}>Retake an Image</button>
+                <Instructions />
+              </div>
+            </div>
+          )
+      } else {
+        setAttempts(attempts+1);
+        // If the score is below the threshold, render a message indicating a bad image
+        return (
+          <div className="center">
+            <div id="retake_pic">
+              <h3>
+                ({attempts} out of {maxAttempts} attempts left)
+                The Image is Not Clear Enough!
+              </h3>
+              <p>Please try again.</p>
+              {
+              score > 0 
+              ? <p>Make sure the eye is well lit and centered in the frame</p> 
+              : <p>Plesae make sure there is only one eye in the image at a time!</p>}
+              <button
+                className="retake-button"
+                onClick={() => {
+                  inputImage.current.click();
+                }}>Retake an Image</button>
+              <Instructions />
+            </div>
           </div>
-        </div>
-      );
+        );
+      }
+    }
+    else {
+      if (bestImage !== null){
+        return (
+          <div className="share_pic">
+            <h3>(Out of attempts) This is the best image so far</h3>
+            <p>Click the button below to share it with the clinic</p>
+            <div className="bottom-button-con">
+              <button onClick={shareImage(bestImage)} className="share-icon">
+                <WhatsappIcon size={32} round={true} />
+              </button>
+            </div>
+          </div>
+        );
+      }
+      else {
+        return (
+          <div className="share_pic">
+            <h3>(Out of attempts) This is the best Image so far</h3>
+            <p>Click the button below to share it with the clinic</p>
+            <div className="bottom-button-con">
+              <button onClick={shareImage(imageRef.current)} className="share-icon">
+                <WhatsappIcon size={32} round={true} />
+              </button>
+            </div>
+          </div>
+        )
+      }
     }
   };
 
@@ -230,7 +299,7 @@ const Model = () => {
               session,
               topk,
               iouThreshold,
-              scoreThreshold,
+              detectionThreshold,
               modelInputShape
             );
             // if score is -1, then the detection failed 
