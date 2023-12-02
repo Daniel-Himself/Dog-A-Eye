@@ -10,8 +10,6 @@ import useLocalStorage from 'use-local-storage'; // Custom hook for using local 
 import { toBlob } from "html-to-image";
 import { WhatsappIcon } from "react-share";
 
-
-
 // import ReactWhatsapp from "react-whatsapp";
 
 const Model = () => {
