@@ -1,5 +1,5 @@
 // Importing necessary libraries and components
-import React, { useState, useRef} from "react";
+import React, { useState, useRef, useEffect} from "react";
 import cv from "@techstark/opencv-js"; // OpenCV for JavaScript
 import { Tensor, InferenceSession } from "onnxruntime-web"; // ONNX Runtime for web
 import Loader from "./loader"; // Loader component for loading state
@@ -56,7 +56,11 @@ const Model = () => {
   const modelInputShape = [1, 3, 640, 640]; // Input shape for the model
   const topk = 100; // Top K results to consider
   const iouThreshold = 0.45; // Intersection over Union threshold for detection
-  const scoreThreshold = 0.70; // Score threshold for detection
+  const detectionThreshold = 0.50; // Score threshold for detection
+  const shareThreshold = 0.80 // Score threshold for instant share
+  
+  const maxAttempts = 3
+  const [images, setImages] = useState([]);
 
   // wait until opencv.js initialized
   cv["onRuntimeInitialized"] = async () => {
@@ -91,7 +95,10 @@ const Model = () => {
           <img src={img} alt="Logo" className="logo" />
           <h1>Dog-A-Eye Assistant</h1>
         </div> : ""}
-      {(!image && !loading) && <p className="please">Please upload an image of your dog's eye 👁️</p>}
+      {(!image && !loading) && <p className="please">
+        You'll be able to upload up to 3 images of your dog eye,<br/>
+        and we'll automatically select the best candidate for the clinic.
+        </p>}
       {!loading ? <div className="content">
         <img
           ref={imageRef}
@@ -106,7 +113,7 @@ const Model = () => {
               session,
               topk,
               iouThreshold,
-              scoreThreshold,
+              detectionThreshold,
               modelInputShape
             );
             setMaxScore(score);
@@ -134,17 +141,19 @@ const Model = () => {
         {!image ? <Instructions /> : ""}
         {image && <DetectionFeedback 
           inputImage={inputImage} imageRef={imageRef} 
-          score={maxScore} threshold={scoreThreshold}
+          images={images} maxAttempts={maxAttempts}
+          score={maxScore} threshold={shareThreshold}
         />}
         {/* {image && getDetectionFeedback(maxScore, scoreThreshold)} */}
       </div> : ""}
 
-      {!loading ? <ImageUploader
+      {(!loading && images.length <= maxAttempts) ? <ImageUploader
         inputImage={inputImage}
         onImageUpload= {(e) => {
           const file = e.target.files[0];
           if (file) {
             processImage(file, setImage, imageRef)
+            setImages(collection => [...collection, {image: imageRef.current, maxScore}])
           }
         }}
 
