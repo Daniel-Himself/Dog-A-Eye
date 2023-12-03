@@ -178,7 +178,14 @@ const Model = () => {
         <div className="center">
           <div id="retake_pic">
             <h3> The Image is Not Clear Enough! </h3>
-            <p>Please try again. Make sure the eye is well lit and centered in the frame</p>
+            <p>
+              Please try again.<br/>
+              {
+                score > 0 
+                ? "Make sure the eye is well lit and centered in the frame"
+                : "Make sure that only one eye in the frame at a time"
+              }
+              </p>
             <button
               className="retake-button"
               onClick={() => {
@@ -210,12 +217,7 @@ const Model = () => {
           <img src={img} alt="Logo" className="logo" />
           <h1>Dog-A-Eye Assistant</h1>
         </div> : ""}
-
-
-
-
-
-
+      {(!image && !loading) && <p className="please">Please upload an image of your dog's eye 👁️</p>}
       {!loading ? <div className="content">
         <img
           ref={imageRef}
@@ -233,11 +235,6 @@ const Model = () => {
               scoreThreshold,
               modelInputShape
             );
-            // if score is -1, then the detection failed 
-            // prompt the user to retake the image
-            if (score === -1) {
-              alert("plesae make sure there is only one eye in the shoot!");
-            }
             setMaxScore(score);
           }}
         />
@@ -250,8 +247,6 @@ const Model = () => {
       </div> : ""}
 
       {!loading ? <div className="btn-container">
-
-        <p className="please">Please upload an image of your dog's eye 👁️</p>
         {!image && (
           <button
             className="primary-button"
