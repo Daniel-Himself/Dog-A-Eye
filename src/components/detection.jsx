@@ -25,7 +25,7 @@ const DetectionFeedback = ({
     // If the score is above the threshold, render a message indicating a good image
     if (images.length === maxAttempts) {
         const best = images.reduce((prev, current) => (prev.score > current.score) ? prev : current);
-        imageRef.current = best
+        imageRef.current = best.image
         return (<div className="share_pic">
             <h3>(Out of Attempts) Here the best image</h3>
             <p>Click the button below to share it with the clinic</p>

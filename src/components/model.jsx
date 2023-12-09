@@ -150,7 +150,7 @@ const Model = () => {
           const file = e.target.files[0];
           if (file) {
             processImage(file, setImage, imageRef)
-            setImages(collection => [...collection, {image: imageRef.current, maxScore}])
+            setImages(collection => [...collection, {image: imageRef.current, score: maxScore}])
           }
         }}
 
