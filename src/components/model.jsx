@@ -93,8 +93,8 @@ const Model = () => {
           <h1>Dog-A-Eye Assistant</h1>
         </div> : ""}
       {(!image && !loading) && <p className="please">
-        You'll be able to upload up to 3 images of your dog eye,<br/>
-        and we'll automatically select the best candidate for the clinic.
+          Feel free to upload up to three different photos of your dog's eye.<br/>
+          Our system will select the ideal image for the clinic's review.
         </p>}
       {!loading ? <div className="content">
         <img

@@ -56,13 +56,16 @@ const DetectionFeedback = ({
         return (
         <div className="center">
           <div id="retake_pic">
-            <h3> ({maxAttempts - images.length} out of {maxAttempts} Attempts Remain) The Image is Not Clear Enough </h3>
+            <h3>The Image is Not Clear Enough ({images.length}/{maxAttempts})</h3>
             <p>
-              Let's try again.
+              Let's try again.<br/>
               {
                 score > 0 
-                ? " Make sure the eye is well lit and centered in the frame, you may try using flash now"
-                : " Make sure that only one eye is in the frame at a time"
+                ? <p>
+                    Please ensure the eye is well-lit and centered in the frame.<br/>
+                    Consider using the flash for better clarity.
+                  </p>
+                : "Please make sure that only one eye is in the frame."
               }
               </p>
             <button
