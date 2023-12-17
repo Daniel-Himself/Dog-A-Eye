@@ -9,43 +9,31 @@ import { Carousel } from 'react-bootstrap';
 
 
 
-const Instructions = () => {
+const Instructions = ({attempts}) => {
+  const imageInstructions = "d-block w-100 img-fluid image-instructions"
+  let instructions = [
+    { src: `${process.env.PUBLIC_URL}/comfortable.png`, alt: "First slide" },
+    { src: `${process.env.PUBLIC_URL}/well_lit.png`, alt: "Second slide" },
+    { src: `${process.env.PUBLIC_URL}/no_blurry.png`, alt: "Third slide" },
+    { src: `${process.env.PUBLIC_URL}/no_flash.png`, alt: "Fourth slide" }
+  ];
+  if (attempts > 0){
+    instructions.pop()
+  }
+  console.log(attempts)
   return (
     <div className="container">
-      <h2 className="title">Instructions</h2>
-      <Carousel className='carusel_style'>
-        <Carousel.Item>
-        <div className="carousel-item-wrapper">
+      <h2 className="title carousel-title">Instructions</h2>
+      <Carousel className='carusel-style'>
+        {instructions.map((image, index) => (
+          <Carousel.Item key={index}>
             <img
-              className="d-block w-100 image-instructions"
-              src={`${process.env.PUBLIC_URL}/comfrtable_d.png`}
-              alt="First slide"
+              className={imageInstructions}
+              src={image.src}
+              alt={image.alt}
             />
-            <Carousel.Caption>
-              <p>Make sure the dog is calm and comfortable.</p>
-            </Carousel.Caption>
-          </div>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 image-instructions"
-            src={`${process.env.PUBLIC_URL}/well_lit_d.png`}
-            alt="Second slide"
-          />
-          <Carousel.Caption>
-            <p>Find a well-lit area, preferably with natural light.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100 image-instructions"
-            src={`${process.env.PUBLIC_URL}/no_flash_d.png`}
-            alt="Third slide"
-          />
-          <Carousel.Caption>
-            <p>Avoid using flash.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
+          </Carousel.Item>
+        ))}
       </Carousel>
     </div>
   );

@@ -135,7 +135,7 @@ const Model = () => {
             Upload an Image
           </button>
         )}
-        {!image ? <Instructions /> : ""}
+        {!image ? <Instructions attempts={images.length}/> : ""}
         {image && <DetectionFeedback 
           inputImage={inputImage} imageRef={imageRef} 
           images={images} maxAttempts={maxAttempts}

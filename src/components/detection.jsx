@@ -73,7 +73,7 @@ const DetectionFeedback = ({
               onClick={() => {
                 inputImage.current.click();
               }}>Retake an Image</button>
-            <Instructions />
+            <Instructions attempts={images.length}/>
           </div>
         </div>
       );

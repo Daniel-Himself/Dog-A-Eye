@@ -12,21 +12,23 @@
 }
 /* ===================================================================================== */
 .image-instructions {
-  min-height: 200px;
-  max-width: 200px;
-  margin: 0 auto;   /* Optional: centers the image in the carousel item */
+  margin: 0 auto; /* Centers the image */
 }
 
 .carousel-item-wrapper {
   text-align: center;
+  height: auto; /* Adjust height based on the content */
 }
 
-.carusel_style{
-  width: 100%;
-  min-height: 400px;
-  object-fit: cover;
-  margin: 0 auto;
+.carusel-style {
+  width: 450px; /* Full width of the container */
+  margin: 0 auto; /* Center the carousel */
 }
+
+.carousel-title {
+  text-align: center;
+}
+
 /* ===================================================================================== */
 
 
