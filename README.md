@@ -33,7 +33,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 4. Start the development server:
     ```bash
-    yarn dev
+    yarn start
     ```
 
 The application will now be running on [http://localhost:3000](http://localhost:3000).
