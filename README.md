@@ -24,8 +24,6 @@ These instructions will get you a copy of the project up and running on your loc
 2. Install Yarn globally and set it to the latest version by running the following commands:
     ```bash
     npm install -g yarn
-    yarn set version berry
-    yarn set version latest
     ```
 
 3. Install all the dependencies:
