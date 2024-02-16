@@ -1,9 +1,12 @@
 # Dog Eye - Bsc Diploma Project
 Authors: 
-Eddie Kanevsky, 
-Dror Mor,
+[Eddie Kanevsky](https://www.linkedin.com/in/eddie-kanevsky/), 
+[Dror Mor](https://www.linkedin.com/in/dror-mor-%D7%93%D7%A8%D7%95%D7%A8-%D7%9E%D7%95%D7%A8-90865a201/),
 Ali Shaer,
-Daniel Sharon
+[Daniel Sharon](https://www.linkedin.com/in/danielsh97/)
+
+## Project Grade
+The project has been graded 95/100 by our mentor, [Prof. Anna Zamansky](https://www.linkedin.com/in/anna-zamansky-58abbb3/).
 
 ## Abstract
 
