@@ -30,6 +30,9 @@ echo "Step 1: Extracting commit data..."
 git --git-dir="$repo_root/.git" --work-tree="$repo_root" log --pretty=format:"%H|%an|%ad|%s" --date=short > commits_raw.txt
 echo "Extracted commit data to 'commits_raw.txt'."
 
+# By replacing wc -l with awk 'END {print NR}',
+# we ensure accurate line counts, resolving the
+# issue of the number of commits increasing after filtering
 total_commits=$(awk 'END {print NR}' commits_raw.txt)
 echo "Total commits extracted: $total_commits"
 
