@@ -33,8 +33,8 @@ echo "Total commits extracted: $(wc -l < commits_raw.txt)"
 
 echo "--------------------------------------------------"
 
-# Additional Preprocessing Step: Remove empty commit messages
-echo "Removing commits with empty messages..."
+# Step 2: Remove empty commit messages
+echo "Step 2: Removing commits with empty messages..."
 grep -v '|$' commits_raw.txt > commits_nonempty.txt
 echo "Commits after removing empty messages: $(wc -l < commits_nonempty.txt)"
 
@@ -43,8 +43,18 @@ mv commits_nonempty.txt commits_raw.txt
 
 echo "--------------------------------------------------"
 
-# Step 2: Map author names to full names
-echo "Step 2: Mapping author names to full names..."
+# Step 3: Exclude commits containing "merge" or "merged" in commit messages
+echo "Step 3: Excluding commits containing 'merge' or 'merged' in commit messages..."
+awk -F'|' 'BEGIN{IGNORECASE=1} !($4 ~ /merge|merged/)' commits_raw.txt > commits_filtered.txt
+echo "Commits after excluding merge commits: $(wc -l < commits_filtered.txt)"
+
+# Replace commits_raw.txt with commits_filtered.txt for further processing
+mv commits_filtered.txt commits_raw.txt
+
+echo "--------------------------------------------------"
+
+# Step 4: Map author names to full names
+echo "Step 4: Mapping author names to full names..."
 
 # Create associative array for author name mapping
 declare -A author_map
@@ -74,16 +84,16 @@ echo "Author names mapped. Output saved to 'commits_mapped.txt'."
 
 echo "--------------------------------------------------"
 
-# Step 3: Extract commit messages
-echo "Step 3: Extracting commit messages..."
+# Step 5: Extract commit messages
+echo "Step 5: Extracting commit messages..."
 cut -d'|' -f4 commits_mapped.txt > messages.txt
 echo "Commit messages saved to 'messages.txt'."
 echo "Total messages extracted: $(wc -l < messages.txt)"
 
 echo "--------------------------------------------------"
 
-# Step 4: Preprocessing commit messages
-echo "Step 4: Preprocessing commit messages..."
+# Step 6: Preprocessing commit messages
+echo "Step 6: Preprocessing commit messages..."
 
 # Convert to lowercase
 echo "Converting messages to lowercase..."
@@ -105,8 +115,8 @@ echo "Preprocessed messages saved to 'messages_clean.txt'."
 
 echo "--------------------------------------------------"
 
-# Step 5: Remove stop words
-echo "Step 5: Removing stop words..."
+# Step 7: Remove stop words
+echo "Step 7: Removing stop words..."
 
 # Define array of stop words
 stopwords=("the" "is" "in" "at" "which" "on" "a" "an" "and" "or" "for" "of" "with" "to" "from" "by" "this" "that" "it" "be" "as" "are" "was" "were" "but" "if" "not" "no" "so" "we" "you" "he" "she" "they" "them" "their" "my" "your" "our" "also" "just" "can" "will" "has" "have" "had" "do" "did" "done")
@@ -125,24 +135,24 @@ echo "Stop words removed. Words saved to 'words_filtered.txt'."
 
 echo "--------------------------------------------------"
 
-# Step 6: Perform word frequency analysis
-echo "Step 6: Performing word frequency analysis..."
+# Step 8: Perform word frequency analysis
+echo "Step 8: Performing word frequency analysis..."
 sort words_filtered.txt | uniq -c | sort -nr > word_freq.txt
 echo "Word frequency data saved to 'word_freq.txt'."
 echo "Total unique words: $(wc -l < word_freq.txt)"
 
 echo "--------------------------------------------------"
 
-# Step 7: Analyze author activity
-echo "Step 7: Analyzing author activity..."
+# Step 9: Analyze author activity
+echo "Step 9: Analyzing author activity..."
 cut -d'|' -f2 commits_mapped.txt | sort | uniq -c | sort -nr > author_activity.txt
 echo "Author activity data saved to 'author_activity.txt'."
 echo "Total authors: $(wc -l < author_activity.txt)"
 
 echo "--------------------------------------------------"
 
-# Step 8: Generate report
-echo "Step 8: Generating report..."
+# Step 10: Generate report
+echo "Step 10: Generating report..."
 {
     echo "Analysis Report"
     echo "==============="
