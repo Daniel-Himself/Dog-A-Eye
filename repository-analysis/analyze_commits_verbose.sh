@@ -29,14 +29,18 @@ echo "--------------------------------------------------"
 echo "Step 1: Extracting commit data..."
 git --git-dir="$repo_root/.git" --work-tree="$repo_root" log --pretty=format:"%H|%an|%ad|%s" --date=short > commits_raw.txt
 echo "Extracted commit data to 'commits_raw.txt'."
-echo "Total commits extracted: $(wc -l < commits_raw.txt)"
+
+total_commits=$(awk 'END {print NR}' commits_raw.txt)
+echo "Total commits extracted: $total_commits"
 
 echo "--------------------------------------------------"
 
 # Step 2: Remove commits with empty messages
 echo "Step 2: Removing commits with empty messages..."
 awk -F'|' '$4 != ""' commits_raw.txt > commits_nonempty.txt
-echo "Commits after removing empty messages: $(wc -l < commits_nonempty.txt)"
+
+commits_nonempty=$(awk 'END {print NR}' commits_nonempty.txt)
+echo "Commits after removing empty messages: $commits_nonempty"
 
 # Replace commits_raw.txt with commits_nonempty.txt for further processing
 mv commits_nonempty.txt commits_filtered.txt
@@ -46,7 +50,9 @@ echo "--------------------------------------------------"
 # Step 3: Exclude commits containing "merge" or "merged" in commit messages
 echo "Step 3: Excluding commits containing 'merge' or 'merged' in commit messages..."
 awk -F'|' 'BEGIN{IGNORECASE=1} !($4 ~ /merge|merged/)' commits_filtered.txt > commits_filtered2.txt
-echo "Commits after excluding merge commits: $(wc -l < commits_filtered2.txt)"
+
+commits_filtered=$(awk 'END {print NR}' commits_filtered2.txt)
+echo "Commits after excluding merge commits: $commits_filtered"
 
 # Replace commits_filtered.txt with commits_filtered2.txt for further processing
 mv commits_filtered2.txt commits_filtered.txt
@@ -88,7 +94,9 @@ echo "--------------------------------------------------"
 echo "Step 5: Extracting commit messages..."
 cut -d'|' -f4 commits_mapped.txt > messages.txt
 echo "Commit messages saved to 'messages.txt'."
-echo "Total messages extracted: $(wc -l < messages.txt)"
+
+messages_count=$(awk 'END {print NR}' messages.txt)
+echo "Total messages extracted: $messages_count"
 
 echo "--------------------------------------------------"
 
@@ -139,7 +147,9 @@ echo "--------------------------------------------------"
 echo "Step 8: Performing word frequency analysis..."
 sort words_filtered.txt | uniq -c | sort -nr > word_freq.txt
 echo "Word frequency data saved to 'word_freq.txt'."
-echo "Total unique words: $(wc -l < word_freq.txt)"
+
+unique_words=$(awk 'END {print NR}' word_freq.txt)
+echo "Total unique words: $unique_words"
 
 echo "--------------------------------------------------"
 
@@ -147,7 +157,10 @@ echo "--------------------------------------------------"
 echo "Step 9: Analyzing author activity..."
 cut -d'|' -f2 commits_mapped.txt | sort | uniq -c | sort -nr > author_activity.txt
 echo "Author activity data saved to 'author_activity.txt'."
-echo "Total authors: $(wc -l < author_activity.txt)"
+
+# Correct line count using awk
+total_authors=$(awk 'END {print NR}' author_activity.txt)
+echo "Total authors: $total_authors"
 
 echo "--------------------------------------------------"
 
@@ -161,7 +174,7 @@ echo "Step 10: Generating report..."
     echo "Analysis Directory: $(basename "$(pwd)")"
     echo "Date of Analysis: $(date)"
     echo ""
-    echo "Total Commits Analyzed: $(wc -l < commits_mapped.txt)"
+    echo "Total Commits Analyzed: $commits_filtered"
     echo ""
     echo "Top Keywords:"
     echo "-------------"
