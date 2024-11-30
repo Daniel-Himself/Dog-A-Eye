@@ -2,21 +2,24 @@
 
 import sys
 import subprocess
-import pkg_resources
+import importlib.util
+import importlib.metadata
 
 # List of required packages
-required_packages = {'textblob': 'textblob'}
+required_packages = ['textblob']
 
 def install_missing_packages():
-    # Get the list of installed packages
-    installed_packages = {pkg.key for pkg in pkg_resources.working_set}
-    missing_packages = {pkg: ver for pkg, ver in required_packages.items() if pkg not in installed_packages}
+    missing_packages = []
+
+    for package in required_packages:
+        if importlib.util.find_spec(package) is None:
+            missing_packages.append(package)
 
     if missing_packages:
-        print(f"Missing packages detected: {', '.join(missing_packages.keys())}")
+        print(f"Missing packages detected: {', '.join(missing_packages)}")
         print("Installing missing packages...")
         try:
-            subprocess.check_call([sys.executable, '-m', 'pip', 'install'] + list(missing_packages.values()))
+            subprocess.check_call([sys.executable, '-m', 'pip', 'install'] + missing_packages)
             print("Packages installed successfully.")
         except subprocess.CalledProcessError as e:
             print(f"An error occurred while installing packages: {e}")
