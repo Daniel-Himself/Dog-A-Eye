@@ -50,6 +50,7 @@ echo "Step 2: Mapping author names to full names..."
 declare -A author_map
 author_map["Daniel"]="Daniel Sharon"
 author_map["Calibourne"]="Eddie Kanevsky"
+author_map["Eddie"]="Eddie Kanevsky"
 author_map["ColgateSmile"]="Dror Mor"
 author_map["AliGranett"]="Ali Shaer"
 
