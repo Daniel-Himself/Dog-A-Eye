@@ -179,7 +179,7 @@ echo "Git Repository Analysis Complete."
 echo "All output files are located in the 'repository-analysis' directory."
 
 # Optional: Open the report
-# Uncomment the following line if you want to automatically open the report in the default text editor
-# xdg-open report.txt
+# Comment the following line if you want to disable automatically opening of the report in the VSCode editor
+code report.txt
 
 exit 0
