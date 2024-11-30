@@ -29,22 +29,41 @@ echo "--------------------------------------------------"
 echo "Step 1: Extracting commit data..."
 git --git-dir="$repo_root/.git" --work-tree="$repo_root" log --pretty=format:"%H|%an|%ad|%s" --date=short > commits_raw.txt
 echo "Extracted commit data to 'commits_raw.txt'."
-echo "Total commits extracted: $(wc -l < commits_raw.txt)"
+
+# By replacing wc -l with awk 'END {print NR}',
+# we ensure accurate line counts, resolving the
+# issue of the number of commits increasing after filtering
+total_commits=$(awk 'END {print NR}' commits_raw.txt)
+echo "Total commits extracted: $total_commits"
 
 echo "--------------------------------------------------"
 
-# Additional Preprocessing Step: Remove empty commit messages
-echo "Removing commits with empty messages..."
-grep -v '|$' commits_raw.txt > commits_nonempty.txt
-echo "Commits after removing empty messages: $(wc -l < commits_nonempty.txt)"
+# Step 2: Remove commits with empty messages
+echo "Step 2: Removing commits with empty messages..."
+awk -F'|' '$4 != ""' commits_raw.txt > commits_nonempty.txt
+
+commits_nonempty=$(awk 'END {print NR}' commits_nonempty.txt)
+echo "Commits after removing empty messages: $commits_nonempty"
 
 # Replace commits_raw.txt with commits_nonempty.txt for further processing
-mv commits_nonempty.txt commits_raw.txt
+mv commits_nonempty.txt commits_filtered.txt
 
 echo "--------------------------------------------------"
 
-# Step 2: Map author names to full names
-echo "Step 2: Mapping author names to full names..."
+# Step 3: Exclude commits containing "merge" or "merged" in commit messages
+echo "Step 3: Excluding commits containing 'merge' or 'merged' in commit messages..."
+awk -F'|' 'BEGIN{IGNORECASE=1} !($4 ~ /merge|merged/)' commits_filtered.txt > commits_filtered2.txt
+
+commits_filtered=$(awk 'END {print NR}' commits_filtered2.txt)
+echo "Commits after excluding merge commits: $commits_filtered"
+
+# Replace commits_filtered.txt with commits_filtered2.txt for further processing
+mv commits_filtered2.txt commits_filtered.txt
+
+echo "--------------------------------------------------"
+
+# Step 4: Map author names to full names
+echo "Step 4: Mapping author names to full names..."
 
 # Create associative array for author name mapping
 declare -A author_map
@@ -54,7 +73,7 @@ author_map["Eddie"]="Eddie Kanevsky"
 author_map["ColgateSmile"]="Dror Mor"
 author_map["AliGranett"]="Ali Shaer"
 
-# Process commits_raw.txt to replace author names
+# Process commits_filtered.txt to replace author names
 awk -F'|' -v OFS='|' '
 BEGIN {
     author_map["Daniel"] = "Daniel Sharon"
@@ -68,22 +87,24 @@ BEGIN {
         $2 = author_map[$2]
     }
     print $0
-}' commits_raw.txt > commits_mapped.txt
+}' commits_filtered.txt > commits_mapped.txt
 
 echo "Author names mapped. Output saved to 'commits_mapped.txt'."
 
 echo "--------------------------------------------------"
 
-# Step 3: Extract commit messages
-echo "Step 3: Extracting commit messages..."
+# Step 5: Extract commit messages
+echo "Step 5: Extracting commit messages..."
 cut -d'|' -f4 commits_mapped.txt > messages.txt
 echo "Commit messages saved to 'messages.txt'."
-echo "Total messages extracted: $(wc -l < messages.txt)"
+
+messages_count=$(awk 'END {print NR}' messages.txt)
+echo "Total messages extracted: $messages_count"
 
 echo "--------------------------------------------------"
 
-# Step 4: Preprocessing commit messages
-echo "Step 4: Preprocessing commit messages..."
+# Step 6: Preprocessing commit messages
+echo "Step 6: Preprocessing commit messages..."
 
 # Convert to lowercase
 echo "Converting messages to lowercase..."
@@ -105,8 +126,8 @@ echo "Preprocessed messages saved to 'messages_clean.txt'."
 
 echo "--------------------------------------------------"
 
-# Step 5: Remove stop words
-echo "Step 5: Removing stop words..."
+# Step 7: Remove stop words
+echo "Step 7: Removing stop words..."
 
 # Define array of stop words
 stopwords=("the" "is" "in" "at" "which" "on" "a" "an" "and" "or" "for" "of" "with" "to" "from" "by" "this" "that" "it" "be" "as" "are" "was" "were" "but" "if" "not" "no" "so" "we" "you" "he" "she" "they" "them" "their" "my" "your" "our" "also" "just" "can" "will" "has" "have" "had" "do" "did" "done")
@@ -125,24 +146,29 @@ echo "Stop words removed. Words saved to 'words_filtered.txt'."
 
 echo "--------------------------------------------------"
 
-# Step 6: Perform word frequency analysis
-echo "Step 6: Performing word frequency analysis..."
+# Step 8: Perform word frequency analysis
+echo "Step 8: Performing word frequency analysis..."
 sort words_filtered.txt | uniq -c | sort -nr > word_freq.txt
 echo "Word frequency data saved to 'word_freq.txt'."
-echo "Total unique words: $(wc -l < word_freq.txt)"
+
+unique_words=$(awk 'END {print NR}' word_freq.txt)
+echo "Total unique words: $unique_words"
 
 echo "--------------------------------------------------"
 
-# Step 7: Analyze author activity
-echo "Step 7: Analyzing author activity..."
+# Step 9: Analyze author activity
+echo "Step 9: Analyzing author activity..."
 cut -d'|' -f2 commits_mapped.txt | sort | uniq -c | sort -nr > author_activity.txt
 echo "Author activity data saved to 'author_activity.txt'."
-echo "Total authors: $(wc -l < author_activity.txt)"
+
+# Correct line count using awk
+total_authors=$(awk 'END {print NR}' author_activity.txt)
+echo "Total authors: $total_authors"
 
 echo "--------------------------------------------------"
 
-# Step 8: Generate report
-echo "Step 8: Generating report..."
+# Step 10: Generate report
+echo "Step 10: Generating report..."
 {
     echo "Analysis Report"
     echo "==============="
@@ -151,7 +177,7 @@ echo "Step 8: Generating report..."
     echo "Analysis Directory: $(basename "$(pwd)")"
     echo "Date of Analysis: $(date)"
     echo ""
-    echo "Total Commits Analyzed: $(wc -l < commits_mapped.txt)"
+    echo "Total Commits Analyzed: $commits_filtered"
     echo ""
     echo "Top Keywords:"
     echo "-------------"
@@ -169,7 +195,7 @@ echo "Git Repository Analysis Complete."
 echo "All output files are located in the 'repository-analysis' directory."
 
 # Optional: Open the report
-# Uncomment the following line if you want to automatically open the report in the default text editor
-# xdg-open report.txt
+# Comment the following line if you want to disable automatically opening of the report in the VSCode editor
+code report.txt
 
 exit 0
