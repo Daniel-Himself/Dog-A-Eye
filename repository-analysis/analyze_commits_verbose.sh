@@ -33,23 +33,23 @@ echo "Total commits extracted: $(wc -l < commits_raw.txt)"
 
 echo "--------------------------------------------------"
 
-# Step 2: Remove empty commit messages
+# Step 2: Remove commits with empty messages
 echo "Step 2: Removing commits with empty messages..."
-grep -v '|$' commits_raw.txt > commits_nonempty.txt
+awk -F'|' '$4 != ""' commits_raw.txt > commits_nonempty.txt
 echo "Commits after removing empty messages: $(wc -l < commits_nonempty.txt)"
 
 # Replace commits_raw.txt with commits_nonempty.txt for further processing
-mv commits_nonempty.txt commits_raw.txt
+mv commits_nonempty.txt commits_filtered.txt
 
 echo "--------------------------------------------------"
 
 # Step 3: Exclude commits containing "merge" or "merged" in commit messages
 echo "Step 3: Excluding commits containing 'merge' or 'merged' in commit messages..."
-awk -F'|' 'BEGIN{IGNORECASE=1} !($4 ~ /merge|merged/)' commits_raw.txt > commits_filtered.txt
-echo "Commits after excluding merge commits: $(wc -l < commits_filtered.txt)"
+awk -F'|' 'BEGIN{IGNORECASE=1} !($4 ~ /merge|merged/)' commits_filtered.txt > commits_filtered2.txt
+echo "Commits after excluding merge commits: $(wc -l < commits_filtered2.txt)"
 
-# Replace commits_raw.txt with commits_filtered.txt for further processing
-mv commits_filtered.txt commits_raw.txt
+# Replace commits_filtered.txt with commits_filtered2.txt for further processing
+mv commits_filtered2.txt commits_filtered.txt
 
 echo "--------------------------------------------------"
 
@@ -64,7 +64,7 @@ author_map["Eddie"]="Eddie Kanevsky"
 author_map["ColgateSmile"]="Dror Mor"
 author_map["AliGranett"]="Ali Shaer"
 
-# Process commits_raw.txt to replace author names
+# Process commits_filtered.txt to replace author names
 awk -F'|' -v OFS='|' '
 BEGIN {
     author_map["Daniel"] = "Daniel Sharon"
@@ -78,7 +78,7 @@ BEGIN {
         $2 = author_map[$2]
     }
     print $0
-}' commits_raw.txt > commits_mapped.txt
+}' commits_filtered.txt > commits_mapped.txt
 
 echo "Author names mapped. Output saved to 'commits_mapped.txt'."
 
