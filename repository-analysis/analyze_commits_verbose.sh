@@ -59,6 +59,7 @@ awk -F'|' -v OFS='|' '
 BEGIN {
     author_map["Daniel"] = "Daniel Sharon"
     author_map["Calibourne"] = "Eddie Kanevsky"
+    author_map["Eddie"] = "Eddie Kanevsky"
     author_map["ColgateSmile"] = "Dror Mor"
     author_map["AliGranett"] = "Ali Shaer"
 }
