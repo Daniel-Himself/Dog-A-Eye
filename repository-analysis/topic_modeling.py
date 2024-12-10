@@ -113,26 +113,26 @@ def perform_topic_modeling():
             outfile.write(f"Topic {idx + 1}: {topic}\n")
     print("Topic modeling completed and results saved to 'topics.txt'.")
 
-    # Assign topics to documents
-    topics_per_commit = []
-    for i, row in enumerate(corpus):
-        topic_distribution = lda_model.get_document_topics(row)
-        dominant_topic = max(topic_distribution, key=lambda x: x[1])[0]
-        topics_per_commit.append((documents[i].strip(), dominant_topic + 1))  # Adding 1 to make topic numbers 1-based
+    # # Assign topics to documents - not functional atm
+    # topics_per_commit = []
+    # for i, row in enumerate(corpus):
+    #     topic_distribution = lda_model.get_document_topics(row)
+    #     dominant_topic = max(topic_distribution, key=lambda x: x[1])[0]
+    #     topics_per_commit.append((documents[i].strip(), dominant_topic + 1))  # Adding 1 to make topic numbers 1-based
 
-    # Save topics per commit
-    with open('topics_per_commit.txt', 'w') as outfile:
-        for doc, topic_num in topics_per_commit:
-            outfile.write(f"{doc}|Topic {topic_num}\n")
-    print("Assigned topics to commits and saved to 'topics_per_commit.txt'.")
+    # # Save topics per commit
+    # with open('topics_per_commit.txt', 'w') as outfile:
+    #     for doc, topic_num in topics_per_commit:
+    #         outfile.write(f"{doc}|Topic {topic_num}\n")
+    # print("Assigned topics to commits and saved to 'topics_per_commit.txt'.")
 
-    # Generate topic visualization
-    import pyLDAvis.gensim_models
-    import pyLDAvis
+    # Generate topic visualization - not functional atm
+    # import pyLDAvis.gensim_models
+    # import pyLDAvis
 
-    vis = pyLDAvis.gensim_models.prepare(lda_model, corpus, dictionary)
-    pyLDAvis.save_html(vis, 'lda_visualization.html')
-    print("Topic visualization saved to 'lda_visualization.html'.")
+    # vis = pyLDAvis.gensim_models.prepare(lda_model, corpus, dictionary)
+    # pyLDAvis.save_html(vis, 'lda_visualization.html')
+    # print("Topic visualization saved to 'lda_visualization.html'.")
 
 def main():
     install_missing_packages()
