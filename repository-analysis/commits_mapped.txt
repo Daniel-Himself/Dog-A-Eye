@@ -1,0 +1,193 @@
+3292d4e71c3b1cb757fcdaa8401aa56f1a03d809|Daniel Sharon|2024-12-10|Added a topic modeling addon script
+c09be2e4ae197ecb5cb766e9453766a4adad1ff7|Daniel Sharon|2024-11-30|Removed redundant gitignore line
+221b48eecab9261a4598b043fc9c0b591d37e808|Daniel Sharon|2024-11-30|Replaced deprecated pip package
+02988f34a73926a4c1c425f3e5541fcb511b9663|Daniel Sharon|2024-11-30|Initial version of sentiment analysis addon
+061a80be92459da51b5cb27081dbfa1b3d360a6c|Daniel Sharon|2024-11-30|Adde comment for clarification about awk usage
+7d60447d7ff978081155c4db915cb49376136917|Daniel Sharon|2024-11-30|Corrected the line count using awk, for real this time
+146946119bceba60946aee17ebd7d3e64a49372a|Daniel Sharon|2024-11-30|Replaced grep with awk for better commit message filtering
+70ef1336da7c373e78e5ead2223942f7e54254b6|Daniel Sharon|2024-11-30|Automatically open the report when the script finishes
+20d1d1a433da034cfe84c52021244dde3ba87435|Daniel Sharon|2024-11-30|Fixed missing line for the previous commit
+e255ebcdc8ee619c703dddbaf766d4b66fd1599f|Daniel Sharon|2024-11-30|Added the second alias for Eddie
+d4830204efb39219dcdd2a6386143cedc9a532a4|Daniel Sharon|2024-11-30|Update .gitignore to ignore analysis output files
+39eb384a03a7404ef7b73fb4d8c2c4be0cf89cf1|Daniel Sharon|2024-11-30|Added analysis script
+7c553b63012ce2717ecc6518e293b47ecb418fe4|Daniel Sharon|2024-02-16|Update README.md with final grade an links to LinkedIn profiles
+8b2c07f3048af13d29a17a17695859445c59f21a|Daniel Sharon|2024-01-09|Update README.md
+c8a5dab9c466747d80ba25f6c20e802286c95e55|Daniel Sharon|2024-01-09|Update README.md
+bbbc66a855a103620f9093ff3439b693ecf6b434|Eddie Kanevsky|2023-12-17|more comfortable instruction images, a more reactive carousel
+54dc0d8e4109a9f64a940490c83d5e3dfe27f24b|Eddie Kanevsky|2023-12-17|more comfortable instruction images, a more reactive carousel
+df4b4aa0894ac1e6d0cf68ae4fa8e30923c280c4|Eddie Kanevsky|2023-12-09|some rephrasing
+412b093c72e02a20a498b0e5f97a2899b68ae3ea|Eddie Kanevsky|2023-12-09|fixed the maxAttempts issue
+d5d3fe56bf680f83c661ce4f23da5dd888f26acb|Daniel Sharon|2023-12-09|Updated app title, removed bad link reference
+75ebceb3053aed47a68fc35f18ac5b5148944f7b|Daniel Sharon|2023-12-09|Updated favicon
+608898c86ac3af7d1863fd4062f5ade901e6e114|Eddie Kanevsky|2023-12-03|added max-attempts feature
+19482cecc02d0a54eb36b5989a8f2a28c0e9c72d|Eddie Kanevsky|2023-12-03|added max-attempts feature
+578ec1fa3a99e87e1d84e22cac5438a47efa39a4|Eddie Kanevsky|2023-12-03|despaghettified the model.jsx file
+9bd8bfde2f1628373e123fe5e54950b8c7850fad|Eddie Kanevsky|2023-12-03|made the informative error more convinient
+e6850c7339084462b6d99d96c867f918a69b6129|Eddie Kanevsky|2023-12-02|revert again
+131273e9997bfdfb01bcfe5f19a7987da06c52d8|Eddie Kanevsky|2023-12-02|revert max-attempts
+104752f482aa1dae21b9fe121ac854b3ff14c9b0|Eddie Kanevsky|2023-12-02|Revert "added carousel"
+5a098b31ee756acc9b66bc368a97837d0c01f912|Ali Shaer|2023-12-02|added carousel
+b3eb6cab4d6a5bdf4b4f15eac39588252f81a13b|Eddie Kanevsky|2023-12-02|non operational max-attempts
+78355858a1d86759597d215a8cf364a447005ff3|Ali Shaer|2023-11-18|added messege for two eye detection
+82ecea79b7602ab9890a8b579a1034a1d3ed958a|Daniel Sharon|2023-09-30|Updated readme
+f682d4eb2d3f08c05bee0f6f8ca7509df91b8b5b|Daniel Sharon|2023-09-30|Add LICENSE
+a18acf0fe26a797d1ab2d10c55b42c010f29882b|Eddie Kanevsky|2023-09-01|replaced saturation to luminocity - thanks to @Daniel-Himself
+df824d7bd17ab08ff50f9aa11b47ee554f79f009|Eddie Kanevsky|2023-08-31|added more tuning params
+14fdc94ee557a5a0bd830a149950a434b453aae4|Eddie Kanevsky|2023-08-30|optimized image enhancement
+8f3973f8502db5084b9256f4d6b4c0ef9343ac24|Dror Mor|2023-08-30|made suboptimal opencv.js solution. @Calibourne - address the optimization issue
+0c2db395239e4da3a86d932eb9f2ccfeab3fb22d|Ali Shaer|2023-08-26|added a start over button
+5acdab9d10889dd0e5622a3a0690fb0a1a585174|Ali Shaer|2023-08-26|fixed some interface problems
+5cbdb8f600ed34448cb8336f5173448e76676ff2|Ali Shaer|2023-08-19|fixed button pusitions
+ef43c56fa2d8e6b43bc5f9406afe0953ce604b54|Ali Shaer|2023-08-19|fixe white footer issue
+f1e906ed1f2f35d18ce11038fdf94dfb8c45137c|Eddie Kanevsky|2023-08-19|fixed ci
+ae9e7c8dae16bdbeeeb5a21972d05650273f7c8a|Ali Shaer|2023-08-19|fixed margin in instruction list
+9859758f61e768770a019421aa2b48c0d85beb46|Eddie Kanevsky|2023-08-19|prevented ci on branches other than main
+b9529393fc3128cabdbb2c404075323ea23af853|Eddie Kanevsky|2023-08-19|suppressed the image enhancement - fix
+ebbb70c41f7db360e5357923746d4e71b98c3d21|Eddie Kanevsky|2023-08-19|suppressed the image enhancement
+5083f329eafbaf0020dac1909392d213619a972c|Eddie Kanevsky|2023-08-19|fixed the opencv issue
+811cf01bee9d980bdcfc9d54a336665657fb56cb|Eddie Kanevsky|2023-08-19|refactured the project structure - changed the approach in light enhancement
+7996f7e6c2002a825bae134f44b119a13b4faac1|Eddie Kanevsky|2023-08-13|changed approach
+c901756edac3e11efd5de51c470a93e90784a9ae|Eddie Kanevsky|2023-07-18|removed unncessasary imports
+e822d3bf77c46569fceefbf99e6e34e716435415|Eddie Kanevsky|2023-07-18|removed unneccassery comments
+7067e29235b8ab8b797bd9704eb6d91abfb6eeba|Eddie Kanevsky|2023-07-14|edit readme - trigger pipeline
+7c62364bc3f1a06244dd128dd75296169979071d|Daniel Sharon|2023-07-14|Removed remnants of old dir structure
+33035a2880a2bd906f3ecbb981bb85f53919c340|Daniel Sharon|2023-07-14|Removed app directory and put its contents in root
+6b2cf1cae0c3ffa15ea08f73609c0593f1ffe4e8|Daniel Sharon|2023-07-14|Recerted last change in ci config
+4c6fa7428ff5fb11d48c62cd6bcf5a61b7994d9f|Daniel Sharon|2023-07-14|Updated ci config
+7d23498fde1eedd424013bd365fe008f3262493d|Daniel Sharon|2023-07-14|updated ci config
+e17d56e5dac5cf41327b467c2a214d721695d6e0|Daniel Sharon|2023-07-14|Update .gitlab-ci.yml
+bc0d0d9c26a218c106e3d4cb955e387a57fb4b14|Daniel Sharon|2023-07-14|Added deployement config in ci yml file
+44f0c30c39c28be5371de14fa254fab060fb9583|Daniel Sharon|2023-07-14|Added line to ignore unused var
+e019e01eac324206c5f88e44c22fcd5741a34833|Daniel Sharon|2023-07-14|reverted https flag from package.json
+52e112a0a264b04eee44cf6a4d4b7969244ed36f|Daniel Sharon|2023-07-14|updated ci config
+edab7a04724531442aeed35d50dcb4e2b04b36fe|Daniel Sharon|2023-07-14|Updated package json homepage
+b7a8d589d4fa722588f9933600870f7f236b8150|Daniel Sharon|2023-07-14|dummy commit to test ci pipeline
+dab3b5ac5a823a5bfc271043d363c143368188a4|Daniel Sharon|2023-07-14|Updated ci config
+e15cc59865f4d9ab1c6379b2b06ed1bd45e6a407|Daniel Sharon|2023-07-14|Moved GL ci config file
+05324bca964171ed7fb90de8cd52e2bceea40d66|Daniel Sharon|2023-07-14|Initial gitlab-ci.yml version
+2974c115377b279f2faa10d3bb3c0a5cdb190eed|Daniel Sharon|2023-07-14|Fixed typo
+ef15bcef1852dfa83050d910356387ce9aaaa959|Eddie Kanevsky|2023-06-29|attempt to add upload an image to whatapp capability
+5cde830cba19b460e009d337ab6abaa159ff15f6|Eddie Kanevsky|2023-06-20|Changed from Whatsapp web - to whatsapp native
+02bd50f308c9413e49e7c0ed980362967b83b10d|Eddie Kanevsky|2023-06-20|Whatsapp works correctly - but does not share the pic
+c05b872efd687a3841546e742e27b5c0daf59aaa|Eddie Kanevsky|2023-06-20|removed redundant directories
+c700e6764a32c9b64688d5991102817c5eaafa90|Daniel Sharon|2023-06-04|Removed duplicate func decleration
+5413e7e9e33038d45028bdf7075359e21363333f|Eddie Kanevsky|2023-06-03|Gave up on the text in the loader
+39a8ad0526327aa7219120c0ea2b945a1bf11bee|Dror Mor|2023-06-03|fixed issue with canvas
+4c6d7c56977db1987c2cf4ec993176d813db0963|Eddie Kanevsky|2023-06-03|Updated Loader
+d2059ae3adc49859633443622bddf7eb3a61ab00|Dror Mor|2023-06-03|fixed logo sizes
+f0145e6f578cee4aaabae6d5fee3859b6af3af87|Eddie Kanevsky|2023-06-03|Loader displayed seperatly
+7e7b00dc80b9e272937518f88e9551e845bbcc68|Dror Mor|2023-06-03|Added DarkMode Logo to change
+c0046959ee10222929797ec0cfe440054288a507|Dror Mor|2023-06-03|added dark mode logo
+40e76ec027517f0a4bd2eb014dbd4a7a7b095368|Dror Mor|2023-06-03|added dark mode logo
+ee9a83c99e20f589bfa94b91362f72505268b9d9|Ali Shaer|2023-06-03|Fixed styling
+8653218c2120788a5c1538d21c5bba3c90e51057|Eddie Kanevsky|2023-06-03|Refactored project structure
+50ca9e9d568c3f5ca8509d85be493d67e6b858d8|Eddie Kanevsky|2023-06-02|added a flask server for demonstrating the image enhancement
+1c34017f4a447792c59f71eafa2c3b5e1f993901|Daniel Sharon|2023-06-02|Share button functionality, for real!
+3d1fa8072b22c2963496259a44f4fc2bb98c5280|Daniel Sharon|2023-06-02|Reverted accidental code change
+8c58ff78becea269e20a1f740b4f99b1c330e13d|Daniel Sharon|2023-06-02|Removed package-lock.json as it isn't needed for yarn projects
+e50aaba6718f6838fdccce25233f23fbcb65c356|Daniel Sharon|2023-06-02|Updated package.json
+557060500bd27dec16005d37868e42cca0c85ebf|Daniel Sharon|2023-06-02|Added functionallity to share button, yet to be tested
+2b8ba7e779ad81f3bfa6512afefc05c2cbbc72b8|Daniel Sharon|2023-06-02|Removed uneccessary comments
+3c4285ca20f38fc9f312b5657e85d3acc26fd428|Eddie Kanevsky|2023-06-02|Added Icons for switching themes
+8050b4a298bdfba892b83efa50cbc81980ece772|Daniel Sharon|2023-06-01|Modified theme button alignment
+f1a25a0c82a35a691a0a5530e1c2749ddedb22c3|Dror Mor|2023-06-01|changed logo, added it to model.jsx insted of loader
+fefd4a0be2daad3d1b778915715053d8abab826e|Daniel Sharon|2023-06-01|Added dark mode, removed redundant App.* files
+56ed5c30b489aca9516cc8afbaaca2b72dbb20a3|Dror Mor|2023-06-01|Fixed <retake image> button
+661bef5528756fb71940b8b9805adb8d7ea97af5|Dror Mor|2023-06-01|Fixed the instruction swapping
+a97985b290fd389aa545f158501f78ebee44d716|Dror Mor|2023-06-01|added instructions sdection
+38d64e4b1e6cc16520c20f5f599146a575048162|Eddie Kanevsky|2023-06-01|Refactor + new component (instructions)
+f6885afa6b811d81cfb4b53e354305893d9148ea|Dror Mor|2023-06-01|added the lables for good and bad pic's
+b7ca00c658a622c48e3060d78333745c9dadcc31|Dror Mor|2023-05-31|reverting because bootstrap crash the app
+396ba15b8b4821990063db224271f6f486523ce1|Dror Mor|2023-05-31|Starting style experiments
+ca20c532c612293ba665286368cd9799f4de4aed|Ali Shaer|2023-05-29|added logo img to files
+5a1c8eefe48fc174b4854a8f301ce1c79b148ae2|Ali Shaer|2023-05-29|added havis logo to spinner. edited some titles..
+32dca0a33b6a7541298294a04e6dee29bcf03abc|Eddie Kanevsky|2023-05-29|custom welcome prompt
+e0201fdf61c99546ae00d0e6632b63688bdc3316|Eddie Kanevsky|2023-05-25|reverted to the original setup with our model at hand
+d681fc251d993210592e7279ae03842ba243adce|Eddie Kanevsky|2023-05-25|reverted to the original setup with our model at hand
+cb8a47d795c55c460b9d83a6e470bd5a683f2da7|Eddie Kanevsky|2023-05-25|found that Model component supports camera input
+cf0cd2b996cb0925563f8ebe8a3b7868b434f0c5|Eddie Kanevsky|2023-05-25|refactored camera
+d7a9ccde88716abafa0ae8a458bf521d013d72a2|Dror Mor|2023-05-25|added UploadIamage Component
+9411038028149c01503bfb0570bbbf7130ddec12|Eddie Kanevsky|2023-05-20|Updated the model
+d7dbd85afd7f8fae3594f40bfc822a18b48bf7c6|Eddie Kanevsky|2023-05-20|presentation mockup
+26fb7c32012859c6544c608ddf9d8819bb70afbf|Eddie Kanevsky|2023-05-19|Moved Model into Camera component
+c447eac9fd9ff20998ffceee2c56efcbe68965f7|Daniel Sharon|2023-05-19|Updated imports
+379e630a644bc726c1c9bdfcdbfd211e4a7d5c11|Eddie Kanevsky|2023-05-18|fixed model, updated App.jsx
+94261b6fc343dd7faaaf186c8ae0fa5eb1917a52|Eddie Kanevsky|2023-05-18|restructured backend; moved to app dir; migrated components
+d38f0ac9b34973d20c7f536e82a0afae79c10184|Daniel Sharon|2023-05-14|Added compose file for a basic mysql connection
+c9572851690afd85919953ced57798e48c7e5412|Daniel Sharon|2023-05-12|Modified gitignore, fixed backend app.js
+163bbb659523fa9296a9e404f8eabfb7d3e98b4e|Daniel Sharon|2023-05-12|Finished refactor of app file name to frontend
+a45c6cb055a8799e38b23fe2b4e29a8b130d94ea|Eddie Kanevsky|2023-05-12|Added backend
+bfe3c52eef537cbc8b1c7682713bff15d7134896|Daniel Sharon|2023-05-06|Updated README with yarn setup instructions
+2b2c2c2ead8f274fafc0ef5b7040b55ac8b1527d|Daniel Sharon|2023-05-06|Refactored to React Camera App - Complete
+32545dde658d74c1ba4a2ede88970340c2e5f1ed|Daniel Sharon|2023-05-06|Updated gitignore
+47f60532001d63770e676f0ee173da1aefd2d205|Daniel Sharon|2023-05-06|Cleanup of old files in prep of refactor
+dfd5751ac4d5a8760483202a94b0284d9e8a9cfb|Eddie Kanevsky|2023-05-01|updated readme with the colab notebook training the model
+627dadbc38cfef9f061f5f1eca5a1ef7e50dd085|Daniel Sharon|2023-04-28|Refactored app to be a camera app instead of a chatbot
+aa71159e0fd784a2186362b6029917b57f65140b|Eddie Kanevsky|2023-04-22|added enhanced pictures
+32bb90c29961f6841d47a736ea69a5eebd81960e|Daniel Sharon|2023-04-15|Mocked up button handlers, not operation yet
+37308454e0eacf44cbb5cbd4ac580f5375c699b3|Daniel Sharon|2023-04-15|Deleted broken widget, will be rebuilt ssoon
+ec51e0b1b210190f56ca99bfd72d4ed4996752a7|Daniel Sharon|2023-04-15|Added package-lock.json to .gitignore
+f677fe5aa33eec652a7809a61dffd21298cb0fb6|Daniel Sharon|2023-04-15|Updated landing page header
+1f610de066cc8d9daf4af9b30153944b1578e9fb|Daniel Sharon|2023-04-15|Unified syntax differences, added missing export statement
+530925cb8e57e05664a74a557175f86dea7fc86b|Dror Mor|2023-04-15|landing page works before chatbot
+275adf9beb36ec93df57794e2aef96031d1ef375|Daniel Sharon|2023-04-15|Combined first and second phases of chatbot flow
+006b162e1e395718eb4769e1dfd37e710de64c6a|Daniel Sharon|2023-04-15|Added symptoms duarion selection, currently broken
+a66650afd102fef52865df16382c0eed8b3ec679|Eddie Kanevsky|2023-04-15|Quick change - removed camera widget
+ce2bf2d02fd149cc9119c5114945089e14af8d91|Eddie Kanevsky|2023-04-15|Finished with regex expressions - phone number checking and Name checking
+258df3de596c3a2aaa73b8e2ffe2727aa19fa289|Daniel Sharon|2023-04-15|Added symptoms options selection
+fc3afbf1b167ae860ee60f5b5926b2e6bbefed33|Eddie Kanevsky|2023-04-14|Fixed the div must be a function Issue, found a different camera implementation
+cfb38c74b2658a8f616ea3c754010d1a7d781a9f|Dror Mor|2023-04-14|Fixed the chatbot responsive view
+3a70b1f11201f4e5422391d431beee605f135df7|Daniel Sharon|2023-04-14|Camera view works but in cost of chatbot functionallity
+7b2be8fa3e9674a6037df01b2900f44954e13898|Daniel Sharon|2023-04-14|mocked up camera widget
+31a3372efdcc4b41f7778b627b6164bcfa20c8e8|Eddie Kanevsky|2023-04-14|Started working on camera integration
+e5d8be3f33e8a233f544a48ec77bd1eecd1d1a94|Daniel Sharon|2023-04-14|ignore node_modules dir, use npm install to generate
+fb9d2d72b6c440ab0ed5ec1e865fcab4a6fb7ebb|Daniel Sharon|2023-04-12|Added test responses, saving/loading is WIP
+bdb16bb67d5edcfc5cbfb879474453ec05e76b2b|Daniel Sharon|2023-04-12|Modified readme for the refactor
+9dc3994e07b657a3f391cad37f3fc184358cb8ea|Daniel Sharon|2023-04-12|Refactored project to be based on React Native
+60dbc1bc0cfd2c1a526c14d08eacf777b7f4e02a|Daniel Sharon|2023-04-02|Deleted Flask structure and returned to regular php
+6bdc90fc1115df1732adb2810df5af720cd1f8d2|Daniel Sharon|2023-03-31|Modified flask app structure
+cddf05cd3637a7787635bebf7d682554cd6e8d95|Daniel Sharon|2023-03-31|Added Flask base for the web app
+a2d8adffb75ee4d3ea3e58782461746a7ec279b6|Daniel Sharon|2023-03-31|Reverted repository back to initial webapp structure
+1353a0042ae66314776f8f3d2140cebd0f9e536c|Eddie Kanevsky|2023-03-31|scatch native - moving to web-app
+2415677e6ab4adf3d07bf54cce11c47021e8f7cb|Eddie Kanevsky|2023-03-31|more refactoring, the build works
+573bf51ff0707b28cc047cf634ef7c5d6b051726|Eddie Kanevsky|2023-03-30|updated again the Dockerfile
+07f394499429ffd945a0639636eb3d26b0f391bb|Eddie Kanevsky|2023-03-30|Some refactoring
+14158ae0b726b2a1fbf3e46dd3d8d07c5cabd798|Daniel Sharon|2023-03-29|Modified Dockerfile - purged apt cache
+1148b11d604d287eeb97c19f496c3a83c759d182|Eddie Kanevsky|2023-03-29|updated the Dockerfile, added docker-compose + .dockerignore files
+bbc915ff4e54a9ea7808ef56740db4540c0cbfa6|Eddie Kanevsky|2023-03-27|Added a Dockerfile for build automation, not finished yet
+ae73cb54396c004cfc953dba4228f81024fbaefb|Eddie Kanevsky|2023-03-26|updated build file
+f0759909d7a864abe9ea8820d4bfdcbbeddbb865|Eddie Kanevsky|2023-03-22|Added a build pipeline for android - not tested yet the result apk file
+4b7442a3389e54f20f44835b0b83ffc7ae018687|Eddie Kanevsky|2023-03-22|Added a build pipeline for android - not tested yet the result apk file
+754250f618827a8240bbb325753d93886a752409|Eddie Kanevsky|2023-03-19|Added makefile for convinience
+465f8b53b7e085660b416ea48bc73b891b352bea|Eddie Kanevsky|2023-02-20|progressed with video extraction module
+a833c95a865ab304dec6bf314a32effc8f76b98c|Eddie Kanevsky|2023-02-20|VideoCapture struggles
+9b6839937fb83aa97c68ee382bb85f5a26d59c15|Eddie Kanevsky|2023-02-19|working on video extraction module
+87408a6eab4ba15b8e85e8c57fd094dcb7a57da4|Eddie Kanevsky|2023-02-16|Added Possible Datasourse. Fixed a hyperlink to miniconda error in README file
+579ca7902645f1a19f6d7077c1f32e3db77cc259|Eddie Kanevsky|2023-02-16|Added Possible Datasourse. Fixed a hyperlink to miniconda error in README file
+8b0cb3fce46df55a9052431a1d4a5219d84536a3|Eddie Kanevsky|2023-02-14|Migrated to Anaconda - will be easier to build the executables. Edited README. Added couple of tagged pictures from Nareed for eye-crop evaluation
+cde6223e280ebde86bbb43b138aa3eda336bdf40|Eddie Kanevsky|2023-02-11|Refactored notebook, added scripts for exe conversion
+b5fa448936b44c49a90f351581d30980074277d8|Eddie Kanevsky|2023-02-11|Refactored notebook, added scripts for exe conversion
+df2bc52db98abddc925e990220a7f71a5e27aac1|Eddie Kanevsky|2023-02-11|Changed the cats/dogs pic directory to match the suggested algorithm, compressed the heavy photos
+efd311bd5f5ad0a6f9a34514df02a6a0e6efb383|Eddie Kanevsky|2023-02-10|Update README.md
+2528967508f7f25a6742c7b7626593f212f409a8|Eddie Kanevsky|2023-02-09|refactored the repository, added some instruction to README
+061340246780aa88b88c2a7bacdaff7e0a1ca40c|Eddie Kanevsky|2023-02-09|working on object detection algorithm
+99fe74fd7b61d2dd0a74e22c5f915da481db3918|Eddie Kanevsky|2023-02-06|Accomplished most of the assignments. On some will work on a different day this week
+e9eab2461ad07fa9507debe277bcd6de34768f0a|Eddie Kanevsky|2023-02-06|Updated the tasks for @Eddie on 6/2
+6e45c87fca22ac746a026cf452182981277ea6b3|Eddie Kanevsky|2023-02-05|Moving toward different project. Uploaded some picture analytics. Need to come up with alternative usage of docker (maybe DB management?)
+fc0f9d790ddc4d470b28dae6b069e605b1d27ab7|Daniel Sharon|2022-12-20|Moved the mysqli connection to its own file
+966dd4e3d89f41e6c0c2bfb03dfe83e78c1524bc|Daniel Sharon|2022-12-20|Integrated a MySQL container and mysqli connection
+85aa947fc902d9580077823ad7586c6e545cd4c0|Daniel Sharon|2022-12-20|Added mysqli addon to dockerfile
+38676d7ee9685002b8ab600f74345e5ebe16c11b|Daniel Sharon|2022-12-20|Added a phpinfo page to check on app status
+e9116cac9661166a4178183bcf12a06bc861760f|Daniel Sharon|2022-12-20|Renamed compose file to abide by current compose spec
+ef2f22b336b03ef924b0a67b734ce2a73787cf08|Daniel Sharon|2022-12-20|Replaced directory COPY with volume mounting for the container
+5adadc84bf30f4088f5e55dda946e35982870768|Daniel Sharon|2022-12-20|Refactored html files into php
+876c3a0ec8e2aba571f8c0e262be9e0ca0e0a481|Daniel Sharon|2022-11-29|Streamlined container deployment using Docker Compose
+a93452e2ea3dc5b6368aeff88357b4474f5abaea|Daniel Sharon|2022-11-28|Updated Dockerfile structure
+ffdbb9f177b69d277f730f410ef4235f0631ba63|Daniel Sharon|2022-11-27|Update README.md
+2072bbbad55e747af2549506327f5d8d012c43a9|Daniel Sharon|2022-11-27|Added instructions to shut down container for those less familiar with Docker
+f2547d9c2e65b2c019968581ecd08386229a27bc|Daniel Sharon|2022-11-26|Update README.md
+c471d63a170553230c35e61f8f4be29e396d504b|Daniel Sharon|2022-11-26|Added Dockerfile
+a96097005e76c1346069599127d21cb4398fe8fc|Daniel Sharon|2022-11-26|New foundation based on bootstrapmade's Arsha template
+e75c2f869bdd41e97629ea2cdb4b407b957e445e|Eddie Kanevsky|2022-11-02|A Proposal for README.md
+97101921ce94d8480cd14854c497cabee3e2e132|Daniel Sharon|2022-10-31|Initial Commit
+68f8774de07911808cd7bea7944b4fa5418d91ca|Daniel Sharon|2022-10-30|Initial commit

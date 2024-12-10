@@ -1,0 +1,193 @@
+added a topic modeling addon script|Neutral
+removed redundant gitignore line|Negative
+replaced deprecated pip package|Neutral
+initial version of sentiment analysis addon|Neutral
+adde comment for clarification about awk usage|Neutral
+corrected the line count using awk for real this time|Positive
+replaced grep with awk for better commit message filtering|Positive
+automatically open the report when the script finishes|Neutral
+fixed missing line for the previous commit|Negative
+added the second alias for eddie|Neutral
+update gitignore to ignore analysis output files|Neutral
+added analysis script|Neutral
+update readmemd with final grade an links to linkedin profiles|Neutral
+update readmemd|Neutral
+update readmemd|Neutral
+more comfortable instruction images a more reactive carousel|Positive
+more comfortable instruction images a more reactive carousel|Positive
+some rephrasing|Neutral
+fixed the maxattempts issue|Positive
+updated app title removed bad link reference|Negative
+updated favicon|Neutral
+added maxattempts feature|Neutral
+added maxattempts feature|Neutral
+despaghettified the modeljsx file|Neutral
+made the informative error more convinient|Positive
+revert again|Neutral
+revert maxattempts|Neutral
+revert added carousel|Neutral
+added carousel|Neutral
+non operational maxattempts|Neutral
+added messege for two eye detection|Neutral
+updated readme|Neutral
+add license|Neutral
+replaced saturation to luminocity thanks to danielhimself|Positive
+added more tuning params|Positive
+optimized image enhancement|Neutral
+made suboptimal opencvjs solution calibourne address the optimization issue|Neutral
+added a start over button|Neutral
+fixed some interface problems|Positive
+fixed button pusitions|Positive
+fixe white footer issue|Neutral
+fixed ci|Positive
+fixed margin in instruction list|Positive
+prevented ci on branches other than main|Positive
+suppressed the image enhancement fix|Neutral
+suppressed the image enhancement|Neutral
+fixed the opencv issue|Positive
+refactured the project structure changed the approach in light enhancement|Positive
+changed approach|Neutral
+removed unncessasary imports|Neutral
+removed unneccassery comments|Neutral
+edit readme trigger pipeline|Neutral
+removed remnants of old dir structure|Positive
+removed app directory and put its contents in root|Neutral
+recerted last change in ci config|Neutral
+updated ci config|Neutral
+updated ci config|Neutral
+update gitlabciyml|Neutral
+added deployement config in ci yml file|Neutral
+added line to ignore unused var|Neutral
+reverted https flag from packagejson|Neutral
+updated ci config|Neutral
+updated package json homepage|Neutral
+dummy commit to test ci pipeline|Neutral
+updated ci config|Neutral
+moved gl ci config file|Neutral
+initial gitlabciyml version|Neutral
+fixed typo|Positive
+attempt to add upload an image to whatapp capability|Neutral
+changed from whatsapp web to whatsapp native|Neutral
+whatsapp works correctly but does not share the pic|Neutral
+removed redundant directories|Negative
+removed duplicate func decleration|Neutral
+gave up on the text in the loader|Neutral
+fixed issue with canvas|Positive
+updated loader|Neutral
+fixed logo sizes|Positive
+loader displayed seperatly|Neutral
+added darkmode logo to change|Neutral
+added dark mode logo|Negative
+added dark mode logo|Negative
+fixed styling|Positive
+refactored project structure|Neutral
+added a flask server for demonstrating the image enhancement|Neutral
+share button functionality for real|Positive
+reverted accidental code change|Neutral
+removed packagelockjson as it isnt needed for yarn projects|Negative
+updated packagejson|Neutral
+added functionallity to share button yet to be tested|Neutral
+removed uneccessary comments|Neutral
+added icons for switching themes|Neutral
+modified theme button alignment|Neutral
+changed logo added it to modeljsx insted of loader|Neutral
+added dark mode removed redundant app files|Negative
+fixed retake image button|Positive
+fixed the instruction swapping|Positive
+added instructions sdection|Neutral
+refactor new component instructions|Positive
+added the lables for good and bad pics|Positive
+reverting because bootstrap crash the app|Neutral
+starting style experiments|Neutral
+added logo img to files|Neutral
+added havis logo to spinner edited some titles|Neutral
+custom welcome prompt|Positive
+reverted to the original setup with our model at hand|Positive
+reverted to the original setup with our model at hand|Positive
+found that model component supports camera input|Neutral
+refactored camera|Neutral
+added uploadiamage component|Neutral
+updated the model|Neutral
+presentation mockup|Neutral
+moved model into camera component|Neutral
+updated imports|Neutral
+fixed model updated appjsx|Positive
+restructured backend moved to app dir migrated components|Neutral
+added compose file for a basic mysql connection|Neutral
+modified gitignore fixed backend appjs|Positive
+finished refactor of app file name to frontend|Neutral
+added backend|Neutral
+updated readme with yarn setup instructions|Negative
+refactored to react camera app complete|Positive
+updated gitignore|Neutral
+cleanup of old files in prep of refactor|Positive
+updated readme with the colab notebook training the model|Neutral
+refactored app to be a camera app instead of a chatbot|Neutral
+added enhanced pictures|Neutral
+mocked up button handlers not operation yet|Neutral
+deleted broken widget will be rebuilt ssoon|Negative
+added packagelockjson to gitignore|Neutral
+updated landing page header|Neutral
+unified syntax differences added missing export statement|Negative
+landing page works before chatbot|Neutral
+combined first and second phases of chatbot flow|Positive
+added symptoms duarion selection currently broken|Negative
+quick change removed camera widget|Positive
+finished with regex expressions phone number checking and name checking|Neutral
+added symptoms options selection|Neutral
+fixed the div must be a function issue found a different camera implementation|Positive
+fixed the chatbot responsive view|Positive
+camera view works but in cost of chatbot functionallity|Neutral
+mocked up camera widget|Neutral
+started working on camera integration|Neutral
+ignore nodemodules dir use npm install to generate|Neutral
+added test responses savingloading is wip|Neutral
+modified readme for the refactor|Neutral
+refactored project to be based on react native|Neutral
+deleted flask structure and returned to regular php|Neutral
+modified flask app structure|Neutral
+added flask base for the web app|Negative
+reverted repository back to initial webapp structure|Neutral
+scatch native moving to webapp|Neutral
+more refactoring the build works|Positive
+updated again the dockerfile|Neutral
+some refactoring|Neutral
+modified dockerfile purged apt cache|Positive
+updated the dockerfile added dockercompose dockerignore files|Neutral
+added a dockerfile for build automation not finished yet|Neutral
+updated build file|Neutral
+added a build pipeline for android not tested yet the result apk file|Neutral
+added a build pipeline for android not tested yet the result apk file|Neutral
+added makefile for convinience|Neutral
+progressed with video extraction module|Neutral
+videocapture struggles|Neutral
+working on video extraction module|Neutral
+added possible datasourse fixed a hyperlink to miniconda error in readme file|Positive
+added possible datasourse fixed a hyperlink to miniconda error in readme file|Positive
+migrated to anaconda will be easier to build the executables edited readme added couple of tagged pictures from nareed for eyecrop evaluation|Neutral
+refactored notebook added scripts for exe conversion|Neutral
+refactored notebook added scripts for exe conversion|Neutral
+changed the catsdogs pic directory to match the suggested algorithm compressed the heavy photos|Negative
+update readmemd|Neutral
+refactored the repository added some instruction to readme|Neutral
+working on object detection algorithm|Neutral
+accomplished most of the assignments on some will work on a different day this week|Positive
+updated the tasks for eddie on|Neutral
+moving toward different project uploaded some picture analytics need to come up with alternative usage of docker maybe db management|Neutral
+moved the mysqli connection to its own file|Positive
+integrated a mysql container and mysqli connection|Neutral
+added mysqli addon to dockerfile|Neutral
+added a phpinfo page to check on app status|Neutral
+renamed compose file to abide by current compose spec|Neutral
+replaced directory copy with volume mounting for the container|Neutral
+refactored html files into php|Neutral
+streamlined container deployment using docker compose|Neutral
+updated dockerfile structure|Neutral
+update readmemd|Neutral
+added instructions to shut down container for those less familiar with docker|Positive
+update readmemd|Neutral
+added dockerfile|Neutral
+new foundation based on bootstrapmades arsha template|Positive
+a proposal for readmemd|Neutral
+initial commit|Neutral
+initial commit|Neutral
