@@ -1,0 +1,193 @@
+Added a topic modeling addon script
+Removed redundant gitignore line
+Replaced deprecated pip package
+Initial version of sentiment analysis addon
+Adde comment for clarification about awk usage
+Corrected the line count using awk, for real this time
+Replaced grep with awk for better commit message filtering
+Automatically open the report when the script finishes
+Fixed missing line for the previous commit
+Added the second alias for Eddie
+Update .gitignore to ignore analysis output files
+Added analysis script
+Update README.md with final grade an links to LinkedIn profiles
+Update README.md
+Update README.md
+more comfortable instruction images, a more reactive carousel
+more comfortable instruction images, a more reactive carousel
+some rephrasing
+fixed the maxAttempts issue
+Updated app title, removed bad link reference
+Updated favicon
+added max-attempts feature
+added max-attempts feature
+despaghettified the model.jsx file
+made the informative error more convinient
+revert again
+revert max-attempts
+Revert "added carousel"
+added carousel
+non operational max-attempts
+added messege for two eye detection
+Updated readme
+Add LICENSE
+replaced saturation to luminocity - thanks to @Daniel-Himself
+added more tuning params
+optimized image enhancement
+made suboptimal opencv.js solution. @Calibourne - address the optimization issue
+added a start over button
+fixed some interface problems
+fixed button pusitions
+fixe white footer issue
+fixed ci
+fixed margin in instruction list
+prevented ci on branches other than main
+suppressed the image enhancement - fix
+suppressed the image enhancement
+fixed the opencv issue
+refactured the project structure - changed the approach in light enhancement
+changed approach
+removed unncessasary imports
+removed unneccassery comments
+edit readme - trigger pipeline
+Removed remnants of old dir structure
+Removed app directory and put its contents in root
+Recerted last change in ci config
+Updated ci config
+updated ci config
+Update .gitlab-ci.yml
+Added deployement config in ci yml file
+Added line to ignore unused var
+reverted https flag from package.json
+updated ci config
+Updated package json homepage
+dummy commit to test ci pipeline
+Updated ci config
+Moved GL ci config file
+Initial gitlab-ci.yml version
+Fixed typo
+attempt to add upload an image to whatapp capability
+Changed from Whatsapp web - to whatsapp native
+Whatsapp works correctly - but does not share the pic
+removed redundant directories
+Removed duplicate func decleration
+Gave up on the text in the loader
+fixed issue with canvas
+Updated Loader
+fixed logo sizes
+Loader displayed seperatly
+Added DarkMode Logo to change
+added dark mode logo
+added dark mode logo
+Fixed styling
+Refactored project structure
+added a flask server for demonstrating the image enhancement
+Share button functionality, for real!
+Reverted accidental code change
+Removed package-lock.json as it isn't needed for yarn projects
+Updated package.json
+Added functionallity to share button, yet to be tested
+Removed uneccessary comments
+Added Icons for switching themes
+Modified theme button alignment
+changed logo, added it to model.jsx insted of loader
+Added dark mode, removed redundant App.* files
+Fixed <retake image> button
+Fixed the instruction swapping
+added instructions sdection
+Refactor + new component (instructions)
+added the lables for good and bad pic's
+reverting because bootstrap crash the app
+Starting style experiments
+added logo img to files
+added havis logo to spinner. edited some titles..
+custom welcome prompt
+reverted to the original setup with our model at hand
+reverted to the original setup with our model at hand
+found that Model component supports camera input
+refactored camera
+added UploadIamage Component
+Updated the model
+presentation mockup
+Moved Model into Camera component
+Updated imports
+fixed model, updated App.jsx
+restructured backend; moved to app dir; migrated components
+Added compose file for a basic mysql connection
+Modified gitignore, fixed backend app.js
+Finished refactor of app file name to frontend
+Added backend
+Updated README with yarn setup instructions
+Refactored to React Camera App - Complete
+Updated gitignore
+Cleanup of old files in prep of refactor
+updated readme with the colab notebook training the model
+Refactored app to be a camera app instead of a chatbot
+added enhanced pictures
+Mocked up button handlers, not operation yet
+Deleted broken widget, will be rebuilt ssoon
+Added package-lock.json to .gitignore
+Updated landing page header
+Unified syntax differences, added missing export statement
+landing page works before chatbot
+Combined first and second phases of chatbot flow
+Added symptoms duarion selection, currently broken
+Quick change - removed camera widget
+Finished with regex expressions - phone number checking and Name checking
+Added symptoms options selection
+Fixed the div must be a function Issue, found a different camera implementation
+Fixed the chatbot responsive view
+Camera view works but in cost of chatbot functionallity
+mocked up camera widget
+Started working on camera integration
+ignore node_modules dir, use npm install to generate
+Added test responses, saving/loading is WIP
+Modified readme for the refactor
+Refactored project to be based on React Native
+Deleted Flask structure and returned to regular php
+Modified flask app structure
+Added Flask base for the web app
+Reverted repository back to initial webapp structure
+scatch native - moving to web-app
+more refactoring, the build works
+updated again the Dockerfile
+Some refactoring
+Modified Dockerfile - purged apt cache
+updated the Dockerfile, added docker-compose + .dockerignore files
+Added a Dockerfile for build automation, not finished yet
+updated build file
+Added a build pipeline for android - not tested yet the result apk file
+Added a build pipeline for android - not tested yet the result apk file
+Added makefile for convinience
+progressed with video extraction module
+VideoCapture struggles
+working on video extraction module
+Added Possible Datasourse. Fixed a hyperlink to miniconda error in README file
+Added Possible Datasourse. Fixed a hyperlink to miniconda error in README file
+Migrated to Anaconda - will be easier to build the executables. Edited README. Added couple of tagged pictures from Nareed for eye-crop evaluation
+Refactored notebook, added scripts for exe conversion
+Refactored notebook, added scripts for exe conversion
+Changed the cats/dogs pic directory to match the suggested algorithm, compressed the heavy photos
+Update README.md
+refactored the repository, added some instruction to README
+working on object detection algorithm
+Accomplished most of the assignments. On some will work on a different day this week
+Updated the tasks for @Eddie on 6/2
+Moving toward different project. Uploaded some picture analytics. Need to come up with alternative usage of docker (maybe DB management?)
+Moved the mysqli connection to its own file
+Integrated a MySQL container and mysqli connection
+Added mysqli addon to dockerfile
+Added a phpinfo page to check on app status
+Renamed compose file to abide by current compose spec
+Replaced directory COPY with volume mounting for the container
+Refactored html files into php
+Streamlined container deployment using Docker Compose
+Updated Dockerfile structure
+Update README.md
+Added instructions to shut down container for those less familiar with Docker
+Update README.md
+Added Dockerfile
+New foundation based on bootstrapmade's Arsha template
+A Proposal for README.md
+Initial Commit
+Initial commit

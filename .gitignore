@@ -37,5 +37,4 @@ yarn-error.log*
 /src/flask/static/uploads/
 
 # Ignore analysis output files
-/repository-analysis/*.txt
-/repository-analysis/report.txt
+/repository-analysis/venv

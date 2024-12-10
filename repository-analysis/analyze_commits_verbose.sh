@@ -3,6 +3,7 @@
 # Script: repository-analysis/analyze_commits_verbose.sh
 # Author: Daniel Sharon
 # Description: Analyzes a Git repository's commit history with verbose outputs.
+# Based upon this conversation with ChatGPT https://chatgpt.com/share/674b03ee-dfa0-800d-a809-756da5a2a978
 # Modifications:
 # - Adjusted the Git repository check to account for the script running in 'repository-analysis'.
 # - Ensured all path references are correct.
@@ -126,8 +127,29 @@ echo "Preprocessed messages saved to 'messages_clean.txt'."
 
 echo "--------------------------------------------------"
 
-# Step 7: Remove stop words
-echo "Step 7: Removing stop words..."
+# Activate virtual environment
+source venv/bin/activate
+
+# Step 7: Perform Sentiment Analysis
+echo "Step 7: Performing sentiment analysis..."
+python3 sentiment_analysis.py
+echo "Sentiment analysis results saved to 'sentiment_results.txt'."
+
+echo "--------------------------------------------------"
+
+# Step 8: Perform Topic Modeling
+echo "Step 8: Performing topic modeling..."
+python3 topic_modeling.py
+echo "Topic modeling results saved to 'topics.txt' and 'topics_per_commit.txt'."
+echo "Interactive visualization saved to 'lda_visualization.html'."
+
+echo "--------------------------------------------------"
+
+# Deactivate virtual environment
+deactivate
+
+# Step 9: Remove stop words
+echo "Step 9: Removing stop words..."
 
 # Define array of stop words
 stopwords=("the" "is" "in" "at" "which" "on" "a" "an" "and" "or" "for" "of" "with" "to" "from" "by" "this" "that" "it" "be" "as" "are" "was" "were" "but" "if" "not" "no" "so" "we" "you" "he" "she" "they" "them" "their" "my" "your" "our" "also" "just" "can" "will" "has" "have" "had" "do" "did" "done")
@@ -146,8 +168,8 @@ echo "Stop words removed. Words saved to 'words_filtered.txt'."
 
 echo "--------------------------------------------------"
 
-# Step 8: Perform word frequency analysis
-echo "Step 8: Performing word frequency analysis..."
+# Step 10: Perform word frequency analysis
+echo "Step 10: Performing word frequency analysis..."
 sort words_filtered.txt | uniq -c | sort -nr > word_freq.txt
 echo "Word frequency data saved to 'word_freq.txt'."
 
@@ -156,8 +178,8 @@ echo "Total unique words: $unique_words"
 
 echo "--------------------------------------------------"
 
-# Step 9: Analyze author activity
-echo "Step 9: Analyzing author activity..."
+# Step 11: Analyze author activity
+echo "Step 11: Analyzing author activity..."
 cut -d'|' -f2 commits_mapped.txt | sort | uniq -c | sort -nr > author_activity.txt
 echo "Author activity data saved to 'author_activity.txt'."
 
@@ -167,8 +189,8 @@ echo "Total authors: $total_authors"
 
 echo "--------------------------------------------------"
 
-# Step 10: Generate report
-echo "Step 10: Generating report..."
+# Step 12: Generate report
+echo "Step 12: Generating report..."
 {
     echo "Analysis Report"
     echo "==============="
@@ -178,6 +200,24 @@ echo "Step 10: Generating report..."
     echo "Date of Analysis: $(date)"
     echo ""
     echo "Total Commits Analyzed: $commits_filtered"
+    echo ""
+    echo "Sentiment Analysis:"
+    echo "-------------------"
+    sentiment_counts=$(cut -d'|' -f2 sentiment_results.txt | sort | uniq -c | sort -nr)
+    echo "$sentiment_counts"
+    echo ""
+    echo "Identified Topics:"
+    echo "------------------"
+    cat topics.txt
+    # The following lines are currently commented out as the code is not functioning as expected
+    # echo ""
+    # echo "Topic Assignments per Commit (Sample):"
+    # echo "--------------------------------------"
+    # head -n 10 topics_per_commit.txt  # Display first 10 topic assignments
+    # echo ""
+    # echo "Topic Visualization:"
+    # echo "--------------------"
+    # echo "An interactive visualization is available in 'lda_visualization.html'. Open this file in a web browser to explore the topics."
     echo ""
     echo "Top Keywords:"
     echo "-------------"
